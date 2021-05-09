@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import HomePage from './components/home_page/HomePage'
 import Favourites from "./components/favourites/favourites"
+import Sidebar from './components/sidebar/sidebar'
 
 export default function App(props) {
   const [ state, setState] = useState('')
@@ -28,6 +29,7 @@ export default function App(props) {
           Fetch Data
         </button> */
       <div className="App">
+        <Sidebar />
         <Favourites />
       </div>
     );
