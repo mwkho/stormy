@@ -8,10 +8,10 @@ export default function Sidebar(props){
   return(
     <>
      <div class="sidenav">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>
+  <SidebarElement image="../../../images/profile_pic.png" text="Egg Eggerson"/>
+  <SidebarElement image="../../../images/home.png" text="Home"/>
+  <SidebarElement image="../../../images/heart.png" text="Favourites"/>
+  
 </div>
     </>
   )
