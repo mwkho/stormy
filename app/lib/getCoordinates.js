@@ -1,5 +1,4 @@
 const axios = require('axios');
-const pointInPolygonNested = require('point-in-polygon/nested')
 
 // helper to filter for the coordinates and name of interest when searching
 const filterData = (results, typeString) => {
