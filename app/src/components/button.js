@@ -1,6 +1,6 @@
 import React from "react";
 //import classnames from "classnames";
-//import "components/Button.scss";
+//import "../components/Button.scss";
 
 //cretes the buttons for the appointments component
 export default function Button(props) {
