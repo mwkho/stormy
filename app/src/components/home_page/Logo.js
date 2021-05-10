@@ -6,7 +6,8 @@ export default function Logo(props){
 
   return(
       <div >
-        <img src="../../../images/garibaldi_lake.png" ></img>
+        <h1> Stormy</h1>
+        {/* <img src="../../../images/garibaldi_lake.png" ></img> */}
       </div>
   )
 

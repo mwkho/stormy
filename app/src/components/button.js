@@ -12,7 +12,7 @@ export default function Button(props) {
    return (
       <button
         //className={buttonClass}
-        onClick={props.onClick}
+        onClick={console.log('been cicked')}
         disabled={props.disabled}
       >
         {props.children}

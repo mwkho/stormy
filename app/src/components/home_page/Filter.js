@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
+ 
 import axios from 'axios';
 
 export default function Filter(props){
 
   return (
-  <>
-  <input type="checkbox" id="type1" name="" value="Trail" />
-  <label for="type1"> Trail</label>
-  <input type="checkbox" id="type2" name="type2" value="Ski Route" />
-  <label for="type2"> Ski Route</label>
-  <input type="checkbox" id="type3" name="type3" value="Mountain" />
-  <label for="type3"> Mountain</label>
-  </>
+  <div className="Filter">
+    <input type="checkbox" id="trail" name="trail" value="Trail"/>
+    <label for="trail"> Trail</label>
+    <input type="checkbox" id="mountain" name="mountain" value="Mountain" />
+    <label for="mountain"> Mountain</label>
+  {/* <input type="checkbox" id="type3" name="type3" value=/>
+  <label for="type3"> </label> */}
+  </div>
   )
 };
-
-
-/*(
-    
-  <input type="checkbox" name="box1"></input>
-  <label for></label>
-
-  )*/
