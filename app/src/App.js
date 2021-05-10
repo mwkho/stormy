@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import HomePage from './components/home_page/HomePage'
+import Favourites from "./components/favourites/favourites"
 
 export default function App(props) {
   const [ state, setState] = useState('')
@@ -20,11 +22,13 @@ export default function App(props) {
   }
 
     return (
-      <div className="App">
-        <h1> Hello world! </h1>
+      
+      /*<h1> Hello world! </h1>
         <button onClick={fetchData} >
           Fetch Data
-        </button>        
+        </button> */
+      <div className="App">
+        <Favourites />
       </div>
     );
 }
