@@ -16,8 +16,8 @@ export default function HomePage(props){
     getMountainCoordinates(userInput)
     .then((res) => {
       setResults([...res])
-      }
-    )
+    })
+    .catch(err => console.log(err.message))
   }, [userInput])
 
 
@@ -27,7 +27,6 @@ export default function HomePage(props){
     <Filter/>
     <SearchBar onSearch={userInput => setUserInput(userInput)}/>
     <ResultsList results={results}/>
-    <Button />
   </main>
   )
 
