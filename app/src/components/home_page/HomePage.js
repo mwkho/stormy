@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from "./SearchBar"
-import Button from '../button'
 import Logo from './Logo'
 import Filter from './Filter'
 import ResultsList from './ResultList';
@@ -28,7 +27,7 @@ export default function HomePage(props){
     <Logo/>
     <Filter mode={mode} setMode={setMode} reset={reset}/>
     <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    <ResultsList results={results} display={props.display}/>
+    <ResultsList results={results} display={props.display} setPOI={props.setPOI}/>
   </main>
   )
 

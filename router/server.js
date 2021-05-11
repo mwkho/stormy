@@ -30,7 +30,6 @@ App.post("/information", (req, res) => {
   })
 })
 
-
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Express seems to be listening on port ${PORT} so that's pretty good 👍`);

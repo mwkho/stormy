@@ -13,10 +13,11 @@ export default function App(props) {
   const FAVOURITES = 'FAVOURITES'
 
   const [ page, setPage] = useState('HOME')
+  const [ poi, setPOI] = useState({});
   return (
     <div className="App">
-      {page === HOME && <HomePage display={setPage}/>}
-      {page === INFORMATION && "Information page here"}
+      {page === HOME && <HomePage display={setPage} setPOI={setPOI}/>}
+      {page === INFORMATION && `Information page here: ${[poi.lat, poi.lon]}`}
       {page === FAVOURITES && <Favourites /> }
     </div>
   );
