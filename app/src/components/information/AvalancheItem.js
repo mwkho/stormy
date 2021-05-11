@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-
+import React from 'react';
+import AvalancheProblemsItem from './AvalancheProblemsItem'
 
 export default function AvalanceItem(props){
+  const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = props.bulletin
 
-  const AvalancheData = {dateIssued: "March 10, 2020", 
-    validUntil: "March 20, 2020", 
-    highlights: "These are the highlights", 
-    avalancheSummary: "This is the avalanche Summary", 
-    snowpackSummary: "This is the snowpack Summary", 
-    dangerRatings: "MUCH DANGER", 
-    problems: "Here are some problems"
-  }
- 
+  const problemsList = problems.map((problem) => {
+    return <AvalancheProblemsItem type={problem.type} comment={problem.comment} elevation={problem.icons.elevation} aspects={problem.icons.aspects} likelihood={problem.icons.likelihood} expectedSize={problem.icons.expectedSize}/>
+  })
+
   return(
     <>
     <h1> Avalanche Data</h1>
     <table>
-  <tr>
-    <th>Date Issued:</th>
-    <td>{AvalancheData['dateIssued']}</td>
-  </tr>
-  <tr>
-    <th>Valid Untill:</th>
-    <td>{AvalancheData['validUntil']}</td>
-  </tr>
-  <tr>
-    <th>HighLights:</th>
-    <td>{AvalancheData['highlights']}</td>
-  </tr>
-  <tr>
-    <th>Avalanche Summary:</th>
-    <td>{AvalancheData['avalancheSummary']}</td>
-  </tr>
-  <tr>
-    <th>Snowpack Summary:</th>
-    <td>{AvalancheData['snowpackSummary']}</td>
-  </tr>
-  <tr>
-    <th>Danger Ratings:</th>
-    <td>{AvalancheData['dangerRatings']}</td>
-  </tr>
-  <tr>
-    <th>Problems:</th>
-    <td>{AvalancheData['problems']}</td>
-  </tr>
+      <thead>
+        <tr>
+          <th>Region</th> 
+          <td>{region}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Date Issued:</th>
+          <td>{dateIssued}</td>
+        </tr>
+        <tr>
+          <th>Valid Until:</th>
+          <td>{validUntil}</td>
+        </tr>
+        <tr>
+          <th>HighLights:</th>
+          <td>{highlights}</td>
+        </tr>
+        <tr>
+          <th>Avalanche Summary:</th>
+          <td>{avalancheSummary}</td>
+        </tr>
+        <tr>
+          <th>Snowpack Summary:</th>
+          <td>{snowpackSummary}</td>
+        </tr>
+        <tr>
+          <th>Danger Ratings:</th>
+          <td>{dangerRatings}</td>
+        </tr>
+        {problemsList}
+    </tbody>
   </table>
   </>
   
