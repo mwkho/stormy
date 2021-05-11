@@ -20,12 +20,12 @@ const getMountainCoordinates = (peakName) => {
 const getTrailCoordinates = (trailName) => {
   // add 'trail' to search if it doesn't have it included to refine search
   const regex = /[tT]rail/g;
-  if (!regex.test(trailName)) {
-    trailName = trailName.strip() +" Trail"
+  if (trailName && !regex.test(trailName)) {
+    trailName = trailName.trim() +" Trail"
   }
 
   return axios.get(`https://nominatim.openstreetmap.org/search.php?q=${trailName}%20in%20british%20columbia&polygon_geojson=1&format=jsonv2`)
-  .then((results) => filterData(results.data,trailTypes))
+  .then((results) => filterData(results.data, trailTypes))
 }
 
 module.exports = {
