@@ -2,9 +2,9 @@ import React from 'react'
 
 const ResultListItem  = (props) => {
   return (
-    <div className="ResultListItem">
+    <li className="ResultListItem">
       <h2>{props.name}</h2>
-    </div>
+    </li>
   )
 }
 

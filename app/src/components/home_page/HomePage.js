@@ -20,12 +20,14 @@ export default function HomePage(props){
     .catch(err => console.log(err.message))
   }, [userInput])
 
-
+  const reset = () => {
+    setUserInput("")
+  }
   return(
   <main>
     <Logo/>
-    <Filter mode={mode} setMode={setMode}/>
-    <SearchBar searchMode={mode} onSearch={userInput => setUserInput(userInput)}/>
+    <Filter mode={mode} setMode={setMode} reset={reset}/>
+    <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
     <ResultsList results={results}/>
   </main>
   )
