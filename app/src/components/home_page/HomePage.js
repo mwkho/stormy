@@ -8,12 +8,12 @@ import ResultsList from './ResultList';
 const {getMountainCoordinates, getTrailCoordinates} = require("../../lib/getCoordinates")
 
 export default function HomePage(props){
-  
   const [userInput, setUserInput] = useState("")
   const [results, setResults] = useState([])
+  const [mode, setMode] = useState(0)
 
   useEffect(() => {
-    getMountainCoordinates(userInput)
+    (mode ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
     .then((res) => {
       setResults([...res])
     })
@@ -24,8 +24,8 @@ export default function HomePage(props){
   return(
   <main>
     <Logo/>
-    <Filter/>
-    <SearchBar onSearch={userInput => setUserInput(userInput)}/>
+    <Filter mode={mode} setMode={setMode}/>
+    <SearchBar searchMode={mode} onSearch={userInput => setUserInput(userInput)}/>
     <ResultsList results={results}/>
   </main>
   )

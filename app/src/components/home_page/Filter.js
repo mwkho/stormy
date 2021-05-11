@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
  
-import axios from 'axios';
-
 export default function Filter(props){
 
   return (
-  <div className="Filter">
-    <input type="checkbox" id="trail" name="trail" value="Trail"/>
-    <label for="trail"> Trail</label>
-    <input type="checkbox" id="mountain" name="mountain" value="Mountain" />
-    <label for="mountain"> Mountain</label>
-  {/* <input type="checkbox" id="type3" name="type3" value=/>
-  <label for="type3"> </label> */}
-  </div>
-  )
-};
+    // hackish way to allow radio buttons to change the states
+    <div onChange={event => props.setMode((props.mode+1)%2)}>
+      <input type="radio" name="option" id="trail" checked={props.mode === 0}/>
+      <label htmlFor="trail"> Trail</label>
+      <input type="radio" id="mountain" name="option"checked={props.mode === 1}/>
+      <label htmlFor="mountain"> Mountain</label>
+    </div>
+  )};
