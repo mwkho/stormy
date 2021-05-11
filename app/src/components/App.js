@@ -11,13 +11,13 @@ export default function App(props) {
   const HOME = 'HOME'
   const INFORMATION = 'INFORMATION'
   const FAVOURITES = 'FAVOURITES'
-  const [ page, setPage] = useState('HOME')
 
-    return (
-      <div className="App">
-        {page === HOME && <HomePage display={setPage}/>}
-        {page === INFORMATION && "Information page here"}
-        {page === FAVOURITES && <Favourites /> }
-      </div>
-    );
+  const [ page, setPage] = useState('HOME')
+  return (
+    <div className="App">
+      {page === HOME && <HomePage display={setPage}/>}
+      {page === INFORMATION && "Information page here"}
+      {page === FAVOURITES && <Favourites /> }
+    </div>
+  );
 }

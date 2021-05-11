@@ -28,7 +28,7 @@ export default function HomePage(props){
     <Logo/>
     <Filter mode={mode} setMode={setMode} reset={reset}/>
     <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    <ResultsList results={results}/>
+    <ResultsList results={results} display={props.display}/>
   </main>
   )
 

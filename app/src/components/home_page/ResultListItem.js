@@ -4,6 +4,9 @@ import React from 'react'
 const ResultListItem  = (props) => {
   const getInformation = (coordinates) => {
   Axios.post("/information", {coordinates: coordinates})
+  .then(() => {
+    props.display('INFORMATION')
+  })
   }
   
   return (
