@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Button from '../button'
+import React, { useState, useEffect, useCallback} from 'react';
 
+import useDebounce from "../../hooks/useDebounce";
 
 export default function SearchBar(props){
+  const [value, setValue] = useState("")
 
-  const [name, setName] = useState(props.name || "")
+  const userInput = useDebounce(value, 100);
+  const onSearch = useCallback(props.onSearch, [userInput]);
+
+  useEffect(() => {
+    onSearch(userInput);
+  }, [userInput, onSearch])
 
   return(
-  <main >
-  <section >
-    <form 
-    autoComplete="off"
-    onSubmit={event => event.preventDefault()}
-    >
+  <>
+    <form autoComplete="off" onSubmit={event => event.preventDefault()}>
       <input
-        className="appointment__create-input text--semi-bold"
+        data-testid="trail-name-input"
+        className="search-input"
         name="search_bar"
         type="text"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Enter Trail Name"
-        /*
-          This must be a controlled component
-        */
-       data-testid="trail-name-input"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        placeholder="Where do you wanna search?"
       />
     </form>
-  </section>
-</main>
+  </>
   )
 };
