@@ -22,13 +22,18 @@ res.redirect('/app/src/index')
 })
 // post route to get weather and avalanche information
 App.post("/information", (req, res) => {
-  const coordinates = req.body.coordinates
-  getBulletin(coordinates)
+  const {lat, lon}= req.body.poi
+  let information = {"weather":{} , "bulletin":{}}
+  Promise.all([getBulletin([lat, lon]), getHourlyWeather({lat,lon})])
   .then((results) => {
-    res.json(results)
-    return
+    information.bulletin = results[0]
+    information.weather = results[1]
+    console.log(information)
+    res.send(information)
   })
+  .catch((err) => err.data)
 })
+
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
