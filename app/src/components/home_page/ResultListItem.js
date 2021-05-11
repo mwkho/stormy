@@ -5,6 +5,7 @@ const ResultListItem  = (props) => {
   const getInformation = (poi) => {
     props.setPOI(poi)
     props.display('INFORMATION')
+    Axios.post('/information', {poi: poi})
   }
   
   return (
