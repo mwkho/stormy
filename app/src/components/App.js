@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
-import HomePage from './components/home_page/HomePage'
-import Favourites from "./components/favourites/favourites"
-import Sidebar from './components/sidebar/sidebar'
-import Information from "./components/information/Information"
-import useVisualMode from "./hooks/useVisualMode"
+import HomePage from './home_page/HomePage'
+import Favourites from "./favourites/Favourites"
+import Sidebar from './sidebar/sidebar'
+import Information from "./sidebar/sidebar"
+import useVisualMode from "../hooks/useVisualMode"
+
+
+const HOME = 'HOME'
+const INFORMATION = 'INFORMATION'
+const FAVOURITES = 'FAVOURITES'
 
 export default function App(props) {
 
   const [ state, setState] = useState('')
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
+  const { mode, transition, back } = useVisualMode();
 
   // different viewing modes for the web app
-  const HOME = 'HOME'
-  const INFORMATION = 'INFORMATION'
-  const FAVOURITES = 'FAVOURITES'
 
   const [ page, setPage] = useState('HOME')
   const [ poi, setPOI] = useState({});
