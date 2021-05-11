@@ -1,12 +1,18 @@
 import React from 'react';
+import AvalancheDangerItem from './AvalancheDangerItem';
 import AvalancheProblemsItem from './AvalancheProblemsItem'
 
-export default function AvalanceItem(props){
+export default function AvalancheBulletin(props){
   const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = props.bulletin
 
   const problemsList = problems.map((problem) => {
     return <AvalancheProblemsItem type={problem.type} comment={problem.comment} elevation={problem.icons.elevation} aspects={problem.icons.aspects} likelihood={problem.icons.likelihood} expectedSize={problem.icons.expectedSize}/>
-  })
+  });
+
+  const dangersList = dangerRatings.map((rating) => {
+    const {alp, tln, btl} = rating.dangerRating
+    return <AvalancheDangerItem date={rating.date} alp={alp} tln={tln} btl={btl}/> 
+  });
 
   return(
     <>
@@ -31,6 +37,7 @@ export default function AvalanceItem(props){
           <th>HighLights:</th>
           <td>{highlights}</td>
         </tr>
+        {dangersList}
         <tr>
           <th>Avalanche Summary:</th>
           <td>{avalancheSummary}</td>
@@ -38,10 +45,6 @@ export default function AvalanceItem(props){
         <tr>
           <th>Snowpack Summary:</th>
           <td>{snowpackSummary}</td>
-        </tr>
-        <tr>
-          <th>Danger Ratings:</th>
-          <td>{dangerRatings}</td>
         </tr>
         {problemsList}
     </tbody>

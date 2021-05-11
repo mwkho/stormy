@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AvalancheItem from "./AvalancheItem"
+import AvalancheBulletin from "./AvalancheBulletin"
 import WeatherItem from "./WeatherItem"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
@@ -14,9 +14,9 @@ export default function Information(props){
   console.log(bulletin)
   return(
     <>
-      <AvalancheItem bulletin={bulletin}/>
+      <MapItem name={display_name} coordinates={`${lat}, ${lon}`} map="../../../images/trail.png"/>
       <WeatherItem weather={weather}/>
-      <MapItem name={display_name} coordinates={[lat, lon]} map="../../../images/trail.png"/>
+      <AvalancheBulletin bulletin={bulletin}/>
       <CommentList image="../../../images/profile_pic.png"/>
     </>
   )
