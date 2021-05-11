@@ -44,8 +44,8 @@ const getBulletin = (coordinates) => {
   .then((region) => axios.get(`https://www.avalanche.ca/api/forecasts/${region}.json`))
   .then((res) => {
     const data = res.data;
-    const {dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = data
-    return {dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems}
+    const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = data
+    return {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems}
   })
   // catch error for unfound region
   .catch(() => 'The trail/mountain does not belong to a region with an avalanche bulletin')
