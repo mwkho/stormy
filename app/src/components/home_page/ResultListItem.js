@@ -6,6 +6,7 @@ const ResultListItem  = (props) => {
     props.setPOI(poi)
     props.display('INFORMATION')
     Axios.post('/information', {poi: poi})
+    props.onClick()
   }
   
   return (

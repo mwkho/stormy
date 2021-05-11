@@ -8,7 +8,7 @@ export default function SidebarElement(props){
   return(
     <>
     <img src={props.image} width="50" height="50"/> 
-    <a>{props.text}</a>
+    <a href="#" onClick={props.onClick}>{props.text} </a>
     </>
   )
 
