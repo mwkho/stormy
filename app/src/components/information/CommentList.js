@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import CommentListItem from "./CommentListItem"
+import Axios from 'axios';
 
 export default function CommentList(props){
+
+  Axios.get('/api/getComments')
+  .then(res=>{
+    console.log(res.data)
+  })
 
   return(
     <>

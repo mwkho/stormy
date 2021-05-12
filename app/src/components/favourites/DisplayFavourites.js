@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "../styles/DropDown.css"
+import Axios from 'axios';
 
 
 export default function Favourites(props){
+  console.log("I am working")
+  Axios.get('/api/getFavourites')
+  .then(resp =>{
+    console.log(resp.data)
+    console.log("I am not working")
+  })
 
   return(
 <body>
