@@ -1,90 +1,101 @@
 import React from 'react';
 
+
+// create a helper function to sort the weather data
+const consolidateWeather = (weather) => {
+  const initial = {dt:[], temp:[], windSpeed:[], windDeg:[], rain:[], snow:[], pop:[], description:[], main:[], icon:[]}
+  return weather.reduce((accumalator, current) => {
+    accumalator.dt.push(current.dt)
+    accumalator.temp.push(current.temp)
+    accumalator.windSpeed.push(current.wind_speed)
+    accumalator.windDeg.push(current.wind_deg)
+    accumalator.pop.push(current.pop)
+    accumalator.rain.push(current.rain && current.rain.lh)
+    accumalator.snow.push(current.snow && current.snow.lh)
+    accumalator.description.push(current.weather[0].description)
+    accumalator.main.push( current.weather[0].main)
+    accumalator.icon.push(`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`)
+    return accumalator
+  }, initial)
+}
+
 export default function WeatherItem(props){
+  const consolidate = consolidateWeather(props.weather)
 
-  const WeatherData = {
-    "hourly": [
-      {
-        "dt": 1618315200,
-        "temp": 282.58,
-        "feels_like": 280.4,
-        "pressure": 1019,
-        "humidity": 68,
-        "dew_point": 276.98,
-        "uvi": 1.4,
-        "clouds": 19,
-        "visibility": 306,
-        "wind_speed": 4.12,
-        "wind_deg": 296,
-        "wind_gust": 7.33,
-        "weather": [
-          {
-            "id": 801,
-            "main": "Clouds",
-            "description": "few clouds",
-            "icon": "02d"
-          }
-        ],
-        "pop": 0
-      }
-    ]
-  }
-
-      
-
+  console.log(consolidate)
+  const dateList = consolidate.dt.map((time, index) => {
+    const date = new Date(time*1000)
+    return <th key={"date"+index}>{date.getHours()}</th>
+  })
 
   return(
     <>
     <h1>Hourly Weather Data</h1>
     <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          {dateList}
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <th></th>
+          {consolidate.icon.map((icon, index) => {
+      return <td key={"icon"+index}><img src={icon}/> </td>
+      })}
+        </tr>
     <tr>
     <th>Weather:</th>
-    <td>{WeatherData.hourly[0].weather[0].main}</td>
+    {consolidate.main.map((main, index) => {
+      return <td key={"main"+index}>{main}</td>
+    })}
   </tr>
-  <tr>
+    <tr>
     <th>Weather Description:</th>
-    <td>{WeatherData.hourly[0].weather[0].description}</td>
+    {consolidate.description.map((description, index) => {
+      return <td key={"description"+index}>{description}</td>
+    })}
   </tr>
   <tr>
     <th>Temperature:</th>
-    <td>{WeatherData.hourly[0].temp}</td>
+    {consolidate.temp.map((temp, index) => {
+      return <td key={"temp"+index}>{temp}</td>
+    })}
   </tr>
   <tr>
     <th>Wind Speed:</th>
-    <td>{WeatherData.hourly[0].wind_speed}</td>
+    {consolidate.windSpeed.map((windSpeed, index) => {
+      return <td key={"windSpeed"+index}>{windSpeed}</td>
+    })}  
   </tr>
   <tr>
     <th>Wind Degrees:</th>
-    <td>{WeatherData.hourly[0].wind_deg}</td>
+    {consolidate.windDeg.map((windDeg, index) => {
+      return <td key={"windDeg"+index}>{windDeg}</td>
+    })}  
   </tr>
   <tr>
-    <th>Probability of Precipitation:</th>
-    <td>{WeatherData.hourly[0].pop}</td>
+    <th>Percent of Precipitation</th>
+    {consolidate.pop.map((pop, index) => {
+      return <td key={"pop"+index}>{Math.round(pop*100) + "%"}</td>
+    })}  
   </tr>
-  {WeatherData.hourly[0].rain && (
-    <tr>
-    <th>Rain:</th>
-    <td>{WeatherData.hourly[0].rain}</td>
+  <tr>
+    <th>Rain</th>
+    {consolidate.rain.map((rain, index) => {
+      return <td key={"rain"+index}>{rain ? rain : 0}</td>
+    })}  
   </tr>
-  )}
-  {WeatherData.hourly[0].snow && (
-    <tr>
-    <th>Snow:</th>
-    <td>{WeatherData.hourly[0].snow}</td>
+  <tr>
+    <th>Snow</th>
+    {consolidate.snow.map((snow, index) => {
+      return <td key={"snow"+index}>{snow ? snow : 0}</td>
+    })}  
   </tr>
-  )}
+  </tbody>
   </table>
     </>
   )
-
 };
-
-
-/*.temp
-.wind_speed
-.wind_deg
-.pop
-.rain (if no rain, desn't show up) so need to check 
-.snow (if no snow, desn't show up) so need to check 
-.weather -> an object of {main, description, icon}
-*/

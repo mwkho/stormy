@@ -28,7 +28,6 @@ App.post("/information", (req, res) => {
   .then((results) => {
     information.bulletin = results[0]
     information.weather = results[1]
-    console.log(information)
     res.send(information)
   })
   .catch((err) => err.data)
