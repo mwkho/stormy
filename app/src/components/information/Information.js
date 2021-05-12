@@ -13,10 +13,19 @@ export default function Information(props){
   console.log(bulletin)
   return(
     <>
-      <MapItem name={display_name} coordinates={`${lat}, ${lon}`} map="../../../images/trail.png"/>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""
+      />
+
+      <h1>{display_name}</h1>
+      <h2>Getting weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       <WeatherItem weather={weather}/>
       <AvalancheBulletin bulletin={bulletin}/>
+      <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
       <CommentList image="../../../images/profile_pic.png"/>
-    </>
+      </>
   )
 };
