@@ -18,10 +18,10 @@ export default function App(props) {
   const [ poi, setPOI] = useState({});
   const { mode, transition, back } = useVisualMode();
 
-  const displayFavourites = function(){
+  const displayFavourites = function() {
     transition(FAVOURITES)
   }
-  const displayHomePage = function(){
+  const displayHomePage = function() {
     transition(HOME)
   }
   const displayInformation = function(){
@@ -30,31 +30,16 @@ export default function App(props) {
   //transition(HOME)
   // different viewing modes for the web app
 
-<<<<<<< HEAD
 
   return (
     <div className="App">
       <Sidebar favourites={displayFavourites} homePage={displayHomePage}/>
-      { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation}/>}
+      { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
       {mode === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation}/>}
-      {mode === INFORMATION && <Information />}
-      {mode === FAVOURITES && <Favourites />}
-
-      
-      
-=======
-  const [ page, setPage] = useState('HOME')
-  const [ poi, setPOI] = useState({});
-  const [information, setInformation] = useState({})
-  
-  return (
-    <div className="App">
-      {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation}/>}
       {page === INFORMATION && <Information information={information} poi={poi}/>}
-      {page === FAVOURITES && <Favourites  /> }
->>>>>>> Information_Component
+      {mode === FAVOURITES && <Favourites />}
     </div>
-  );
-}
+    )
 
+}
 
