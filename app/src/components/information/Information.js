@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import AvalancheItem from "./AvalancheItem"
+import React from 'react';
+
+import AvalancheBulletin from "./AvalancheBulletin"
 import WeatherItem from "./WeatherItem"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 
 
 export default function Information(props){
+  const {display_name, lat, lon} = props.poi
+  const {weather, bulletin} = props.information
 
+  console.log(weather)
   return(
     <>
-    <AvalancheItem />
-    <WeatherItem />
-    <MapItem name="Howe Sound Crest" coordinates="49.447102, -123.349380" map="../../../images/trail.png"/>
-    <CommentList image="../../../images/profile_pic.png"/>
+      <MapItem name={display_name} coordinates={`${lat}, ${lon}`} map="../../../images/trail.png"/>
+      <WeatherItem weather={weather}/>
+      <AvalancheBulletin bulletin={bulletin}/>
+      <CommentList image="../../../images/profile_pic.png"/>
     </>
   )
-
 };
