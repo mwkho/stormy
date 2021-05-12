@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import HomePage from './home_page/HomePage'
-import Favourites from "./favourites/Favourites"
+import Favourites from "./favourites/DisplayFavourites"
 import Sidebar from './sidebar/Sidebar'
 import Information from "./information/Information"
 import useVisualMode from "../hooks/useVisualMode"
@@ -13,7 +13,7 @@ const FAVOURITES = 'FAVOURITES'
 
 
 export default function App(props) {
-  const [ page, setPage] = useState('HOME')
+  const [ page, setPage] = useState(page ? page : HOME)
   const [ poi, setPOI] = useState({});
   const { mode, transition, back } = useVisualMode();
   const [information, setInformation] = useState({})
@@ -33,7 +33,7 @@ export default function App(props) {
 
   return (
     <div className="App">
-      <Sidebar display={setPage} favourites={displayFavourites} homePage={displayHomePage}/>
+      <Sidebar setPage={setPage} favourites={displayFavourites} homePage={displayHomePage}/>
       {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
       {page === INFORMATION && <Information  display={setPage} information={information} poi={poi}/>}

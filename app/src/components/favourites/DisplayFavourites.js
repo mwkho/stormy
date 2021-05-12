@@ -3,7 +3,7 @@ import axios from 'axios';
 import "../styles/DropDown.css"
 
 
-export default function HomePage(props){
+export default function Favourites(props){
 
   return(
 <body>
