@@ -5,6 +5,15 @@ import AvalancheProblemsItem from './AvalancheProblemsItem'
 export default function AvalancheBulletin(props){
   const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = props.bulletin
 
+  if (!region) {
+    return(
+    <> 
+      <h1> Avalanche Data</h1>
+      <h2 className="unfound-bulletin"> {props.bulletin} </h2>
+    </>
+    )
+  }
+
   const problemsList = problems.map((problem) => {
     return <AvalancheProblemsItem type={problem.type} comment={problem.comment} elevation={problem.icons.elevation} aspects={problem.icons.aspects} likelihood={problem.icons.likelihood} expectedSize={problem.icons.expectedSize}/>
   });

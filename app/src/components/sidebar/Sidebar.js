@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SidebarElement from './SidebarElement'
 import '../styles/SideNav.css'
 
-export default function Sidebar(props){
+export default function Sidebar(props) {
 
 const test = function(){
   alert("Hiya!")

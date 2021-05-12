@@ -10,7 +10,7 @@ export default function Information(props){
   const {display_name, lat, lon} = props.poi
   const {weather, bulletin} = props.information
 
-  console.log(weather)
+  console.log(bulletin)
   return(
     <>
       <MapItem name={display_name} coordinates={`${lat}, ${lon}`} map="../../../images/trail.png"/>
