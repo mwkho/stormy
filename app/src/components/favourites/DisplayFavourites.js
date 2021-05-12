@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../styles/DropDown.css"
 import Axios from 'axios';
+import FavouriteItem from "./favouriteItem"
 
 
 export default function Favourites(props){
-  console.log("I am working")
-  Axios.get('/api/getFavourites')
+  const [favourites, setFavourites] = useState()
+  
+  useEffect(()=>{Axios.get('/api/getFavourites')
   .then(resp =>{
-    console.log(resp.data)
-    console.log("I am not working")
+    setFavourites([...resp.data.rows])
   })
-
+  }, [])
+  console.log(favourites)
   return(
 <body>
 
@@ -21,9 +23,12 @@ export default function Favourites(props){
 <div class="dropdown">
   <button class="dropbtn">Dropdown</button>
   <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+  {!favourites ? 
+  <FavouriteItem favourite="" /> : 
+  favourites.map(favourite=>{
+    return <FavouriteItem favourite={favourite.name}/>
+  })
+  }
   </div>
 </div>
 
@@ -32,3 +37,8 @@ export default function Favourites(props){
   )
 
 };
+
+
+ /*{favourites.map(favourite=>{
+      return <FavouriteItem favourite={favourites.name}/>
+    })}*/

@@ -21,9 +21,9 @@ const getFavouritesRoutes = require("./routes/getFavourites");
 
 // Mount all resource routes
 App.use("/api/addComments", addCommentsRoutes(db));
+App.use("/api/getFavourites", getFavouritesRoutes(db));
 App.use("/api/addFavourites", addFavouritesRoutes(db));
 App.use("/api/getComments", getCommentsRoutes(db));
-App.use("/api/getFavourites", getFavouritesRoutes(db));
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));

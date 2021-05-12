@@ -14,6 +14,7 @@ module.exports = (db) => {
     )
       .then(data => {
         res.send(data);
+        //console.log(data)
       })
       .catch(err => {
         console.log("________", err.message);

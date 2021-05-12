@@ -12,9 +12,9 @@ export default function Button(props) {
    return (
       <button
         // className={buttonClass}
-        onClick={() => props.onClick}
+        onClick={props.onClick}
       >
-        {props.children}
+        {props.name}
       </button>
     );
   }
