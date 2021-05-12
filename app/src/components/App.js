@@ -13,10 +13,10 @@ const FAVOURITES = 'FAVOURITES'
 
 
 export default function App(props) {
-  const [ state, setState] = useState('')
   const [ page, setPage] = useState('HOME')
   const [ poi, setPOI] = useState({});
   const { mode, transition, back } = useVisualMode();
+  const [information, setInformation] = useState({})
 
   const displayFavourites = function() {
     transition(FAVOURITES)
