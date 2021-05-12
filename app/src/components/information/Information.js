@@ -22,16 +22,9 @@ export default function Information(props){
   console.log(bulletin)
   return(
     <>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin=""
-      />
-
       <h1>{display_name}</h1>
-        
-      <h2>Getting weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
+      <button> favourite</button>
+      <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       <Tabs orientation='vertical' onChange={changeTab}>
         <Tab label='Weather'/>
         <Tab label='Avalanche Bulletin'/>
