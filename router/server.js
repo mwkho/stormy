@@ -5,12 +5,13 @@ const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
 const PORT = 8000;
-
+const morgan = require('morgan')
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 App.use(Express.static('public'));
+App.use(morgan('dev'));
 
 // Sample GET route
 App.get('/', (req, res) => res.json({
