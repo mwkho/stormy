@@ -24,8 +24,10 @@ export default function WeatherItem(props){
 
   console.log(consolidate)
   const dateList = consolidate.dt.map((time, index) => {
+    const options = {month:'long', day:'numeric', year:'numeric'}
     const date = new Date(time*1000)
-    return <th key={"date"+index}>{date.getHours()}</th>
+    const hours = date.getHours()
+    return <th key={"date-"+index}>{hours !== 0 ? hours : `${new Intl.DateTimeFormat('en', options).format(date)} ${hours}`}</th>
   })
 
   return(
@@ -34,7 +36,7 @@ export default function WeatherItem(props){
     <table>
       <thead>
         <tr>
-          <th>Time</th>
+          <th>Hour</th>
           {dateList}
         </tr>
       </thead>
