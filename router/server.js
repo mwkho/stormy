@@ -6,6 +6,23 @@ const App = Express();
 const BodyParser = require('body-parser');
 const PORT = 8000;
 
+// PG database client/connection setup
+const { Pool } = require('pg');
+const dbParams = require('../app/src/lib/db');
+const db = new Pool(dbParams);
+db.connect();
+
+// Separated Routes for each Resource
+//const addCommentsRoutes = require("./routes/addComments");
+//const addFavouritesRoutes = require("./routes/addFavourites");
+const getCommentsRoutes = require("./routes/getComments");
+const getFavouritesRoutes = require("./routes/getFavourites");
+
+// Mount all resource routes
+//App.use("/api/addComments", addCommentsRoutes(db));
+//App.use("/api/addFavourites", addFavouritesRoutes(db));
+App.use("/api/getComments", getCommentsRoutes(db));
+App.use("/api/getFavourites", getFavouritesRoutes(db));
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));

@@ -11,9 +11,8 @@ export default function Button(props) {
 
    return (
       <button
-        //className={buttonClass}
-        onClick={console.log('been cicked')}
-        disabled={props.disabled}
+        // className={buttonClass}
+        onClick={() => props.onClick}
       >
         {props.children}
       </button>
