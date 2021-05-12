@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import HomePage from './home_page/HomePage'
 import Favourites from "./favourites/Favourites"
-import Sidebar from './sidebar/sidebar'
+import Sidebar from './sidebar/Sidebar'
 import Information from "./information/Information"
 import useVisualMode from "../hooks/useVisualMode"
 
@@ -33,11 +33,11 @@ export default function App(props) {
 
   return (
     <div className="App">
-      <Sidebar favourites={displayFavourites} homePage={displayHomePage}/>
-      { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
-      {mode === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation}/>}
-      {page === INFORMATION && <Information information={information} poi={poi}/>}
-      {mode === FAVOURITES && <Favourites />}
+      <Sidebar display={setPage} favourites={displayFavourites} homePage={displayHomePage}/>
+      {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
+      {page === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
+      {page === INFORMATION && <Information  display={setPage} information={information} poi={poi}/>}
+      {page === FAVOURITES && <Favourites />}
     </div>
     )
 
