@@ -25,7 +25,7 @@ App.use("/api/addComments", addCommentsRoutes(db));
 App.use("/api/getFavourites", getFavouritesRoutes(db));
 App.use("/api/addFavourites", addFavouritesRoutes(db));
 App.use("/api/getComments", getCommentsRoutes(db));
-App.use("/api/addPlaceRoutes", addPlaceRoutes(db));
+App.use("/api/addPlace", addPlaceRoutes(db));
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));

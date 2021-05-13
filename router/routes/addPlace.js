@@ -8,12 +8,16 @@ module.exports = (db) => {
     const coordinates = req.params.coordinates
     const type = req.params.type
     const name = req.params.name
+    console.log("name", name)
+    console.log("type", type)
+    console.log("coordinates", coordinates)
 
     db.query(`
     INSERT INTO places (coordinates, type, name)
-    VALUES ('${coordinates}', '${type}', '${name}' ))
-    `, [userID]
-    )
+    SELECT '${coordinates}', '${type}', '${name}' 
+    WHERE NOT EXISTS (
+      SELECT 1 FROM places WHERE name='${name}'
+    );`)
       .then(data => {
         res.send(data);
       })
@@ -27,3 +31,4 @@ module.exports = (db) => {
   });
   return router;
 };
+

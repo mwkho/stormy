@@ -10,7 +10,7 @@ module.exports = (db) => {
     
     db.query(`
     INSERT INTO favourites (place_id, user_id)
-    VALUES (${req.params.id}, $1)
+    VALUES (${req.params.id}, $1);
     `, [userID]
     )
       .then(data => {
