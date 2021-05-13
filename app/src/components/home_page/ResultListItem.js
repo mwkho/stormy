@@ -7,11 +7,14 @@ const ResultListItem  = (props) => {
 
   const [hover, setHover] = useState(false)
   const selected = (poi) => {
+    props.display('LOADING')
     Axios.post('/information', {poi: poi})
-    .then((information) => {
-      props.setPOI(poi)
-      props.setInformation(information.data)
-      props.display('INFORMATION')
+    .then((information) => {      
+      setTimeout(() => {
+        props.setPOI(poi)
+        props.setInformation(information.data)
+        props.display('INFORMATION')
+      }, 1000)
     })
   }
   
