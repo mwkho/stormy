@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import axios from "axios"
 
 import AvalancheBulletin from "./AvalancheBulletin"
 import WeatherItem from "./WeatherItem"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
+import Button from '../button'
 
 
 export default function Information(props){
@@ -18,12 +20,20 @@ export default function Information(props){
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
-
+  useEffect(()=>{axios.post(`/api/addPlace/${lat, lon}/'trail'/${display_name}`)
+  .then(resp =>{
+    setFavourites([...resp.data.rows])
+  })
+  }, [])
+  /*const addToFavourites = function(){
+    axios.post(`/api/addFavourites/${}`)
+    .then
+  }*/
   console.log(bulletin)
   return(
     <>
       <h1>{display_name}</h1>
-      <button> favourite</button>
+      <Button name="favourite" onClick={addToFavourites}/>
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       <Tabs orientation='vertical' onChange={changeTab}>
         <Tab label='Weather'/>

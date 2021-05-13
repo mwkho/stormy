@@ -3,18 +3,19 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-  router.get("/", (req, res) => {
+  router.post("/:coordinates/:type/:name", (req, res) => {
     // Code for non hard coded user ID const userID = req.session['user_id'];
-    const userID = 1
+    const coordinates = req.params.coordinates
+    const type = req.params.type
+    const name = req.params.name
+
     db.query(`
-    SELECT * FROM favourites
-    JOIN places ON places.id = place_id
-    WHERE user_id = $1;
+    INSERT INTO places (coordinates, type, name)
+    VALUES ('${coordinates}', '${type}', '${name}' ))
     `, [userID]
     )
       .then(data => {
         res.send(data);
-        //console.log(data)
       })
       .catch(err => {
         console.log("________", err.message);

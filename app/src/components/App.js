@@ -7,6 +7,7 @@ import Information from "./information/Information"
 import useVisualMode from "../hooks/useVisualMode"
 
 
+
 const HOME = 'HOME'
 const INFORMATION = 'INFORMATION'
 const FAVOURITES = 'FAVOURITES'
@@ -17,6 +18,7 @@ export default function App(props) {
   const [ poi, setPOI] = useState({});
   const { mode, transition, back } = useVisualMode();
   const [information, setInformation] = useState({})
+  
 
   const displayFavourites = function() {
     transition(FAVOURITES)
@@ -30,6 +32,9 @@ export default function App(props) {
   //transition(HOME)
   // different viewing modes for the web app
 
+  
+
+  
 
   return (
     
