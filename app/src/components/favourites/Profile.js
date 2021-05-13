@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-
+import React from 'react';
 
 export default function Profile(props){
 
   return(
-      <div >
-        <img src="../../../images/profile_pic.png" ></img>
-      </div>
-  )
+    <div >
+      <img src="../../../images/profile_pic.png" ></img>
+    </div>
+    )
 
 };

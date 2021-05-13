@@ -5,35 +5,30 @@ import FavouriteItem from "./FavouriteItem"
 
 
 export default function Favourites(props){
-  const {setInformation, setPOI} = props
+  const {display, setInformation, setPOI} = props
+
+  const [favourites, setFavourites] = useState([])
   
-  const [favourites, setFavourites] = useState()
-  
-  useEffect(()=>{Axios.get('/api/getFavourites')
-  .then(resp =>{
-    setFavourites([...resp.data.rows])
+  useEffect(()=>{
+    Axios.get('/api/getFavourites')
+    .then((results) => {
+      setFavourites(results.data.rows)
+    })
+  },[])
+
+  const favouritesList = !favourites ? undefined : favourites.map(favourite => {
+    return <FavouriteItem display={display} setPOI={setPOI} setInformation={setInformation} >{favourite.name}</FavouriteItem>
   })
-  }, [])
-  console.log(favourites)
+
   return(
-<body>
-
-<h2>Check out your favourite spots!</h2>
-<p>Move the mouse over the button to open the dropdown menu.</p>
-
-<div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
-  <div class="dropdown-content">
-  {!favourites ? 
-  <FavouriteItem favourite="" /> : 
-  favourites.map(favourite=>{
-    return <FavouriteItem display={props.display} setPOI={setPOI} setInformation={setInformation} >{favourite.name}</FavouriteItem>
-  })
-  }
-  </div>
-</div>
-
-</body>
+    <>
+    <div class="dropdown">
+      <button class="dropbtn">Dropdown</button>
+      <div class="dropdown-content">
+        { favouritesList }
+      </div>
+    </div>
+    </>
     
   )
 
