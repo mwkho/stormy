@@ -20,11 +20,11 @@ export default function Information(props){
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
-  useEffect(()=>{axios.post(`/api/addPlace/${lat, lon}/'trail'/${display_name}`)
+  /*useEffect(()=>{axios.post(`/api/addPlace/${lat, lon}/'trail'/${display_name}`)
   .then(resp =>{
     setFavourites([...resp.data.rows])
   })
-  }, [])
+  }, [])*/
   /*const addToFavourites = function(){
     axios.post(`/api/addFavourites/${}`)
     .then
@@ -33,7 +33,7 @@ export default function Information(props){
   return(
     <>
       <h1>{display_name}</h1>
-      <Button name="favourite" onClick={addToFavourites}/>
+      <Button name="favourite" />
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       <Tabs orientation='vertical' onChange={changeTab}>
         <Tab label='Weather'/>
