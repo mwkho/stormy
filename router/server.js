@@ -18,14 +18,17 @@ const addCommentsRoutes = require("./routes/addComments");
 const addFavouritesRoutes = require("./routes/addFavourites");
 const getCommentsRoutes = require("./routes/getComments");
 const getFavouritesRoutes = require("./routes/getFavourites");
-const addPlaceRoutes = require("./routes/addPlace")
+const addPlaceRoutes = require("./routes/addPlace");
+const getPlaceRoutes = require("./routes/getPlace");
+
 
 // Mount all resource routes
 App.use("/api/addComments", addCommentsRoutes(db));
 App.use("/api/getFavourites", getFavouritesRoutes(db));
 App.use("/api/addFavourites", addFavouritesRoutes(db));
 App.use("/api/getComments", getCommentsRoutes(db));
-App.use("/api/addPlaceRoutes", addPlaceRoutes(db));
+App.use("/api/addPlace", addPlaceRoutes(db));
+App.use("/api/getPlace", getPlaceRoutes(db));
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
