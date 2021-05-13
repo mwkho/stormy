@@ -14,6 +14,8 @@ export default function Favourites(props){
     .then((results) => {
       console.log(results.data.rows)
       setFavourites(results.data.rows)
+      console.log(results.data.rows)
+      console.log("testing", favourites)
     })
   },[])
 

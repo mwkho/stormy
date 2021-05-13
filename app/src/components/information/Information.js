@@ -11,6 +11,7 @@ import TabPanel from './TabPanel';
 import Button from '../button'
 import WeatherPlot from './WeatherPlot';
 
+// create a helper function to sort the weather data
 const consolidateWeather = (weather) => {
   const initial = {dt:[], temp:[], windSpeed:[], windDeg:[], rain:[], snow:[], pop:[], description:[], main:[], icon:[]}
   return weather.reduce((accumalator, current) => {
@@ -33,13 +34,12 @@ export default function Information(props){
   const {weather, bulletin} = props.information
   
   const consolidate = consolidateWeather(weather)
-// create a helper function to sort the weather data
-
 
   // all of tab changing code goes below here
   const [tab, setTab] = useState(0)
   const [weatherTab, setWeatherTab] = useState(0)
   const [avalancheTab, setAvalancheTab] = useState(0)
+  const [place, setPlace] = useState()
 
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
@@ -55,26 +55,30 @@ export default function Information(props){
   // comment and favourite backend calls
   useEffect(()=>{axios.post(`/api/addPlace/${lat}/${lon}/trail/${display_name}`)
   .then(resp =>{
-    console.log(resp)
+    console.log("place was added")
   })
   .catch(err=>{
     console.log(err.message)
   })
   }, [])
+
+  useEffect(()=>{axios.get(`api/getPlace/${lat}/${lon}`)
+    .then(resp=>{
+      setPlace([...resp.data.rows])
+      const id =resp.data.rows[0].id
+    })
+  }, [])
+
   
   const addToFavourites = function(){
-    axios.get(`api/getPlace/${lat}/${lon}`)
-    .then(resp=>{
-      console.log("mcgoodies", resp.data)
-      const id =resp.data.rows[0].id
-      axios.post(`api/addFavourites/${id}`)
+    
+      axios.post(`api/addFavourites/${place[0].id}`)
       .then(resp=>{
         console.log('success!')
       })
       .catch(err=>{
         console.log(err)
       })
-    })
   }
   console.log(bulletin)
 
@@ -113,7 +117,7 @@ export default function Information(props){
         </TabPanel>
       </TabPanel>
       <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
-      <CommentList image="../../../images/profile_pic.png"/>
+      <CommentList image="../../../images/profile_pic.png" place={place}/>
       </>
   )
 };
