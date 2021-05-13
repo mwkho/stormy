@@ -32,6 +32,7 @@ export default function Information(props){
   const addToFavourites = function(){
     axios.get(`api/getPlace/${lat}/${lon}`)
     .then(resp=>{
+      console.log("mcgoodies", resp.data)
       const id =resp.data.rows[0].id
       axios.post(`api/addFavourites/${id}`)
       .then(resp=>{

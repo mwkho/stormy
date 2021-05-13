@@ -18,7 +18,7 @@ module.exports = (db) => {
     INSERT INTO places (lat, lon, type, name)
     SELECT ${lat}, ${lon}, '${type}', '${name}' 
     WHERE NOT EXISTS (
-      SELECT 1 FROM places WHERE name='${name}'
+      SELECT 1 FROM places WHERE lat= ${lat}
     );`)
       .then(data => {
         res.send(data);
