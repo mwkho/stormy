@@ -12,6 +12,7 @@ export default function Favourites(props){
   useEffect(()=>{
     Axios.get('/api/getFavourites')
     .then((results) => {
+      console.log(results.data.rows)
       setFavourites(results.data.rows)
       console.log(results.data.rows)
       console.log("testing", favourites)
@@ -19,7 +20,10 @@ export default function Favourites(props){
   },[])
 
   const favouritesList = !favourites ? undefined : favourites.map(favourite => {
-    return <FavouriteItem display={display} setPOI={setPOI} setInformation={setInformation} >{favourite.name}</FavouriteItem>
+    const lat = parseFloat(favourite.lat)
+    const lon = parseFloat(favourite.lon)
+
+    return <FavouriteItem poi={{lat, lon, display_name: favourite.name }}display={display} setPOI={setPOI} setInformation={setInformation} >{favourite.name}</FavouriteItem>
   })
 
   return(
