@@ -20,10 +20,15 @@ export default function Information(props){
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
-  
-  const addToFavourites = function(){
-    
-  }
+  useEffect(()=>{axios.post(`/api/addPlace/${lat, lon}/'trail'/${display_name}`)
+  .then(resp =>{
+    setFavourites([...resp.data.rows])
+  })
+  }, [])
+  /*const addToFavourites = function(){
+    axios.post(`/api/addFavourites/${}`)
+    .then
+  }*/
   console.log(bulletin)
   return(
     <>
