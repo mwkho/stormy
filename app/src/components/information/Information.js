@@ -13,35 +13,42 @@ import Button from '../button'
 
 export default function Information(props){
   const [tab, setTab] = useState(0)
+  const [place, setPlace] = useState()
 
   const {display_name, lat, lon} = props.poi
   const {weather, bulletin} = props.information
+  
 
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
   useEffect(()=>{axios.post(`/api/addPlace/${lat}/${lon}/trail/${display_name}`)
   .then(resp =>{
-    console.log(resp)
+    console.log("place was added")
   })
   .catch(err=>{
     console.log(err.message)
   })
   }, [])
+
+  useEffect(()=>{axios.get(`api/getPlace/${lat}/${lon}`)
+    .then(resp=>{
+      setPlace([...resp.data.rows])
+      const id =resp.data.rows[0].id
+    })
+  }, [])
+
   
   const addToFavourites = function(){
-    axios.get(`api/getPlace/${lat}/${lon}`)
-    .then(resp=>{
-      console.log("mcgoodies", resp.data)
-      const id =resp.data.rows[0].id
-      axios.post(`api/addFavourites/${id}`)
+    
+      axios.post(`api/addFavourites/${place[0].id}`)
       .then(resp=>{
         console.log('success!')
       })
       .catch(err=>{
         console.log(err)
       })
-    })
+    
     
     
   }
@@ -62,7 +69,7 @@ export default function Information(props){
         <AvalancheBulletin bulletin={bulletin}/>
       </TabPanel>
       <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
-      <CommentList image="../../../images/profile_pic.png"/>
+      <CommentList image="../../../images/profile_pic.png" place={place}/>
       </>
   )
 };

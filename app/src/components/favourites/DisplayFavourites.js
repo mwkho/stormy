@@ -13,6 +13,8 @@ export default function Favourites(props){
     Axios.get('/api/getFavourites')
     .then((results) => {
       setFavourites(results.data.rows)
+      console.log(results.data.rows)
+      console.log("testing", favourites)
     })
   },[])
 
