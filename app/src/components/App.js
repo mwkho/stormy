@@ -48,8 +48,8 @@ export default function App(props) {
       <Sidebar setPage={setPage} favourites={displayFavourites} homePage={displayHomePage}/>
       {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
-      {page === INFORMATION && <Information  display={setPage} information={information} poi={poi}/>}
-      {page === FAVOURITES && <Favourites />}
+      {page === INFORMATION && <Information  information={information} poi={poi}/>}
+      {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI}/>}
     </div>
     )
 

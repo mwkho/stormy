@@ -1,9 +1,13 @@
 import Axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
+import MapItem from '../information/MapItem'
 
 const ResultListItem  = (props) => {
+  const {poi} = props;
+
+  const [hover, setHover] = useState(false)
   const selected = (poi) => {
-    Axios.post('/information', {poi: props.poi})
+    Axios.post('/information', {poi: poi})
     .then((information) => {
       props.setPOI(poi)
       props.setInformation(information.data)
@@ -12,8 +16,9 @@ const ResultListItem  = (props) => {
   }
   
   return (
-    <li onClick={()=> selected(props.poi)} className="ResultListItem">
-      <h2>{props.poi.display_name}</h2>
+    <li  onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onDoubleClick={()=> selected(poi)} className="ResultListItem">
+      <h2>{poi.display_name}</h2>
+      {hover && <MapItem name={poi.display_name} lat={poi.lat} lon={poi.lon}/>}
     </li>
   )
 }

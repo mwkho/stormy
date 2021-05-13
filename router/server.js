@@ -9,7 +9,7 @@ const morgan = require('morgan')
 
 // PG database client/connection setup
 const { Pool } = require('pg');
-const dbParams = require('../app/src/lib/db');
+const dbParams = require('../db/db');
 const db = new Pool(dbParams);
 db.connect();
 

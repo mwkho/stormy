@@ -10,7 +10,7 @@ export default function Favourites(props){
   return(
     <>
     <Profile />
-    <DisplayFavourites />
+    <DisplayFavourites display={props.display} />
     </>
   )
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import "../styles/DropDown.css"
 import Axios from 'axios';
-import FavouriteItem from "./favouriteItem"
+import FavouriteItem from "./FavouriteItem"
 
 
 export default function Favourites(props){
+  const {setInformation, setPOI} = props
+  
   const [favourites, setFavourites] = useState()
   
   useEffect(()=>{Axios.get('/api/getFavourites')
@@ -26,7 +27,7 @@ export default function Favourites(props){
   {!favourites ? 
   <FavouriteItem favourite="" /> : 
   favourites.map(favourite=>{
-    return <FavouriteItem favourite={favourite.name}/>
+    return <FavouriteItem display={props.display} setPOI={setPOI} setInformation={setInformation} >{favourite.name}</FavouriteItem>
   })
   }
   </div>
