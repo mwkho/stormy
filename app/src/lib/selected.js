@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const selected = (poi, setPOI, setInformation, display ) => {
+  display('LOADING')
   axios.post('/information', {poi: poi})
   .then((information) => {
     setPOI(poi)
