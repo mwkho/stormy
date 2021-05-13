@@ -6,8 +6,6 @@ const ResultListItem  = (props) => {
   const {poi} = props;
 
   const [hover, setHover] = useState(false)
-
-
   const selected = (poi) => {
     Axios.post('/information', {poi: poi})
     .then((information) => {
