@@ -1,28 +1,10 @@
 import React from 'react';
 
 
-// create a helper function to sort the weather data
-const consolidateWeather = (weather) => {
-  const initial = {dt:[], temp:[], windSpeed:[], windDeg:[], rain:[], snow:[], pop:[], description:[], main:[], icon:[]}
-  return weather.reduce((accumalator, current) => {
-    accumalator.dt.push(current.dt)
-    accumalator.temp.push(current.temp)
-    accumalator.windSpeed.push(current.wind_speed)
-    accumalator.windDeg.push(current.wind_deg)
-    accumalator.pop.push(current.pop)
-    accumalator.rain.push(current.rain && current.rain.lh)
-    accumalator.snow.push(current.snow && current.snow.lh)
-    accumalator.description.push(current.weather[0].description)
-    accumalator.main.push( current.weather[0].main)
-    accumalator.icon.push(`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`)
-    return accumalator
-  }, initial)
-}
 
 export default function WeatherItem(props){
-  const consolidate = consolidateWeather(props.weather)
+  const consolidate = props.weather
 
-  console.log(consolidate)
   const dateList = consolidate.dt.map((time, index) => {
     const options = {month:'long', day:'numeric', year:'numeric'}
     const date = new Date(time*1000)
