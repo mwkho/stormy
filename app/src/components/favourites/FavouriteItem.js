@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../styles/DropDown.css"
 import selected from "../../lib/selected"
 import RemoveIcon from '@material-ui/icons/Remove';

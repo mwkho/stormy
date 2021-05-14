@@ -27,7 +27,7 @@ export default function WeatherItem(props){
         <tr>
           <th></th>
           {consolidate.icon.map((icon, index) => {
-      return <td key={"icon"+index}><img src={icon}/> </td>
+      return <td key={"icon"+index}><img alt="" src={icon}/> </td>
       })}
         </tr>
     <tr>

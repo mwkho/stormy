@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Profile from "./Profile"
 import FavouritesList from "./FavouritesList"
 

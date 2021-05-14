@@ -101,7 +101,7 @@ export default function WeatherPlot(props) {
     height:500,
   }
 
-  const data = [temp, windSpeed, rain, snow]
+  // const data = [temp, windSpeed, rain, snow]
 
   return (
     <div className="weather-graph">

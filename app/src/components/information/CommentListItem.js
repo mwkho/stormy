@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import { borders } from '@material-ui/system';
-
 
 export default function CommentListItem(props){
 
