@@ -31,31 +31,31 @@ export default function WeatherItem(props){
       })}
         </tr>
     <tr>
-    <th>Weather:</th>
+    <th>Weather</th>
     {consolidate.main.map((main, index) => {
       return <td key={"main"+index}>{main}</td>
     })}
   </tr>
     <tr>
-    <th>Weather Description:</th>
+    <th>Weather Description</th>
     {consolidate.description.map((description, index) => {
       return <td key={"description"+index}>{description}</td>
     })}
   </tr>
   <tr>
-    <th>Temperature:</th>
+    <th>Temperature (°C)</th>
     {consolidate.temp.map((temp, index) => {
       return <td key={"temp"+index}>{temp}</td>
     })}
   </tr>
   <tr>
-    <th>Wind Speed:</th>
+    <th>Wind Speed (m/s)</th>
     {consolidate.windSpeed.map((windSpeed, index) => {
       return <td key={"windSpeed"+index}>{windSpeed}</td>
     })}  
   </tr>
   <tr>
-    <th>Wind Degrees:</th>
+    <th>Wind Degrees</th>
     {consolidate.windDeg.map((windDeg, index) => {
       return <td key={"windDeg"+index}>{windDeg}</td>
     })}  
@@ -67,13 +67,13 @@ export default function WeatherItem(props){
     })}  
   </tr>
   <tr>
-    <th>Rain</th>
+    <th>Rain <br/> (volume for last hour, mm)</th>
     {consolidate.rain.map((rain, index) => {
       return <td key={"rain"+index}>{rain ? rain : 0}</td>
     })}  
   </tr>
   <tr>
-    <th>Snow</th>
+    <th>Snow <br/> (volume for last hour, mm)</th>
     {consolidate.snow.map((snow, index) => {
       return <td key={"snow"+index}>{snow ? snow : 0}</td>
     })}  
