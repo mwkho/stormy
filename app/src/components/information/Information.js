@@ -9,19 +9,50 @@ import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
 import Button from '../button'
+import WeatherPlot from './WeatherPlot';
 
+// create a helper function to sort the weather data
+const consolidateWeather = (weather) => {
+  const initial = {dt:[], temp:[], windSpeed:[], windDeg:[], rain:[], snow:[], pop:[], description:[], main:[], icon:[]}
+  return weather.reduce((accumalator, current) => {
+    accumalator.dt.push(current.dt)
+    accumalator.temp.push(current.temp)
+    accumalator.windSpeed.push(current.wind_speed)
+    accumalator.windDeg.push(current.wind_deg)
+    accumalator.pop.push(current.pop)
+    accumalator.rain.push(current.rain && current.rain.lh)
+    accumalator.snow.push(current.snow && current.snow.lh)
+    accumalator.description.push(current.weather[0].description)
+    accumalator.main.push( current.weather[0].main)
+    accumalator.icon.push(`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`)
+    return accumalator
+  }, initial)
+}
 
 export default function Information(props){
-  const [tab, setTab] = useState(0)
-  const [place, setPlace] = useState()
-
   const {display_name, lat, lon} = props.poi
   const {weather, bulletin} = props.information
   
+  const consolidate = consolidateWeather(weather)
+
+  // all of tab changing code goes below here
+  const [tab, setTab] = useState(0)
+  const [weatherTab, setWeatherTab] = useState(0)
+  const [avalancheTab, setAvalancheTab] = useState(0)
+  const [place, setPlace] = useState()
 
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
+
+  const changeWeatherTab = (event, tabValue) => {
+    setWeatherTab(tabValue)
+  }
+  const changeAvalancheTab = (event, tabValue) => {
+    setAvalancheTab(tabValue)  
+  }
+
+  // comment and favourite backend calls
   useEffect(()=>{axios.post(`/api/addPlace/${lat}/${lon}/trail/${display_name}`)
   .then(resp =>{
     console.log("place was added")
@@ -49,11 +80,10 @@ export default function Information(props){
       .catch(err=>{
         console.log(err)
       })
-    
-    
-    
   }
   console.log(bulletin)
+
+
   return(
     <>
       <h1>{display_name}</h1>
@@ -64,10 +94,28 @@ export default function Information(props){
         <Tab label='Avalanche Bulletin'/>
       </Tabs>
       <TabPanel tab={tab} index={0}>
-        <WeatherItem weather={weather}/>
+        <Tabs onChange={changeWeatherTab}>
+          <Tab label='Graph'/>
+          <Tab label='Table'/>
+        </Tabs>
+        <TabPanel tab={weatherTab} index={0}>
+          <WeatherPlot weather={consolidate} />
+        </TabPanel>
+        <TabPanel tab={weatherTab} index={1}>
+          <WeatherItem weather={consolidate}/>
+        </TabPanel>
       </TabPanel>
       <TabPanel tab={tab} index={1}>
+      <Tabs onChange={changeAvalancheTab}>
+          <Tab label='Danger Ratings'/>
+          <Tab label='Problems'/>
+        </Tabs>
+        <TabPanel tab={avalancheTab} index={0}>
         <AvalancheBulletin bulletin={bulletin}/>
+        </TabPanel>
+        <TabPanel tab={avalancheTab} index={1}>
+          Avalanche problems goes here
+        </TabPanel>
       </TabPanel>
       <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
       <CommentList image="../../../images/profile_pic.png" place={place}/>
