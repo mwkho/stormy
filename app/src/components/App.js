@@ -45,7 +45,7 @@ export default function App(props) {
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""
 />
-      <Sidebar setPage={setPage} favourites={displayFavourites} homePage={displayHomePage}/>
+      {page !== LOADING && <Sidebar setPage={setPage} favourites={displayFavourites} homePage={displayHomePage}/>}
       {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>}
       {page === INFORMATION && <Information  information={information} poi={poi}/>}

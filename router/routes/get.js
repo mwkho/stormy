@@ -14,7 +14,7 @@ module.exports = (db) => {
     `, [userId]
     )
       .then(data => {
-        res.send(data);
+        res.status(200).send(data);
       })
       .catch(err => {
         console.log("________", err.message);
@@ -35,7 +35,7 @@ module.exports = (db) => {
     `, [userId]
     )
       .then(data => {
-        res.send(data);
+        res.status(200).send(data);
         //console.log(data)
       })
       .catch(err => {
@@ -55,8 +55,7 @@ module.exports = (db) => {
     WHERE lat = $1
     AND lon = $2 ;`, [lat, lon])
       .then(data => {
-        res.send(data);
-        //console.log(data)
+        res.status(200).send(data);
       })
       .catch(err => {
         console.log("________", err.message);

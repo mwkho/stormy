@@ -14,7 +14,9 @@ module.exports = (db) => {
     `;
 
     db.query(sql, [userId, placeId, comment])
-      .catch(err => {
+    .then(res.status(200))
+    .then(res.end())
+    .catch(err => {
         console.log(err);
         res
           .status(500)
@@ -36,6 +38,8 @@ module.exports = (db) => {
       SELECT 1 FROM favourites WHERE place_id = $3
     );
     `, [placeId, userId, placeId])
+    .then(res.status(200))
+    .then(res.end())
       .catch(err => {
         console.log("________", err.message);
         res
@@ -62,7 +66,9 @@ module.exports = (db) => {
     WHERE NOT EXISTS (
       SELECT 1 FROM places WHERE lat= ${lat}
     );`)
-      .catch(err => {
+    .then(res.status(200))
+    .then(res.end())
+    .catch(err => {
         console.log("________", err.message);
         res
           .status(500)
