@@ -3,19 +3,13 @@ import axios from 'axios';
 import CommentListItem from "./CommentListItem"
 import Axios from 'axios';
 
-function useForceUpdate(){
-  const [value, setValue] = useState(0); // integer state
-  console.log("force update was called")
-  return () => setValue(value => value + 1); // update the state to force render
-}
-
 
 export default function CommentList(props){
 
   const [comment, setComment] = useState()
   const [newComment, setNewComment] = useState("")
   const [test, setTest] = useState('')
-  const forceUpdate = useForceUpdate()
+  
 
   function getComments(){
     Axios.get('/api/getComments')
