@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 import axios from "axios"
 
 import AvalancheBulletin from "./AvalancheBulletin"
@@ -8,7 +9,6 @@ import WeatherItem from "./WeatherItem"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
-import Button from '@material-ui/core/Button'
 import WeatherPlot from './WeatherPlot';
 
 // create a helper function to sort the weather data

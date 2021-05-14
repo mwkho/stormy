@@ -1,19 +1,26 @@
 import React from 'react';
 import SidebarElement from './SidebarElement'
 import '../styles/SideNav.css'
-
+import axios from 'axios';
 export default function Sidebar(props) {
+  const {setPage, setFavourites}=props
 
-const test = function(){
-  alert("Hiya!")
+// get favourites when clicked on favourites and show loading page
+const getFavourites = function(){
+  setPage('LOADING')
+  axios.get('/get/favourites')
+  .then((results) => {
+    setFavourites(results.data.rows)
+    setTimeout(() => setPage('FAVOURITES'), 500)
+  })
 }
 
   return(
     <>
-     <div class="sidenav">
-  <SidebarElement image="../../../images/profile_pic.png" text="Egg Eggerson" onClick={test} />
-  <SidebarElement image="../../../images/home.png" text="Home" onClick={() => props.setPage('HOME')}/>
-  <SidebarElement image="../../../images/heart.png" text="Favourites" onClick={() => props.setPage('FAVOURITES')}/>
+     <div className="sidenav">
+  <SidebarElement image="../../../Images/profile_pic.png" text="Egg Eggerson" onClick={() => 'hi'} />
+  <SidebarElement image="../../../Images/home.png" text="Home" onClick={() => setPage('HOME')}/>
+  <SidebarElement image="../../../Images/heart.png" text="Favourites" onClick={getFavourites}/>
   
 </div>
     </>

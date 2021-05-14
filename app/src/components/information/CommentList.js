@@ -60,7 +60,7 @@ export default function CommentList(props){
   return(
     <>
       <img src={props.image} width="50" height="50"/>
-      <div className="reply-form">
+      <div className="comment-form">
         <form 
           autoComplete="off"
           onSubmit={event => event.preventDefault()}
