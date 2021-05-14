@@ -52,10 +52,8 @@ module.exports = (db) => {
     const lon = req.params.lon
     db.query(`
     SELECT * FROM places
-    WHERE lat = ${lat} 
-    ;
-    `,
-    )
+    WHERE lat = $1
+    AND lon = $2 ;`, [lat, lon])
       .then(data => {
         res.send(data);
         //console.log(data)

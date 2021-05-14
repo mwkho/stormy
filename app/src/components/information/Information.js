@@ -32,9 +32,8 @@ const consolidateWeather = (weather) => {
 export default function Information(props){
   const {display_name, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
-  
   const consolidate = consolidateWeather(weather)
-
+  console.log(props.poi)
   // all of tab changing code goes below here
   const [tab, setTab] = useState(0)
   const [weatherTab, setWeatherTab] = useState(0)
@@ -54,9 +53,7 @@ export default function Information(props){
 
   // comment and favourite backend calls
   useEffect(()=>{axios.post(`/add/place`, {lat: lat, lon: lon, type:type, name: display_name})
-  .then(resp =>{
-    console.log("place was added")
-  })
+  .then(console.log("place was added"))
   .catch(err=>{
     console.log(err.message)
   })
@@ -72,9 +69,7 @@ export default function Information(props){
   
   const addToFavourites = function(){
       axios.post(`add/favourites`, {placeId: place[0].id})
-      .then(resp=>{
-        console.log('success!')
-      })
+      .then(console.log('success!'))
       .catch(err=>{
         console.log(err)
       })
