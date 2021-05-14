@@ -71,7 +71,6 @@ export default function Information(props){
 
   
   const addToFavourites = function(){
-    
       axios.post(`api/addFavourites/${place[0].id}`)
       .then(resp=>{
         console.log('success!')
@@ -80,8 +79,8 @@ export default function Information(props){
         console.log(err)
       })
   }
-  console.log(bulletin)
 
+  console.log(bulletin)
 
   return(
     <>

@@ -9,7 +9,8 @@ module.exports = (db) => {
     db.query(`
     SELECT * FROM comments
     JOIN places ON places.id = place_id
-    WHERE user_id = $1;
+    WHERE user_id = $1
+    ORDER BY comment_date DESC;
     `, [userID]
     )
       .then(data => {

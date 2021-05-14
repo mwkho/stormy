@@ -3,75 +3,70 @@ import axios from 'axios';
 import CommentListItem from "./CommentListItem"
 import Axios from 'axios';
 
-function useForceUpdate(){
-  const [value, setValue] = useState(0); // integer state
-  console.log("force update was called")
-  return () => setValue(value => value + 1); // update the state to force render
-}
-
 
 export default function CommentList(props){
-
-  const [comment, setComment] = useState()
+  
+  const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState("")
-  const [test, setTest] = useState('')
-  const forceUpdate = useForceUpdate()
-
-  function getComments(){
-    Axios.get('/api/getComments')
+  
+  const  getComments = () => {
+    return Axios.get('/api/getComments')
     .then((results) => {
-      setComment([...results.data.rows])
+      setComments([...results.data.rows])
     })
   };
- 
+  
+  // run this effect for every change on comments
   useEffect(()=>{
+    setNewComment("")
+  }, [comments])
+  
+  // renders list of comments on initial render
+  useEffect(() => {
     getComments()
   },[])
-  const commentList = !comment ? undefined : comment.map(comment => {
-    if(props.place){
-      if(comment.place_id === props.place[0].id){
-    return <CommentListItem comment={comment.content} timestamp={comment.comment_date}/>
-      }
-    }
-    return null
 
-  });
-  
-  const onSubmit = function(){
+  const submitComment = function() {
     Axios.post(`/api/addComments/${props.place[0].id}/${newComment}`)
-    .then(resp=>{
-      console.log(resp)
-      setNewComment("")
+    .then(resp => {
       getComments()
+      // setComments(prev => [...prev,newComment])
     })
     .catch(err=>{
       console.log(err)
     })
   }; 
-
-  console.log(newComment)
-
+  
+  const commentList = !comments ? undefined : comments.map(comment => {
+    if(props.place){
+      if(comment.place_id === props.place[0].id){
+        return <CommentListItem timestamp={comment.comment_date}>{comment.content}</CommentListItem>
+      }
+    }
+    return null
+  });
+  
   return(
     <>
-    <img src={props.image} width="50" height="50"/>
-    <div class="reply-form">
-    <form 
-    autoComplete="off"
-    onSubmit={event => event.preventDefault()}
-    >
-      <input
-        type="text"
-        value={newComment}
-        onChange={(event) => setNewComment(event.target.value)}
-        placeholder="Enter your comment"
-        data-testid="comment-input"
-      />
-    </form>
-      <button onClick={onSubmit}class="send" type="submit">
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-      </button>
-    </div>
-    {commentList}
+      <img src={props.image} width="50" height="50"/>
+      <div className="reply-form">
+        <form 
+          autoComplete="off"
+          onSubmit={event => event.preventDefault()}
+        >
+          <input
+            type="text"
+            value={newComment}
+            onChange={(event) => setNewComment(event.target.value)}
+            placeholder="Enter your comment"
+            data-testid="comment-input"
+          />
+        </form>
+        <button onClick={submitComment} className="send" type="submit">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+      {commentList}
     </>
   )
 
