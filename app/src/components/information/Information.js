@@ -34,6 +34,7 @@ export default function Information(props){
   useEffect(()=>{axios.get(`api/getPlace/${lat}/${lon}`)
     .then(resp=>{
       setPlace([...resp.data.rows])
+      console.log("info bug", resp.data.rows[0].id)
       const id =resp.data.rows[0].id
     })
   }, [])

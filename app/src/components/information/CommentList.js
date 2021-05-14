@@ -29,6 +29,7 @@ export default function CommentList(props){
   },[])
   const commentList = !comment ? undefined : comment.map(comment => {
     if(props.place){
+      console.log("props.place", props.place)
       if(comment.place_id === props.place[0].id){
     return <CommentListItem comment={comment.content} timestamp={comment.comment_date}/>
       }
