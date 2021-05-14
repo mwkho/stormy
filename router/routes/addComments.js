@@ -11,7 +11,7 @@ module.exports = (db) => {
     const comment = req.params.comment;
     const sql = `
     INSERT INTO comments (user_id, place_id, content, comment_date)
-    VALUES ($1, $2, $3, CURRENT_DATE);
+    VALUES ($1, $2, $3, NOW());
     `;
 
     db.query(sql, [userId, placeID, comment])

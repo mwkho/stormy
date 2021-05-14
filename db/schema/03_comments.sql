@@ -4,5 +4,5 @@ id SERIAL PRIMARY KEY NOT NULL,
 user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
 place_id INTEGER REFERENCES places(id) ON DELETE CASCADE,
 content VARCHAR(255) NOT NULL,
-comment_date DATE
+comment_date TIMESTAMP
 )
