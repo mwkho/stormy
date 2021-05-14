@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Axios from 'axios';
 
 import "../styles/DropDown.css"

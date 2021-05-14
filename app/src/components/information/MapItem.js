@@ -1,6 +1,6 @@
 import React from 'react';
 import "./MapItem.css"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 
 export default function MapItem(props){
   const lat = props.lat
