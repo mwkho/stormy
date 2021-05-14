@@ -10,7 +10,7 @@ export default function CommentList(props){
   const [newComment, setNewComment] = useState("")
   
   const  getComments = () => {
-    return Axios.get('/api/getComments')
+    return Axios.get('get/comments')
     .then((results) => {
       setComments([...results.data.rows])
     })
@@ -27,7 +27,7 @@ export default function CommentList(props){
   },[])
 
   const submitComment = function() {
-    Axios.post(`/api/addComments/${props.place[0].id}/${newComment}`)
+    Axios.post(`/add/comment`, { placeId:props.place[0].id, comment:newComment})
     .then(resp => {
       getComments()
       // setComments(prev => [...prev,newComment])

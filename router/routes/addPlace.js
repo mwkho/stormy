@@ -3,12 +3,12 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-  router.post("/:lat/:lon/:type/:name", (req, res) => {
+  router.post("api/addPlace/addPlace", (req, res) => {
     // Code for non hard coded user ID const userID = req.session['user_id'];
-    const lat = req.params.lat
-    const lon = req.params.lon
-    const type = req.params.type
-    const name = req.params.name
+    const lat = req.body.lat
+    const lon = req.body.lon
+    const type = req.body.type
+    const name = req.body.name
     console.log("name", name)
     console.log("type", type)
     console.log("lat", lat)
@@ -20,9 +20,7 @@ module.exports = (db) => {
     WHERE NOT EXISTS (
       SELECT 1 FROM places WHERE lat= ${lat}
     );`)
-      .then(data => {
-        res.send(data);
-      })
+      .then(data => console.log(type))
       .catch(err => {
         console.log("________", err.message);
         res

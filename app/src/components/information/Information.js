@@ -30,7 +30,7 @@ const consolidateWeather = (weather) => {
 }
 
 export default function Information(props){
-  const {display_name, lat, lon} = props.poi
+  const {display_name, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
   
   const consolidate = consolidateWeather(weather)
@@ -53,7 +53,7 @@ export default function Information(props){
   }
 
   // comment and favourite backend calls
-  useEffect(()=>{axios.post(`/api/addPlace/${lat}/${lon}/trail/${display_name}`)
+  useEffect(()=>{axios.post(`/add/place`, {lat: lat, lon: lon, type:type, name: display_name})
   .then(resp =>{
     console.log("place was added")
   })
@@ -62,16 +62,16 @@ export default function Information(props){
   })
   }, [])
 
-  useEffect(()=>{axios.get(`api/getPlace/${lat}/${lon}`)
+  useEffect(()=>{axios.get(`get/place/${lat}/${lon}`)
     .then(resp=>{
       setPlace([...resp.data.rows])
-      const id =resp.data.rows[0].id
+      const id = resp.data.rows[0].id
     })
   }, [])
 
   
   const addToFavourites = function(){
-      axios.post(`api/addFavourites/${place[0].id}`)
+      axios.post(`add/favourites`, {placeId: place[0].id})
       .then(resp=>{
         console.log('success!')
       })

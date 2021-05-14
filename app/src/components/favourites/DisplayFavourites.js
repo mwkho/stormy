@@ -10,7 +10,7 @@ export default function Favourites(props){
   const [favourites, setFavourites] = useState([])
   
   useEffect(()=>{
-    Axios.get('/api/getFavourites')
+    Axios.get('/get/favourites')
     .then((results) => {
       console.log(results.data.rows)
       setFavourites(results.data.rows)

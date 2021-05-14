@@ -1,0 +1,72 @@
+const express = require('express');
+const router  = express.Router();
+
+module.exports = (db) => {
+
+  router.get("/comments", (req, res) => {
+    // Code for non hard coded user ID const userID = req.session['user_id'];
+    const userId = 1
+    db.query(`
+    SELECT * FROM comments
+    JOIN places ON places.id = place_id
+    WHERE user_id = $1
+    ORDER BY comment_date DESC;
+    `, [userId]
+    )
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.log("________", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
+  router.get("/favourites", (req, res) => {
+    // Code for non hard coded user ID const userID = req.session['user_id'];
+    const userId = 1
+    db.query(`
+    SELECT * FROM favourites
+    JOIN places ON places.id = place_id
+    WHERE user_id = $1;
+    `, [userId]
+    )
+      .then(data => {
+        res.send(data);
+        //console.log(data)
+      })
+      .catch(err => {
+        console.log("________", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
+  router.get("/place/:lat/:lon", (req, res) => {
+    const lat = req.params.lat
+    const lon = req.params.lon
+    db.query(`
+    SELECT * FROM places
+    WHERE lat = ${lat} 
+    ;
+    `,
+    )
+      .then(data => {
+        res.send(data);
+        //console.log(data)
+      })
+      .catch(err => {
+        console.log("________", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+  return router;
+};

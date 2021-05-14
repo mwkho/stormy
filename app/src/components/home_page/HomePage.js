@@ -9,10 +9,10 @@ const {getMountainCoordinates, getTrailCoordinates} = require("../../lib/getCoor
 export default function HomePage(props){
   const [userInput, setUserInput] = useState("")
   const [results, setResults] = useState([])
-  const [mode, setMode] = useState(0)
+  const [mode, setMode] = useState('trail')
 
   useEffect(() => {
-    (mode ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
+    (mode === 'mountain' ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
     .then((res) => {
       setResults([...res])
     })
@@ -27,7 +27,7 @@ export default function HomePage(props){
     <Logo/>
     <Filter mode={mode} setMode={setMode} reset={reset}/>
     <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation}/>
+    <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode}/>
   </main>
   )
 

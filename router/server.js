@@ -6,6 +6,14 @@ const App = Express();
 const BodyParser = require('body-parser');
 const PORT = 8000;
 const morgan = require('morgan')
+// Express Configuration
+App.use(BodyParser.urlencoded({ extended: false }));
+App.use(BodyParser.json());
+App.use(Express.static('public'));
+App.use(morgan('dev'));
+// Separated Routes for each Resource
+const add = require("./routes/add");
+const get = require("./routes/get");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -13,28 +21,9 @@ const dbParams = require('../db/db');
 const db = new Pool(dbParams);
 db.connect();
 
-// Separated Routes for each Resource
-const addCommentsRoutes = require("./routes/addComments");
-const addFavouritesRoutes = require("./routes/addFavourites");
-const getCommentsRoutes = require("./routes/getComments");
-const getFavouritesRoutes = require("./routes/getFavourites");
-const addPlaceRoutes = require("./routes/addPlace");
-const getPlaceRoutes = require("./routes/getPlace");
-
-
 // Mount all resource routes
-App.use("/api/addComments", addCommentsRoutes(db));
-App.use("/api/getFavourites", getFavouritesRoutes(db));
-App.use("/api/addFavourites", addFavouritesRoutes(db));
-App.use("/api/getComments", getCommentsRoutes(db));
-App.use("/api/addPlace", addPlaceRoutes(db));
-App.use("/api/getPlace", getPlaceRoutes(db));
-
-// Express Configuration
-App.use(BodyParser.urlencoded({ extended: false }));
-App.use(BodyParser.json());
-App.use(Express.static('public'));
-App.use(morgan('dev'));
+App.use("/add", add(db));
+App.use("/get", get(db));
 
 // Sample GET route
 App.get('/', (req, res) => res.json({
