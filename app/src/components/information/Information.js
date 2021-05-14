@@ -8,7 +8,7 @@ import WeatherItem from "./WeatherItem"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
-import Button from '../button'
+import Button from '@material-ui/core/Button'
 import WeatherPlot from './WeatherPlot';
 
 // create a helper function to sort the weather data
@@ -39,6 +39,7 @@ export default function Information(props){
   const [weatherTab, setWeatherTab] = useState(0)
   const [avalancheTab, setAvalancheTab] = useState(0)
   const [place, setPlace] = useState()
+  const [fav, setFav] = useState(false)
 
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
@@ -63,9 +64,23 @@ export default function Information(props){
     .then(resp=>{
       setPlace([...resp.data.rows])
       const id = resp.data.rows[0].id
+      console.log(id)
+      axios.get(`get/favourite/${id}`)
+      .then((resp)=>{
+        if(resp.data.rows[0]){
+          setFav(true)
+          console.log("you like this")
+        }
+        })
     })
   }, [])
 
+  /*useEffect(()=>{axios.get(`get/favourites`)
+  .then((resp)=>{
+    console.log("favourites", resp.data.rows)
+    
+  })
+}, [])*/
   
   const addToFavourites = function(){
       axios.post(`add/favourites`, {placeId: place[0].id})
@@ -76,11 +91,30 @@ export default function Information(props){
   }
 
   console.log(bulletin)
+  
+  const activeButton = (<Button  
+    onClick={addToFavourites}
+    color="primary"
+    variant="contained"
+    >
+      Favourite
+    </Button >)
+  
+    const inactiveButton = 
+    <Button 
+    color="secondary"
+    variant="contained"
+    disabled
+    >
+      Favourited
+    </Button>
+
 
   return(
     <>
       <h1>{display_name}</h1>
-      <Button name="favourite" onClick={addToFavourites}/>
+      {!fav ? activeButton : inactiveButton}
+
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       <Tabs orientation='vertical' onChange={changeTab}>
         <Tab label='Weather'/>

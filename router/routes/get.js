@@ -47,6 +47,30 @@ module.exports = (db) => {
 
   });
 
+  router.get("/favourite/:id", (req, res) => {
+    // Code for non hard coded user ID const userID = req.session['user_id'];
+    const userId = 1
+    const placeId = req.params.id
+    db.query(`
+    SELECT * FROM favourites
+    JOIN places ON places.id = place_id
+    WHERE user_id = $1 
+    AND place_id = ${placeId};
+    `, [userId]
+    )
+      .then(data => {
+        res.status(200).send(data);
+        //console.log(data)
+      })
+      .catch(err => {
+        console.log("________", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
   router.get("/place/:lat/:lon", (req, res) => {
     const lat = req.params.lat
     const lon = req.params.lon
