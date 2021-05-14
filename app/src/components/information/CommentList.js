@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CommentListItem from "./CommentListItem"
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 
 export default function CommentList(props){
@@ -49,7 +50,7 @@ export default function CommentList(props){
   return(
     <>
       <img src={props.image} width="50" height="50"/>
-      <div className="reply-form">
+      <div className="comment-form">
         <form 
           autoComplete="off"
           onSubmit={event => event.preventDefault()}
@@ -62,9 +63,9 @@ export default function CommentList(props){
             data-testid="comment-input"
           />
         </form>
-        <button onClick={submitComment} className="send" type="submit">
+        <Button onClick={submitComment} className="send" type="submit">
           <i class="fa fa-paper-plane" aria-hidden="true"></i>
-        </button>
+        </Button>
       </div>
       {commentList}
     </>

@@ -14,6 +14,7 @@ App.use(morgan('dev'));
 // Separated Routes for each Resource
 const add = require("./routes/add");
 const get = require("./routes/get");
+const del = require("./routes/delete");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -24,6 +25,8 @@ db.connect();
 // Mount all resource routes
 App.use("/add", add(db));
 App.use("/get", get(db));
+App.use("/delete", del(db));
+
 
 // Sample GET route
 App.get('/', (req, res) => res.json({
