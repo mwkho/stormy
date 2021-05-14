@@ -17,7 +17,7 @@ const getFavourites = function(){
 
   return(
     <>
-     <div class="sidenav">
+     <div className="sidenav">
   <SidebarElement image="../../../Images/profile_pic.png" text="Egg Eggerson" onClick={() => 'hi'} />
   <SidebarElement image="../../../Images/home.png" text="Home" onClick={() => setPage('HOME')}/>
   <SidebarElement image="../../../Images/heart.png" text="Favourites" onClick={getFavourites}/>
