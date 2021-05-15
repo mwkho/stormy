@@ -83,13 +83,6 @@ export default function Information(props){
         })
     })
   }, [])
-
-  /*useEffect(()=>{axios.get(`get/favourites`)
-  .then((resp)=>{
-    console.log("favourites", resp.data.rows)
-    
-  })
-}, [])*/
   
   const addToFavourites = function(){
       axios.post(`add/favourites`, {placeId: place[0].id})
@@ -99,7 +92,7 @@ export default function Information(props){
       })
   }
 
-  console.log(bulletin)
+  console.log(weather)
   
   const activeButton = (<Button  
     onClick={addToFavourites}
@@ -137,7 +130,6 @@ export default function Information(props){
           <Tab label='Graph'/>
           <Tab label='Table'/>
         </Tabs>
-        <Typography> Data shown are for the next 48 hours </Typography>
         <TabPanel tab={weatherTab} index={0}>
           <WeatherPlot weather={consolidate} />
         </TabPanel>
