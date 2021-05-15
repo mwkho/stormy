@@ -38,49 +38,49 @@ export default function WeatherTable(props){
       })}
         </TableRow>
     <TableRow>
-    <TableCell>Weather</TableCell>
+    <TableCell variant='head'>Weather</TableCell>
     {consolidate.main.map((main, index) => {
       return <TableCell key={"main"+index}>{main}</TableCell>
     })}
   </TableRow>
     <TableRow>
-    <TableCell>Weather Description</TableCell>
+    <TableCell variant='head'>Weather Description</TableCell>
     {consolidate.description.map((description, index) => {
       return <TableCell key={"description"+index}>{description}</TableCell>
     })}
   </TableRow>
   <TableRow>
-    <TableCell>Temperature (°C)</TableCell>
+    <TableCell variant='head'>Temperature (°C)</TableCell>
     {consolidate.temp.map((temp, index) => {
       return <TableCell key={"temp"+index}>{temp}</TableCell>
     })}
   </TableRow>
   <TableRow>
-    <TableCell>Wind Speed (m/s)</TableCell>
+    <TableCell variant='head'>Wind Speed (m/s)</TableCell>
     {consolidate.windSpeed.map((windSpeed, index) => {
       return <TableCell key={"windSpeed"+index}>{windSpeed}</TableCell>
     })}  
   </TableRow>
   <TableRow>
-    <TableCell>Wind Degrees</TableCell>
+    <TableCell variant='head'>Wind Degrees</TableCell>
     {consolidate.windDeg.map((windDeg, index) => {
       return <TableCell key={"windDeg"+index}>{windDeg}</TableCell>
     })}  
   </TableRow>
   <TableRow>
-    <TableCell>Percent of Precipitation</TableCell>
+    <TableCell variant='head'>Percent of Precipitation</TableCell>
     {consolidate.pop.map((pop, index) => {
       return <TableCell key={"pop"+index}>{Math.round(pop*100) + "%"}</TableCell>
     })}  
   </TableRow>
   <TableRow>
-    <TableCell>Rain <br/> (volume for last hour, mm)</TableCell>
+    <TableCell variant='head'>Rain <br/> (volume for last hour, mm)</TableCell>
     {consolidate.rain.map((rain, index) => {
       return <TableCell key={"rain"+index}>{rain ? rain : 0}</TableCell>
     })}  
   </TableRow>
   <TableRow>
-    <TableCell>Snow <br/> (volume for last hour, mm)</TableCell>
+    <TableCell variant='head'>Snow <br/> (volume for last hour, mm)</TableCell>
     {consolidate.snow.map((snow, index) => {
       return <TableCell key={"snow"+index}>{snow ? snow : 0}</TableCell>
     })}  
