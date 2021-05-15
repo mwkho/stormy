@@ -12,13 +12,13 @@ const filterData = (results, typeString) => {
 }
 
 const getMountainCoordinates = (peakName) => {
-  return axios.get(`https://nominatim.openstreetmap.org/search.php?q=${peakName}%20in%20british%20columbia&polygon_geojson=1&format=jsonv2`)
+  return axios.get(`https://nominatim.openstreetmap.org/search.php?q=${peakName}%2C+british%20columbia&polygon_geojson=1&format=jsonv2`)
   // filter peaks with type of 'volcano' and 'peak' then extract information
   .then((results) => filterData(results.data, mountainTypes))
 }
 
 const getTrailCoordinates = (trailName) => {
-  return axios.get(`https://nominatim.openstreetmap.org/search.php?q=${trailName}%20in%20british%20columbia&polygon_geojson=1&format=jsonv2`)
+  return axios.get(`https://nominatim.openstreetmap.org/search.php?q=${trailName}%2C+british%20columbia&polygon_geojson=1&format=jsonv2`)
   .then((results) => filterData(results.data, trailTypes))
 }
 
