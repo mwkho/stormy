@@ -1,85 +1,94 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 
 export default function WeatherTable(props){
   const consolidate = props.weather
 
   const dateList = consolidate.dt.map((time, index) => {
-    const options = {month:'long', day:'numeric', year:'numeric'}
     const date = new Date(time*1000)
     const hours = `${date.getHours()}:00`
-    return <th key={"date-"+index}>{hours !== '0:00' ? hours : `${new Intl.DateTimeFormat('en', options).format(date)}`+ "\n" +`${hours}`}</th>
+    return <TableCell key={"date-" + index}>{hours !== '0:00' ? hours : `${props.convertDate(date)}`+ "\n" +`${hours}`}</TableCell>
   })
 
   return(
-    <Box>
-    <table>
-      <thead>
-        <tr>
-          <th>Hour</th>
+    <Paper>
+      <TableContainer>
+    <Table>
+    <caption> Weather data is provided by <a href="https://openweathermap.org/api/one-call-api">OpenWeatherMap</a>. </caption>
+      <TableHead>
+        <TableRow>
+          <TableCell>Hour</TableCell>
           {dateList}
-        </tr>
-      </thead>
-      <tbody>
+        </TableRow>
+      </TableHead>
+      <TableBody>
 
-        <tr>
-          <th></th>
+        <TableRow>
+          <TableCell></TableCell>
           {consolidate.icon.map((icon, index) => {
-      return <td key={"icon"+index}><img alt="" src={icon}/> </td>
+      return <TableCell key={"icon"+index}><img alt="" src={icon}/> </TableCell>
       })}
-        </tr>
-    <tr>
-    <th>Weather</th>
+        </TableRow>
+    <TableRow>
+    <TableCell>Weather</TableCell>
     {consolidate.main.map((main, index) => {
-      return <td key={"main"+index}>{main}</td>
+      return <TableCell key={"main"+index}>{main}</TableCell>
     })}
-  </tr>
-    <tr>
-    <th>Weather Description</th>
+  </TableRow>
+    <TableRow>
+    <TableCell>Weather Description</TableCell>
     {consolidate.description.map((description, index) => {
-      return <td key={"description"+index}>{description}</td>
+      return <TableCell key={"description"+index}>{description}</TableCell>
     })}
-  </tr>
-  <tr>
-    <th>Temperature (°C)</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Temperature (°C)</TableCell>
     {consolidate.temp.map((temp, index) => {
-      return <td key={"temp"+index}>{temp}</td>
+      return <TableCell key={"temp"+index}>{temp}</TableCell>
     })}
-  </tr>
-  <tr>
-    <th>Wind Speed (m/s)</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Wind Speed (m/s)</TableCell>
     {consolidate.windSpeed.map((windSpeed, index) => {
-      return <td key={"windSpeed"+index}>{windSpeed}</td>
+      return <TableCell key={"windSpeed"+index}>{windSpeed}</TableCell>
     })}  
-  </tr>
-  <tr>
-    <th>Wind Degrees</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Wind Degrees</TableCell>
     {consolidate.windDeg.map((windDeg, index) => {
-      return <td key={"windDeg"+index}>{windDeg}</td>
+      return <TableCell key={"windDeg"+index}>{windDeg}</TableCell>
     })}  
-  </tr>
-  <tr>
-    <th>Percent of Precipitation</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Percent of Precipitation</TableCell>
     {consolidate.pop.map((pop, index) => {
-      return <td key={"pop"+index}>{Math.round(pop*100) + "%"}</td>
+      return <TableCell key={"pop"+index}>{Math.round(pop*100) + "%"}</TableCell>
     })}  
-  </tr>
-  <tr>
-    <th>Rain <br/> (volume for last hour, mm)</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Rain <br/> (volume for last hour, mm)</TableCell>
     {consolidate.rain.map((rain, index) => {
-      return <td key={"rain"+index}>{rain ? rain : 0}</td>
+      return <TableCell key={"rain"+index}>{rain ? rain : 0}</TableCell>
     })}  
-  </tr>
-  <tr>
-    <th>Snow <br/> (volume for last hour, mm)</th>
+  </TableRow>
+  <TableRow>
+    <TableCell>Snow <br/> (volume for last hour, mm)</TableCell>
     {consolidate.snow.map((snow, index) => {
-      return <td key={"snow"+index}>{snow ? snow : 0}</td>
+      return <TableCell key={"snow"+index}>{snow ? snow : 0}</TableCell>
     })}  
-  </tr>
-  </tbody>
-  </table>
-    </Box>
+  </TableRow>
+  </TableBody>
+  </Table>
+    
+  </TableContainer>
+  </Paper>
   )
 };

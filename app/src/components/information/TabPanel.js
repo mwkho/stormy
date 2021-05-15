@@ -10,7 +10,7 @@ export default function TabPanel(props) {
       <div role="tabpanel" hidden={tab !== index} >
         {tab === index && (
          <Box>
-           <Typography>{children} </Typography>
+           {children}
          </Box>
         )}
       </div>

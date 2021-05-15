@@ -1,16 +1,25 @@
 import React from 'react';
 import AvalancheDangerItem from './AvalancheDangerItem';
 import AvalancheProblemsItem from './AvalancheProblemsItem'
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import Typography from '@material-ui/core/Typography'
 
 export default function AvalancheBulletin(props){
-  const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = props.bulletin
+  const {bulletin, convertDate} = props
+  const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = bulletin
 
+  // render a message when region doesn't have avalanche bulletin
   if (!region) {
     return(
-    <> 
-      <h1> Avalanche Data</h1>
-      <h2 className="unfound-bulletin"> {props.bulletin} </h2>
-    </>
+    <Paper> 
+      <Typography variant="h2" className="unfound-bulletin"> {bulletin} </Typography>
+    </Paper>
     )
   }
 
@@ -20,46 +29,49 @@ export default function AvalancheBulletin(props){
 
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
-    return <AvalancheDangerItem date={rating.date} alp={alp} tln={tln} btl={btl}/> 
+    const date = convertDate(new Date(rating.date))
+    return <AvalancheDangerItem date={date} alp={alp} tln={tln} btl={btl}/> 
   });
 
   return(
-    <>
-    <table>
-      <thead>
-        <tr>
-          <th>Region</th> 
-          <td>{region}</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Date Issued:</th>
-          <td>{dateIssued}</td>
-        </tr>
-        <tr>
-          <th>Valid Until:</th>
-          <td>{validUntil}</td>
-        </tr>
-        <tr>
-          <th>HighLights:</th>
-          <td>{highlights}</td>
-        </tr>
+    <Paper>
+
+    <TableContainer>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Region</TableCell> 
+          <TableCell variant='body'>{region.split('-').map(word => word[0].toUpperCase()+word.slice(1 , word.length)).join(' ')}</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell variant='head'>Date Issued</TableCell>
+          <TableCell>{convertDate(new Date(dateIssued))}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell variant='head'>Valid Until</TableCell>
+          <TableCell>{validUntil > dateIssued ? convertDate(new Date(validUntil)): 'Until further notice'}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell variant='head'>HighLights</TableCell>
+          <TableCell>{highlights}</TableCell>
+        </TableRow>
         {dangersList}
-        <tr>
-          <th>Avalanche Summary:</th>
-          <td>{avalancheSummary}</td>
-        </tr>
-        <tr>
-          <th>Snowpack Summary:</th>
-          <td>{snowpackSummary}</td>
-        </tr>
+        <TableRow>
+          <TableCell variant='head'>Avalanche Summary</TableCell>
+          <TableCell>{avalancheSummary}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell variant='head'>Snowpack Summary</TableCell>
+          <TableCell>{snowpackSummary}</TableCell>
+        </TableRow>
         {problemsList}
-    </tbody>
-  </table>
-  </>
+    </TableBody>
+  </Table>
+    </TableContainer>
+  </Paper>  
   
-    
   )
 
 };

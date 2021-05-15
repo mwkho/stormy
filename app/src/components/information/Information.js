@@ -38,6 +38,12 @@ const consolidateWeather = (weather) => {
   }, initial)
 }
 
+// healper function convert date
+const convertDate = (date) => {
+  const options = {month:'long', day:'numeric', year:'numeric'}
+  return new Intl.DateTimeFormat('en', options).format(date)
+}
+
 export default function Information(props){
   const {display_name, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
@@ -73,7 +79,6 @@ export default function Information(props){
     .then(resp=>{
       setPlace([...resp.data.rows])
       const id = resp.data.rows[0].id
-      console.log(id)
       axios.get(`get/favourite/${id}`)
       .then((resp)=>{
         if(resp.data.rows[0]){
@@ -134,7 +139,7 @@ export default function Information(props){
           <WeatherPlot weather={consolidate} />
         </TabPanel>
         <TabPanel tab={weatherTab} index={1}>
-          <WeatherTable weather={consolidate}/>
+          <WeatherTable convertDate={convertDate} weather={consolidate}/>
         </TabPanel>
       </TabPanel>
       <TabPanel tab={tab} index={1}>
@@ -143,7 +148,7 @@ export default function Information(props){
           <Tab label='Problems'/>
         </Tabs>
         <TabPanel tab={avalancheTab} index={0}>
-        <AvalancheBulletin bulletin={bulletin}/>
+        <AvalancheBulletin  convertDate={convertDate} bulletin={bulletin}/>
         </TabPanel>
         <TabPanel tab={avalancheTab} index={1}>
           Avalanche problems goes here
