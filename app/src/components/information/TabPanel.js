@@ -1,5 +1,6 @@
-import Box from '@material-ui/core/Box';
 import React from 'react';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 
 export default function TabPanel(props) {
@@ -9,7 +10,7 @@ export default function TabPanel(props) {
       <div role="tabpanel" hidden={tab !== index} >
         {tab === index && (
          <Box>
-           {children}
+           <Typography>{children} </Typography>
          </Box>
         )}
       </div>

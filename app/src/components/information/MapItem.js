@@ -12,7 +12,7 @@ export default function MapItem(props){
 
   return(
     // map that is centered around poi coordinates and a marker showing the poi
-    <div>
+    <>
       <MapContainer center={[lat, lon]} maxBounds={[corner1, corner2]} zoom={20} scrollWheelZoom={true}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -20,7 +20,7 @@ export default function MapItem(props){
             
         <Marker position={[lat, lon]}/>
       </MapContainer>
-    </div>
+    </>
   
     
   )

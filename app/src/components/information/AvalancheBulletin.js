@@ -25,7 +25,6 @@ export default function AvalancheBulletin(props){
 
   return(
     <>
-    <h1> Avalanche Data</h1>
     <table>
       <thead>
         <tr>

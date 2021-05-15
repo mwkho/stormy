@@ -6,15 +6,13 @@ export default function CommentListItem(props){
 
   return(
     <>
-    <div>
       <Box
-      borderBottom={1}
+        borderBottom={1}
       >
       <p>{props.children}</p>
       </Box>
       <p>{props.timestamp}</p>
-    </div>
-    </>
+      </>
   )
 
 };

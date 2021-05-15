@@ -1,5 +1,6 @@
 import React from 'react';
 import createPlotlyComponent from 'react-plotly.js/factory';
+import Box from '@material-ui/core/Box';
 
 const Plotly = require('plotly.js-basic-dist');
 const Plot = createPlotlyComponent(Plotly);
@@ -40,7 +41,7 @@ export default function WeatherPlot(props) {
     '<br>Wind Direction: %{customdata} ',
     type: 'scatter',
     mode: 'lines+markers',
-    marker: {color: 'green'},
+    marker: {color: 'green'}
   }
   const rain = {
     x: dateList,
@@ -51,13 +52,15 @@ export default function WeatherPlot(props) {
     '<br>Total rain: %{customdata} mm',
     type: 'scatter',
     mode: 'lines+markers',
-    marker: {color: 'blue'},
+    marker: {color: 'blue'}
+
   }
   const totalRain = {
     x: dateList,
     y: rainTotal,
     type: 'bar',
-    marker: {color: '#cd7eaf'},
+    marker: {color: '#cd7eaf'}
+
   }
   const snow = {
     x: dateList,
@@ -68,47 +71,40 @@ export default function WeatherPlot(props) {
     '<br>Total snow: %{customdata} mm',
     type: 'scatter',
     mode: 'lines+markers',
-    marker: {color: '#grey'},
-    name:'Snow volume for last hour, mm'
+    marker: {color: '#grey'}
   }
 
   const totalSnow = {
     x: dateList,
     y: snowTotal,
     type: 'bar',
-    marker: {color: '#cd7eaf'},
-    name:'Total Snow, mm'
+    marker: {color: '#cd7eaf'}
   }
+  // const data = [temp, windSpeed, rain, snow, totalRain, totalSnow]
   
   const layout = {
-    grid:{
-      rows:4,
-      columns:1,
-      patter: 'independent'
-    },
     xaxis: {
       tickformat:'%b %e \n %H:%M',
       nticks:16
     },
     margin:{
-      l: 50,
-      r: 50,
-      b: 10,
+      l: 20,
+      r: 20,
+      b: 60,
       t: 10,
       pad: 4
     },
-    width:1000,
-    height:500,
+    // autosize:true
+    width:700,
+    height:300
   }
-
-  // const data = [temp, windSpeed, rain, snow]
 
   return (
     <div className="weather-graph">
-      <Plot data={[temp]} layout={layout}/>
-      <Plot data={[windSpeed]} layout={layout}/>
-      <Plot data={[rain, totalRain]} layout={layout}/>
-      <Plot data={[snow, totalSnow]} layout={layout}/>
+      <Plot data={[temp]} layout={layout} displayModeBar={false}/>
+      <Plot data={[windSpeed]} layout={layout} displayModeBar={false}/>
+      <Plot data={[rain, totalRain]} layout={layout} displayModeBar={false}/>
+      <Plot data={[snow, totalSnow]} layout={layout} displayModeBar={false}/>
       {/* <Plot data={data} layout={layout}/> */}
     </div>
   )

@@ -1,20 +1,20 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 
 
 
-export default function WeatherItem(props){
+export default function WeatherTable(props){
   const consolidate = props.weather
 
   const dateList = consolidate.dt.map((time, index) => {
     const options = {month:'long', day:'numeric', year:'numeric'}
     const date = new Date(time*1000)
-    const hours = date.getHours()
-    return <th key={"date-"+index}>{hours !== 0 ? hours : `${new Intl.DateTimeFormat('en', options).format(date)} ${hours}`}</th>
+    const hours = `${date.getHours()}:00`
+    return <th key={"date-"+index}>{hours !== '0:00' ? hours : `${new Intl.DateTimeFormat('en', options).format(date)}`+ "\n" +`${hours}`}</th>
   })
 
   return(
-    <>
-    <h1>Hourly Weather Data</h1>
+    <Box>
     <table>
       <thead>
         <tr>
@@ -80,6 +80,6 @@ export default function WeatherItem(props){
   </tr>
   </tbody>
   </table>
-    </>
+    </Box>
   )
 };

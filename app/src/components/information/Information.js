@@ -2,10 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import CloudIcon from '@material-ui/icons/Cloud';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+import AppBar from '@material-ui/core/AppBar';
+import TerrainIcon from '@material-ui/icons/Terrain';
+import Typography from '@material-ui/core/Typography';
+
+
 import axios from "axios"
 
 import AvalancheBulletin from "./AvalancheBulletin"
-import WeatherItem from "./WeatherItem"
+import WeatherTable from "./WeatherTable"
 import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
@@ -33,14 +42,14 @@ export default function Information(props){
   const {display_name, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
   const consolidate = consolidateWeather(weather)
-  console.log(props.poi)
-  // all of tab changing code goes below here
-  const [tab, setTab] = useState(0)
+  
   const [weatherTab, setWeatherTab] = useState(0)
   const [avalancheTab, setAvalancheTab] = useState(0)
   const [place, setPlace] = useState()
   const [fav, setFav] = useState(false)
-
+  const [tab, setTab] = useState(0)
+  
+  // all of tab changing code goes below here
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
   }
@@ -111,29 +120,33 @@ export default function Information(props){
 
 
   return(
-    <>
+    <Container maxWidth='lg'>
       <h1>{display_name}</h1>
       {!fav ? activeButton : inactiveButton}
 
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
-      <Tabs orientation='vertical' onChange={changeTab}>
-        <Tab label='Weather'/>
-        <Tab label='Avalanche Bulletin'/>
+      {/* <AppBar position="static" class={{colorDefault=''}} color="default">       */}
+      <AppBar position="static" color="default">      
+      <Tabs  indicatorColor="primary" textColor="primary" onChange={changeTab}>
+        <Tab wrapped={true} icon={<CloudIcon/>} label={"Hourly Weather (48h)"}/>
+        <Tab icon={<TerrainIcon/>} label='Avalanche Bulletin'/>
       </Tabs>
+      </AppBar>
       <TabPanel tab={tab} index={0}>
-        <Tabs onChange={changeWeatherTab}>
+        <Tabs  onChange={changeWeatherTab}>
           <Tab label='Graph'/>
           <Tab label='Table'/>
         </Tabs>
+        <Typography> Data shown are for the next 48 hours </Typography>
         <TabPanel tab={weatherTab} index={0}>
           <WeatherPlot weather={consolidate} />
         </TabPanel>
         <TabPanel tab={weatherTab} index={1}>
-          <WeatherItem weather={consolidate}/>
+          <WeatherTable weather={consolidate}/>
         </TabPanel>
       </TabPanel>
       <TabPanel tab={tab} index={1}>
-      <Tabs onChange={changeAvalancheTab}>
+      <Tabs  onChange={changeAvalancheTab}>
           <Tab label='Danger Ratings'/>
           <Tab label='Problems'/>
         </Tabs>
@@ -146,6 +159,6 @@ export default function Information(props){
       </TabPanel>
       <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
       <CommentList image="../../../images/profile_pic.png" place={place}/>
-      </>
+      </Container>
   )
 };
