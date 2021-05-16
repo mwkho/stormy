@@ -10,22 +10,22 @@ import TableHead from '@material-ui/core/TableHead';
 import Typography from '@material-ui/core/Typography'
 
 export default function AvalancheBulletin(props){
-  const htmlSummary = (summary) => ({__html: summary})
-
+  
   const {bulletin, convertDate} = props
   const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = bulletin
-
+  
   // render a message when region doesn't have avalanche bulletin
   if (!region) {
     return(
-    <Paper> 
+      <Paper> 
       <Typography variant="h2" className="unfound-bulletin"> {bulletin} </Typography>
     </Paper>
     )
   }
-
-
-  const avalancheSummary1 = "<p>No new avalanches have been reported by the public or our field team this week.&nbsp;</p>"
+  
+  // function to render strings to html using dangerouslySetInnerHTML
+  const htmlSummary = (summary) => ({__html: summary})
+  
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
     const date = convertDate(new Date(rating.date))

@@ -1,11 +1,8 @@
 import React from 'react';
-import Collapse from '@material-ui/core/Collapse';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
-import Typography from '@material-ui/core/Typography'
 import AvalancheProblemsItem from './AvalancheProblemsItem'
 
 const AvalancheProblems = (props) => {
@@ -16,7 +13,7 @@ const AvalancheProblems = (props) => {
   })
 
 return(
-  //!props.problems.length ? <Typography>{message}</Typography> : (
+  // !props.problems.length ? <Typography>{message}</Typography> : (
     <TableContainer component={Paper}>
       <Table>
       <caption> Avalanche bulletin is provided by <a href="https://avalanche.ca/">Avalanche Canada</a>. </caption>

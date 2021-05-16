@@ -9,7 +9,7 @@ import AcUnitIcon from '@material-ui/icons/AcUnit';
 import AppBar from '@material-ui/core/AppBar';
 import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import axios from "axios"
 
@@ -76,52 +76,38 @@ export default function Information(props){
   })
   }, [])
 
-  useEffect(()=>{axios.get(`get/place/${lat}/${lon}`)
-    .then(resp=>{
+  // this effect disables favourite button if it is favourited
+  useEffect(() => {
+    axios.get(`get/place/${lat}/${lon}`)
+    .then(resp => {
       setPlace([...resp.data.rows])
-      const id = resp.data.rows[0].id
-      axios.get(`get/favourite/${id}`)
-      .then((resp)=>{
-        if(resp.data.rows[0]){
-          setFav(true)
-          console.log("you like this")
-        }
-        })
+      return resp.data.rows[0].id
+    })
+    .then((id) => axios.get(`get/favourite/${id}`))
+    .then((resp) => {
+      if(resp.data.rows[0]) {
+        setFav(true)
+        console.log("you like this")
+      }
     })
   }, [])
   
   const addToFavourites = function(){
-      axios.post(`add/favourites`, {placeId: place[0].id})
-      .then(console.log('success!'))
-      .catch(err=>{
-        console.log(err)
-      })
+    axios.post(`add/favourites`, {placeId: place[0].id})
+    .then(setFav(true))
+    .catch(err=>{
+      console.log(err)
+    })
   }
 
   console.log(weather)
-  
-  const activeButton = (<Button  
-    onClick={addToFavourites}
-    color="primary"
-    variant="contained"
-    >
-      Favourite
-    </Button >)
-  
-    const inactiveButton = 
-    <Button 
-    color="secondary"
-    variant="contained"
-    disabled
-    >
-      Favourited
-    </Button>
-
 
   return(
     <Container maxWidth='lg'>
       <h1>{display_name}</h1>
-      {!fav ? activeButton : inactiveButton}
+      <Button startIcon={<FavoriteIcon />} onClick={addToFavourites} color="secondary" variant="contained" disabled={fav} >
+        Favourite
+      </Button >
 
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
       {/* <AppBar position="static" class={{colorDefault=''}} color="default">       */}
