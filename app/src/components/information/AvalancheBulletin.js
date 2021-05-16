@@ -1,6 +1,5 @@
 import React from 'react';
 import AvalancheDangerItem from './AvalancheDangerItem';
-import AvalancheProblemsItem from './AvalancheProblemsItem'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -23,10 +22,6 @@ export default function AvalancheBulletin(props){
     )
   }
 
-  const problemsList = problems.map((problem) => {
-    return <AvalancheProblemsItem type={problem.type} comment={problem.comment} elevation={problem.icons.elevation} aspects={problem.icons.aspects} likelihood={problem.icons.likelihood} expectedSize={problem.icons.expectedSize}/>
-  });
-
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
     const date = convertDate(new Date(rating.date))
@@ -38,6 +33,8 @@ export default function AvalancheBulletin(props){
 
     <TableContainer>
     <Table>
+    <caption> Avalanche bulletin is provided by <a href="https://avalanche.ca/">Avalanche Canada</a>. </caption>
+
       <TableHead>
         <TableRow>
           <TableCell>Region</TableCell> 
@@ -66,7 +63,6 @@ export default function AvalancheBulletin(props){
           <TableCell variant='head'>Snowpack Summary</TableCell>
           <TableCell>{snowpackSummary}</TableCell>
         </TableRow>
-        {problemsList}
     </TableBody>
   </Table>
     </TableContainer>

@@ -19,7 +19,7 @@ import CommentList from "./CommentList"
 import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
 import WeatherPlot from './WeatherPlot';
-import AvalancheProblemsItem from './AvalancheProblemsItem';
+import AvalancheProblems from './AvalancheProblems';
 
 // create a helper function to sort the weather data
 const consolidateWeather = (weather) => {
@@ -152,7 +152,7 @@ export default function Information(props){
         <AvalancheBulletin  convertDate={convertDate} bulletin={bulletin}/>
         </TabPanel>
         <TabPanel tab={avalancheTab} index={1}>
-          <AvalancheProblemsItem></AvalancheProblemsItem>
+          <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
       <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
