@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import Typography from '@material-ui/core/Typography'
 
 export default function AvalancheBulletin(props){
+  const htmlSummary = (summary) => ({__html: summary})
+
   const {bulletin, convertDate} = props
   const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = bulletin
 
@@ -22,6 +24,8 @@ export default function AvalancheBulletin(props){
     )
   }
 
+
+  const avalancheSummary1 = "<p>No new avalanches have been reported by the public or our field team this week.&nbsp;</p>"
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
     const date = convertDate(new Date(rating.date))
@@ -52,16 +56,16 @@ export default function AvalancheBulletin(props){
         </TableRow>
         <TableRow>
           <TableCell variant='head'>HighLights</TableCell>
-          <TableCell>{highlights}</TableCell>
+          <TableCell> <div dangerouslySetInnerHTML={htmlSummary(highlights)}/></TableCell>
         </TableRow>
         {dangersList}
         <TableRow>
           <TableCell variant='head'>Avalanche Summary</TableCell>
-          <TableCell>{avalancheSummary}</TableCell>
+          <TableCell> <div dangerouslySetInnerHTML={htmlSummary(avalancheSummary)}/>  </TableCell>
         </TableRow>
         <TableRow>
           <TableCell variant='head'>Snowpack Summary</TableCell>
-          <TableCell>{snowpackSummary}</TableCell>
+          <TableCell>   <div dangerouslySetInnerHTML={htmlSummary(snowpackSummary)}/></TableCell>
         </TableRow>
     </TableBody>
   </Table>
