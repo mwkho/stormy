@@ -11,7 +11,7 @@ import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-
+import Grid from '@material-ui/core/Grid';
 
 import axios from "axios"
 
@@ -111,26 +111,12 @@ export default function Information(props){
   console.log(weather)
 
   return(
-    
-    <Container maxWidth='lg'>
+    <Container maxWidth='lg'> 
+
       <h1>{display_name}</h1>
       <Button startIcon={<FavoriteIcon />} onClick={addToFavourites} color="secondary" variant="contained" disabled={fav} >
         Favourite
       </Button >
-      
-      {/* <Snackbar
-        key={'topright'}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        autoHideDuration = {2000}
-        open={open}
-        onClose={() => setOpen(false)} 
-        >
-        <SnackbarContent style={{
-          backgroundColor:'#4caf50'
-        }}
-        message= "Added to favourites"
-        />
-        </Snackbar> */}
 
       <SuccessAlert open={open} onClose={() => setOpen(false)}>
         Added to favourites!
@@ -167,8 +153,13 @@ export default function Information(props){
           <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
-      <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
+      <Box  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  minHeight="100vh">
+        <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
+      </Box>
       <CommentList image="../../../images/profile_pic.png" place={place}/>
-      </Container>
+    </Container> 
   )
 };
