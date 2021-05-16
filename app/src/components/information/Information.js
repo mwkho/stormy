@@ -11,6 +11,8 @@ import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
+
+
 import axios from "axios"
 
 import AvalancheBulletin from "./AvalancheBulletin"
@@ -20,6 +22,7 @@ import MapItem from "./MapItem"
 import TabPanel from './TabPanel';
 import WeatherPlot from './WeatherPlot';
 import AvalancheProblems from './AvalancheProblems';
+import SuccessAlert from '../SuccessAlert'
 
 // create a helper function to sort the weather data
 const consolidateWeather = (weather) => {
@@ -55,7 +58,8 @@ export default function Information(props){
   const [place, setPlace] = useState()
   const [fav, setFav] = useState(false)
   const [tab, setTab] = useState(0)
-  
+  const [open, setOpen] = useState(false)
+
   // all of tab changing code goes below here
   const changeTab = (event, tabValue) => {
     setTab(tabValue)
@@ -76,7 +80,7 @@ export default function Information(props){
   })
   }, [])
 
-  // this effect disables favourite button if it is favourited
+  // this effect disables favourite button if it is favourited when loading
   useEffect(() => {
     axios.get(`get/place/${lat}/${lon}`)
     .then(resp => {
@@ -92,9 +96,13 @@ export default function Information(props){
     })
   }, [])
   
+  // disables favourite button after it is clicked
   const addToFavourites = function(){
     axios.post(`add/favourites`, {placeId: place[0].id})
-    .then(setFav(true))
+    .then(() => {
+      setFav(true)
+      setOpen(true)
+    })
     .catch(err=>{
       console.log(err)
     })
@@ -103,14 +111,32 @@ export default function Information(props){
   console.log(weather)
 
   return(
+    
     <Container maxWidth='lg'>
       <h1>{display_name}</h1>
       <Button startIcon={<FavoriteIcon />} onClick={addToFavourites} color="secondary" variant="contained" disabled={fav} >
         Favourite
       </Button >
+      
+      {/* <Snackbar
+        key={'topright'}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        autoHideDuration = {2000}
+        open={open}
+        onClose={() => setOpen(false)} 
+        >
+        <SnackbarContent style={{
+          backgroundColor:'#4caf50'
+        }}
+        message= "Added to favourites"
+        />
+        </Snackbar> */}
+
+      <SuccessAlert open={open} onClose={() => setOpen(false)}>
+        Added to favourites!
+      </SuccessAlert>
 
       <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
-      {/* <AppBar position="static" class={{colorDefault=''}} color="default">       */}
       <AppBar position="static" color="default">      
       <Tabs  indicatorColor="primary" textColor="primary" onChange={changeTab}>
         <Tab wrapped={true} icon={<CloudIcon/>} label={"Hourly Weather (48h)"}/>
