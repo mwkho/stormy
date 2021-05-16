@@ -113,7 +113,9 @@ export default function Information(props){
   return(
     <Container maxWidth='lg'> 
 
-      <h1>{display_name}</h1>
+      <Typography variant="h3">
+        {display_name}
+      </Typography>
       <Button startIcon={<FavoriteIcon />} onClick={addToFavourites} color="secondary" variant="contained" disabled={fav} >
         Favourite
       </Button >
@@ -122,7 +124,10 @@ export default function Information(props){
         Added to favourites!
       </SuccessAlert>
 
-      <h2>Weather and avalanche bulletin for  lat: {lat}, lon:{lon} </h2>
+      <Typography variant="h6">
+        Weather and avalanche bulletin for  lat: {lat}, lon:{lon}
+      </Typography>
+
       <AppBar position="static" color="default">      
       <Tabs  indicatorColor="primary" textColor="primary" onChange={changeTab}>
         <Tab wrapped={true} icon={<CloudIcon/>} label={"Hourly Weather (48h)"}/>
