@@ -3,7 +3,10 @@ import SearchBar from "./SearchBar"
 import Logo from './Logo'
 import Filter from './Filter'
 import ResultsList from './ResultList';
+
 import '../styles/homePage.css';
+
+
 const {getMountainCoordinates, getTrailCoordinates} = require("../../lib/getCoordinates")
 
 export default function HomePage(props){

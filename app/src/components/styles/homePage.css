@@ -1,3 +1,25 @@
 .homepage{
   background-image: url("/app/public/Images/garibaldi_lake.png");
 }
+
+.container {
+  position: relative;
+  text-align: center;
+  color: black;
+}
+
+.logo {
+  width: 200px;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.h1 {
+  font-family: Luminari, fantasy	
+}
