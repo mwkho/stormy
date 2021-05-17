@@ -159,13 +159,14 @@ export default function Information(props){
           <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
-      {`
-      `}
-      <Box  display="flex"
-       flexDirection="column"
-  justifyContent="center"
-  alignItems="center"
-  maxHeight="100vh">
+
+      <Box  
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        maxHeight="100vh"
+        >
         <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
       </Box>
       <CommentList convertDate={convertDate} place={place}/>

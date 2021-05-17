@@ -6,13 +6,19 @@ import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(1)
+  },
+}));
 
 export default function CommentList(props){
-  
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState("")
-  
+  const classes = useStyles();
+
   const  getComments = () => {
     return Axios.get('get/comments')
     .then((results) => {
@@ -57,31 +63,28 @@ export default function CommentList(props){
   
   return(
     <>
-        <Box  display="flex"
-        multiline
+      <Typography variant='h6'>
+        Have some conditions to report? Let us know by leaving a comment!
+      </Typography>
+      <Box
+        className={classes.root}
+        display="flex"
         flexDirection='column'
-    // justifyContent="center"
-    alignItems="center"
-    minHeight="100vh"
-    width='100%'
-    >
-        <form 
-          autoComplete="off"
-          onSubmit={event => event.preventDefault()}
-        >
-          {/* <input
-            type="text"
-            value={newComment}
-            onChange={(event) => setNewComment(event.target.value)}
-            placeholder="Enter your comment"
-            data-testid="comment-input"
-          /> */}
-          <TextField size='medium' multiline  variant="outlined" onChange={(event) => setNewComment(event.target.value)} value={newComment}/>  
-        </form>
-        <Button 
-        onClick={submitComment}
-        variant="contained"
-        color="primary"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <TextField  
+          style={{ width: '80%' }}
+          multiline
+          variant='filled'
+          onChange={(event) => setNewComment(event.target.value)} 
+          value={newComment}            
+        />  
+        <Button
+          className={classes.root}
+          onClick={submitComment}
+          variant="contained"
+          color="primary"
         >
           Submit
         </Button >
