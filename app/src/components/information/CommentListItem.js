@@ -7,11 +7,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width:"80%",
+    margin: theme.spacing(1)
   }
-})
+}))
 
 export default function CommentListItem(props){
   const classes = useStyles();

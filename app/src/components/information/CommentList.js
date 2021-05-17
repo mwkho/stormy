@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1)
-  },
+  }
 }));
 
 export default function CommentList(props){
