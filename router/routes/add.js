@@ -30,7 +30,6 @@ module.exports = (db) => {
     // Code for non hard coded user ID const userID = req.session['user_id'];
     const userId = 1
     const placeId = req.body.placeId
-
     
     db.query(`
     INSERT INTO favourites (place_id, user_id)
@@ -56,17 +55,20 @@ module.exports = (db) => {
     const lon = req.body.lon
     const type = req.body.type
     const name = req.body.name
+    const region = req.body.region
+
     console.log("name ", name)
-    console.log("type ", type)
-    console.log("lat ", lat)
-    console.log("lon ", lon)
+    console.log("name ", region)
+
 
     db.query(`
-    INSERT INTO places (lat, lon, type, name)
-    SELECT ${lat}, ${lon}, '${type}', '${name}' 
+    INSERT INTO places (lat, lon, type, name, region)
+    SELECT $1, $2, $3, $4, $5
     WHERE NOT EXISTS (
-      SELECT 1 FROM places WHERE lat= ${lat}
-    );`)
+      SELECT 1 FROM places 
+      WHERE lat = $1
+      AND lon = $2
+    );`, [lat, lon, type, name, region])
     .then(res.status(200))
     .then(res.end())
     .catch(err => {

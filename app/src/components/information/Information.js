@@ -50,14 +50,8 @@ const convertDate = (date, time=false) => {
   return new Intl.DateTimeFormat('en', options).format(date)
 }
 
-const useStyles = makeStyles((theme) => ({
-  tabMargin: {
-    marginTop: theme.spacing(1)
-  }
-}));
-
 export default function Information(props){
-  const {display_name, lat, lon, type} = props.poi
+  const {name, region, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
   const consolidate = consolidateWeather(weather)
   
@@ -81,7 +75,7 @@ export default function Information(props){
   }
 
   // comment and favourite backend calls
-  useEffect(()=>{axios.post(`/add/place`, {lat: lat, lon: lon, type:type, name: display_name})
+  useEffect(()=>{axios.post(`/add/place`, {lat, lon, type, name, region})
   .then(console.log("place was added"))
   .catch(err=>{
     console.log(err.message)
@@ -115,14 +109,15 @@ export default function Information(props){
       console.log(err)
     })
   }
-
-  console.log(weather)
-
+  
   return(
     <Container maxWidth='md'> 
 
       <Typography variant="h3">
-        {display_name}
+        {name}
+      </Typography>
+      <Typography variant="h5">
+        Region: {region}
       </Typography>
       <Button startIcon={<FavoriteIcon />} onClick={addToFavourites} color="secondary" variant="contained" disabled={fav} >
         Favourite
@@ -166,7 +161,7 @@ export default function Information(props){
           <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
-      <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
+      <MapItem lat={lat} lon={lon} map="../../../images/trail.png"/>
       <CommentList convertDate={convertDate} place={place}/>
     </Container> 
   )

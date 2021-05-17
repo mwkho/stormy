@@ -16,7 +16,11 @@ export default function HomePage(props){
     .then((res) => {
       setResults([...res])
     })
-    .catch(err => console.log(err.message))
+    .catch(err => {
+      // reset user input on error
+      setResults([])
+      console.log(err.message)
+    })
   }, [userInput])
 
   const reset = () => {

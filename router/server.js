@@ -36,6 +36,7 @@ App.get('/', (req, res) => res.json({
 App.get('/index', (req, res) => {
 res.redirect('/app/src/index')
 })
+
 // post route to get weather and avalanche information
 App.post("/information", (req, res) => {
   const {lat, lon}= req.body.poi

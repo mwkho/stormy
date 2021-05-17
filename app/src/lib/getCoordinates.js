@@ -4,9 +4,13 @@ const trailTypes = 'track path footway';
 
 // helper to filter for the coordinates and name of interest when searching
 const filterData = (results, typeString) => {
-  const filtered = results.filter((result) => typeString.includes(result.type)).map((location) => {
-    const display_name = location.display_name.split(',').slice(0,3)
-    return {display_name, lat: Number(location.lat), lon: Number(location.lon)}
+  const filtered = results.filter((result) => typeString.includes(result.type))
+  .map((location) => {
+    // display_name key is from api
+    const resultName = location.display_name.split(', British Columbia,')[0].split(',')
+    const name = resultName[0]
+    const region = resultName[resultName.length - 1]
+    return {name, region, lat: Number(location.lat), lon: Number(location.lon)}
   })
   return filtered;
 }

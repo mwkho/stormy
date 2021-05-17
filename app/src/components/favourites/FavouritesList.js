@@ -26,7 +26,9 @@ export default function FavouritesList(props){
   const favouritesList = !favourites ? null : favourites.map(favourite => {
     const lat = parseFloat(favourite.lat)
     const lon = parseFloat(favourite.lon)
-    return <FavouriteItem poi={{lat, lon, display_name: favourite.name }} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}>{favourite.name}</FavouriteItem>
+    const name = favourite.name
+    const region = favourite.region 
+    return <FavouriteItem poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}>{name}</FavouriteItem>
   })
 
   return(
