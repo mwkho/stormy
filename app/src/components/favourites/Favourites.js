@@ -1,11 +1,18 @@
 import React, {useEffect, useState}  from 'react';
 import Profile from "./Profile"
+import "../styles/DropDown.css"
 import Axios from 'axios'
 import { Container, Typography } from '@material-ui/core';
 import { MapContainer, TileLayer} from 'react-leaflet'
-import "../styles/DropDown.css"
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import FavouriteItem from "./FavouriteItem"
+import FavouriteListItem from "./FavouriteListItem"
 // import FavouritesList from "./FavouritesList"
 import SuccessAlert from '../SuccessAlert'
 
@@ -13,6 +20,12 @@ export default function Favourites(props){
   const [open, setOpen] = useState(false)
   const { favourites, setFavourites, display, setInformation, setPOI} = props
   const britishColumbia = [55.001251,-125.002441]
+
+  
+  const headerNames = ["Name", 'Region', 'Actions']
+  const header = headerNames.map((name) => {
+    return <TableCell variant='head' colSpan={name=='Actions'? 2 : 1 }> {name} </TableCell>
+  })  
 
   // deleting favourites and showing popup on success
   const deleteFavourite = (poi) => {
@@ -31,7 +44,7 @@ export default function Favourites(props){
   }
 
     // generating favourite markers in map
-    const favouritesMarker = !favourites ? null : favourites.map(favourite => {
+    const favouritesMarkers = !favourites ? null : favourites.map(favourite => {
       const lat = parseFloat(favourite.lat)
       const lon = parseFloat(favourite.lon)
       const name = favourite.name
@@ -40,6 +53,18 @@ export default function Favourites(props){
         <FavouriteItem poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteItem>
       )
     })
+
+    // favourites Table item
+    const favouritesTables = !favourites ? null : favourites.map(favourite => {
+      const lat = parseFloat(favourite.lat)
+      const lon = parseFloat(favourite.lon)
+      const name = favourite.name
+      const region = favourite.region 
+      return (
+        <FavouriteListItem poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteListItem>
+      )
+    })
+
   // render the favourites page again on load
   return(
     <Container>
@@ -60,9 +85,21 @@ export default function Favourites(props){
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {favouritesMarker}
+      {favouritesMarkers}
     </MapContainer>
+    <TableContainer>
+      <Table>
+      <TableHead>
+      <TableRow>
+        {header}
+      </TableRow>
+    </TableHead>
+    <TableBody>
+        {favouritesTables}
+    </TableBody>
       {/* <FavouritesList setFavourites={props.setFavourites} setInformation={props.setInformation} favourites={props.favourites} display={props.display} setPOI={props.setPOI} /> */}
+      </Table>
+    </TableContainer>
     </Container>
   )
 };
