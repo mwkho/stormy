@@ -34,7 +34,7 @@ const consolidateWeather = (weather) => {
     accumalator.snow.push(current.snow ? current.snow['1h'] : 0)
     accumalator.description.push(current.weather[0].description)
     accumalator.main.push( current.weather[0].main)
-    accumalator.icon.push(`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`)
+    accumalator.icon.push(current.weather[0].icon)
     return accumalator
   }, initial)
 }
@@ -130,13 +130,13 @@ export default function Information(props){
       </Typography>
 
       <AppBar position="static" color="default">      
-      <Tabs  indicatorColor="primary" textColor="primary" onChange={changeTab}>
+      <Tabs  value={tab} indicatorColor="primary" textColor="primary" onChange={changeTab}>
         <Tab wrapped={true} icon={<CloudIcon/>} label={"Hourly Weather (48h)"}/>
         <Tab icon={<TerrainIcon/>} label='Avalanche Bulletin'/>
       </Tabs>
       </AppBar>
       <TabPanel tab={tab} index={0}>
-        <Tabs  onChange={changeWeatherTab}>
+        <Tabs value={weatherTab} onChange={changeWeatherTab}>
           <Tab label='Graph'/>
           <Tab label='Table'/>
         </Tabs>
@@ -148,7 +148,7 @@ export default function Information(props){
         </TabPanel>
       </TabPanel>
       <TabPanel tab={tab} index={1}>
-      <Tabs  onChange={changeAvalancheTab}>
+      <Tabs value={avalancheTab}  onChange={changeAvalancheTab}>
           <Tab label='Danger Ratings'/>
           <Tab label='Problems'/>
         </Tabs>

@@ -24,6 +24,7 @@ const useStyles = makeStyles({
 export default function WeatherTable(props){
   const consolidate = props.weather;
   const classes = useStyles();
+  const iconPath = "../../../weatherIcon/"
 
   const dateList = consolidate.dt.map((time, index) => {
     const date = new Date(time*1000);
@@ -35,7 +36,7 @@ export default function WeatherTable(props){
   return(
     <Paper>
       <TableContainer>
-    <Table>
+    <Table size="small">
       <caption className={classes.caption}> 
         * total volume for the hour <br/>
         Weather data is provided by <a href="https://openweathermap.org/api/one-call-api">OpenWeatherMap</a>. 
@@ -52,7 +53,7 @@ export default function WeatherTable(props){
           {/* <TableCell className={classes.stickyHeader}></TableCell> */}
           <TableCell rowSpan={2} className={classes.stickyHeader} variant='head'>Weather</TableCell>
           {consolidate.icon.map((icon, index) => {
-      return <TableCell key={"icon"+index}><img alt="" src={icon}/> </TableCell>
+      return <TableCell key={"icon"+index}><img alt="" src={`${iconPath}${icon}.png`}/> </TableCell>
       })}
         </TableRow>
     <TableRow>
