@@ -1,18 +1,39 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import { borders } from '@material-ui/system';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+
+const useStyles = makeStyles({
+  root: {
+    width:"80%",
+  }
+})
 
 export default function CommentListItem(props){
-
+  const classes = useStyles();
+  const {timestamp, convertDate, children} = props 
+  console.log(timestamp)
+  const date = new Date(timestamp)
   return(
-    <>
-      <Box
-        borderBottom={1}
-      >
-      <p>{props.children}</p>
-      </Box>
-      <p>{props.timestamp}</p>
-      </>
+    <Card className={classes.root}>
+      <CardHeader 
+        avatar={<Avatar>U</Avatar>}
+        />
+      <CardContent>
+        <Typography align='left' color='textSecondary'>
+         User Name
+        </Typography>
+      <Typography align='left' variant="body1"  style={{whiteSpace: 'pre-line'}} color='textPrimary'  >
+          {children }
+        </Typography>
+        <Typography align='right' paragraph color = "textSecondary" component='p'>
+          {convertDate(date, true)}  
+        </Typography>
+      </CardContent>
+    </Card>
   )
-
 };

@@ -5,13 +5,10 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CloudIcon from '@material-ui/icons/Cloud';
-import AcUnitIcon from '@material-ui/icons/AcUnit';
 import AppBar from '@material-ui/core/AppBar';
 import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-import Grid from '@material-ui/core/Grid';
 
 import axios from "axios"
 
@@ -43,8 +40,12 @@ const consolidateWeather = (weather) => {
 }
 
 // healper function convert date
-const convertDate = (date) => {
-  const options = {month:'long', day:'numeric', year:'numeric'}
+const convertDate = (date, time=false) => {
+  const options = {month:'long', day:'numeric', year:'numeric', hour12: false}
+  if (time) {
+    options.hour = 'numeric'
+    options.minute = 'numeric'
+  }
   return new Intl.DateTimeFormat('en', options).format(date)
 }
 
@@ -158,13 +159,16 @@ export default function Information(props){
           <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
+      {`
+      `}
       <Box  display="flex"
+       flexDirection="column"
   justifyContent="center"
   alignItems="center"
-  minHeight="100vh">
+  maxHeight="100vh">
         <MapItem name={display_name} lat={lat} lon={lon} map="../../../images/trail.png"/>
       </Box>
-      <CommentList image="../../../images/profile_pic.png" place={place}/>
+      <CommentList convertDate={convertDate} place={place}/>
     </Container> 
   )
 };
