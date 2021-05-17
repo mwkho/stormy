@@ -52,7 +52,7 @@ export default function WeatherPlot(props) {
     hovertemplate:
     '%{x}'+
     '<br>1 hour rain: %{y} mm'+
-    '<br>Total rain: %{customdata} mm <extra></extra>',
+    '<br>Total rain: %{customdata:.2f} mm <extra></extra>',
     type: 'scatter',
     mode: 'lines+markers',
     marker: {color: 'blue'},
@@ -73,7 +73,7 @@ export default function WeatherPlot(props) {
     customdata:snowTotal,
     hovertemplate:
     '%{x}<br>1 hour snow: %{y} mm'+
-    '<br>Total snow: %{customdata} mm <extra></extra>',
+    '<br>Total snow: %{customdata:.2f} mm <extra></extra>',
     type: 'scatter',
     mode: 'lines+markers',
     marker: {color: '#grey'},
