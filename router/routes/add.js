@@ -7,12 +7,12 @@ module.exports = (db) => {
     const placeId = req.body.placeId;
     //code for non hard coded users const userId = req.session['user_id'];
     const userId = 1
-    const comment = req.body.comment;
+    const comment = req.body.comment.trim();
     const sql = `
     INSERT INTO comments (user_id, place_id, content, comment_date)
     VALUES ($1, $2, $3, NOW());
     `;
-
+    if (comment) {
     db.query(sql, [userId, placeId, comment])
     .then(res.status(200))
     .then(res.end())
@@ -22,7 +22,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
+    }
+    res.send(200).end()
   });
 
     router.post("/favourites", (req, res) => {
