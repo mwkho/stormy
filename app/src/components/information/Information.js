@@ -111,7 +111,10 @@ export default function Information(props){
   }
   
   return(
-    <Container maxWidth='md'> 
+    <Container 
+    maxWidth='md'
+    style={{marginLeft: '165px'}}
+    > 
 
       <Typography variant="h3">
         {name}
