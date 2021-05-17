@@ -106,7 +106,7 @@ export default function WeatherPlot(props) {
     },
     // autosize:true
     width:900,
-    height:300
+    height:200
   }
 
   return (

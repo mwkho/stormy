@@ -9,6 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { makeStyles } from '@material-ui/core/styles';
 
 import axios from "axios"
 
@@ -48,6 +49,12 @@ const convertDate = (date, time=false) => {
   }
   return new Intl.DateTimeFormat('en', options).format(date)
 }
+
+const useStyles = makeStyles((theme) => ({
+  tabMargin: {
+    marginTop: theme.spacing(1)
+  }
+}));
 
 export default function Information(props){
   const {display_name, lat, lon, type} = props.poi
@@ -112,7 +119,7 @@ export default function Information(props){
   console.log(weather)
 
   return(
-    <Container maxWidth='lg'> 
+    <Container maxWidth='md'> 
 
       <Typography variant="h3">
         {display_name}
