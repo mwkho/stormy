@@ -1,19 +1,18 @@
 import React, {useEffect, useState}  from 'react';
-import Profile from "./Profile"
 import "../styles/DropDown.css"
 import Axios from 'axios'
 import { Container, Typography } from '@material-ui/core';
 import { MapContainer, TileLayer} from 'react-leaflet'
 import Table from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import FavouriteItem from "./FavouriteItem"
-import FavouriteListItem from "./FavouriteListItem"
-// import FavouritesList from "./FavouritesList"
+import FavouritesMarker from "./FavouritesMarker"
+import FavouritesTableItem from "./FavouritesTableItem"
 import SuccessAlert from '../SuccessAlert'
 
 export default function Favourites(props){
@@ -50,7 +49,7 @@ export default function Favourites(props){
       const name = favourite.name
       const region = favourite.region 
       return (
-        <FavouriteItem setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteItem>
+        <FavouritesMarker setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouritesMarker>
       )
     })
 
@@ -61,13 +60,15 @@ export default function Favourites(props){
       const name = favourite.name
       const region = favourite.region 
       return (
-        <FavouriteListItem setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteListItem>
+        <FavouritesTableItem setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouritesTableItem>
       )
     })
 
   // render the favourites page again on load
   return(
+
     <Container     maxWidth='md'>
+
       <Typography variant='h3'>
       Check out your favourite spots!
       </Typography>
@@ -75,8 +76,9 @@ export default function Favourites(props){
         Removed from favourites!
       </SuccessAlert>
     
-      <Typography variant='h4'>
-        Move the mouse over the button to open the dropdown menu.
+
+      <Typography variant='body1'>
+        To see the conditions for your favourite locations, click on a point in the map or scroll down for your list of favourites and click on the 'Information'
       </Typography>
     
       {/* <Profile/> */}
@@ -84,9 +86,10 @@ export default function Favourites(props){
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+        />
       {favouritesMarkers}
     </MapContainer>
+<Paper>
     <TableContainer>
       <Table>
       <TableHead>
@@ -100,6 +103,7 @@ export default function Favourites(props){
       {/* <FavouritesList setFavourites={props.setFavourites} setInformation={props.setInformation} favourites={props.favourites} display={props.display} setPOI={props.setPOI} /> */}
       </Table>
     </TableContainer>
+        </Paper>
     </Container>
   )
 };
