@@ -92,9 +92,12 @@ export default function Information(props){
   useEffect(() => {
     axios.get(`get/favourites`)
     .then((resp) => {
-    if(resp.data.rows[0]) {
-      setFav(true)
-    }
+      for (const favourite of resp.data.rows) {
+        if (favourite.place_id === placeId) {
+          setFav(true)
+          break;
+        }
+      }
   })
   .catch(err=>{
     console.log(err.message)
