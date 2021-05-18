@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-export default function Favourites(props){
+export default function FavouritesMarker(props){
   const {poi, display, setPOI, setInformation, setPlaceId } = props
 
   return(
