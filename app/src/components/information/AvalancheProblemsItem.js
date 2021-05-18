@@ -17,11 +17,15 @@ const AvalancheProblemsItem = (props) => {
 
   return (
   <>        
-    <TableRow>
+    <TableRow >
       <TableCell >
         <IconButton aria-label="expand row" size='small' onClick={() => setOpen(!open)}>
           {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-        <Typography variant="h6"> {props.type} </Typography>
+        <Typography variant="h6"> 
+          <b>
+            {props.type} 
+            </b>
+        </Typography>
         </IconButton>
       </TableCell>
     </TableRow>
@@ -34,10 +38,10 @@ const AvalancheProblemsItem = (props) => {
               <TableCell colSpan={4}>{props.comment}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell variant='head' >Elevation</TableCell >
-              <TableCell variant='head' >Aspects</TableCell >
-              <TableCell variant='head' >Likelihood</TableCell >
-              <TableCell variant='head' >Expected size</TableCell >
+              <TableCell variant='head' > What Elevation?</TableCell >
+              <TableCell variant='head' > Which Slopes?</TableCell >
+              <TableCell variant='head' >Likelihood?</TableCell >
+              <TableCell variant='head' >Expected size?</TableCell >
             </TableRow>
             <TableRow>
               <TableCell> <img alt='' src={props.elevation}/> </TableCell>

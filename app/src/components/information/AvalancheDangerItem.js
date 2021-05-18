@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     color: 'black'
   },
   'danger-low':{
-    background:'green',
+    background:'#76ff03',
     color: 'black'
   },
   'danger-moderate':{
