@@ -79,6 +79,7 @@ export default function Information(props){
   const addToFavourites = () => {
     axios.post(`add/favourites`, {placeId: placeId})
     .then(() => {
+      console.log(placeId)
       setFav(true)
       setOpen(true)
     })
@@ -89,7 +90,7 @@ export default function Information(props){
 
   // disable favourites after rendering
   useEffect(() => {
-    axios.get(`get/favourites`)
+    axios.get(`get/favourite/${placeId}`)
     .then((resp) => {
     if(resp.data.rows[0]) {
       setFav(true)
