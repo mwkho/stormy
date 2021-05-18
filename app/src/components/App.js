@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Box from '@material-ui/core/Box';
 
 import HomePage from './home_page/HomePage'
 import Favourites from "./favourites/Favourites"
@@ -37,9 +38,17 @@ export default function App(props) {
       {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
       {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} setPlaceId={setPlaceId}/>}
     
+      <Box
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent="center"
+            height='90vh'
+      >
+
       {page === LOADING && <Loading> Mapping your favourites </Loading>}
       {page === CONDITIONS && <Loading> Looking outside... </Loading>}
-      {/* </Box> */}
+      </Box>
     </div>
     )
 }
