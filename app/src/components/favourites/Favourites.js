@@ -82,14 +82,18 @@ export default function Favourites(props){
       </Typography>
     
       {/* <Profile/> */}
-      <MapContainer center={britishColumbia} zoom={5} scrollWheelZoom={true}>
+      <MapContainer center={britishColumbia} zoomSnap={0.5} zoom={4.5} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       {favouritesMarkers}
     </MapContainer>
+<<<<<<< HEAD
 <Paper>
+=======
+    <Paper style={{marginBottom:"2rem"}}>
+>>>>>>> 3712faf5b748003144c629c932c7f9e6955c568c
     <TableContainer>
       <Table>
       <TableHead>
@@ -108,15 +112,3 @@ export default function Favourites(props){
   )
 };
 
-
-
-  // return(
-  //   <>
-  //   <div class="dropdown">
-  //     <button class="dropbtn">Dropdown</button>
-  //     <div class="dropdown-content">
-  //       { favouritesList }
-  //     </div>
-  //   </div>
-  //   </>
-  // )

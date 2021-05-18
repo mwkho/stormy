@@ -24,6 +24,7 @@ export default function CommentList(props){
     console.log('arrived at comment')
     return Axios.get(`get/comments/${placeId}`)
     .then((results) => {
+      console.log(results.data.rows)
       setComments([...results.data.rows])
     })
   };
@@ -51,8 +52,8 @@ export default function CommentList(props){
     // if(place){
       if(comment.place_id === placeId){
         return (
-          <CommentListItem convertDate={props.convertDate} timestamp={comment.comment_date}>
-            {comment.content}
+          <CommentListItem convertDate={props.convertDate} timestamp={comment.comment_date} username="username">
+            {comment.content} 
           </CommentListItem>
         )
       }
@@ -62,6 +63,7 @@ export default function CommentList(props){
   
   return(
     <>
+    <Box height='2rem'/>
       <Typography variant='h6'>
         Have some conditions to report? Let us know by leaving a comment!
       </Typography>

@@ -15,8 +15,8 @@ const AvalancheProblems = (props) => {
   })
 
 return(
-  !props.problems.length ? (
-    <Card>
+  props.problems.length ? (
+    <Card style={{height:"5rem"}}>
       <CardContent>
         <Typography>{message}</Typography> 
       </CardContent>
@@ -26,7 +26,7 @@ return(
       <Table size='small'>
       <caption> Avalanche bulletin is provided by <a href="https://avalanche.ca/">Avalanche Canada</a>. </caption>
         <TableBody>
-          {/* <AvalancheProblemsItem type='Cornice' comment='fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment' elevation='https://www.avalanche.ca/assets/images/Elevation/Elevation-0-0-1_EN.png' aspects='https://www.avalanche.ca/assets/images/Compass/compass-1-1-1-0-0-0-0-1_EN.png' likelihood='https://www.avalanche.ca/assets/images/Likelihood/Likelihood-3_EN.png' expectedSize='https://www.avalanche.ca/assets/images/size/Size-15-25_EN.png'/> */}
+          <AvalancheProblemsItem type='Cornice' comment='fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment fake comment' elevation='https://www.avalanche.ca/assets/images/Elevation/Elevation-0-0-1_EN.png' aspects='https://www.avalanche.ca/assets/images/Compass/compass-1-1-1-0-0-0-0-1_EN.png' likelihood='https://www.avalanche.ca/assets/images/Likelihood/Likelihood-3_EN.png' expectedSize='https://www.avalanche.ca/assets/images/size/Size-15-25_EN.png'/>
           {/* <AvalancheProblemsItem type='Cornice' comment='fake comment' elevation='https://www.avalanche.ca/assets/images/Elevation/Elevation-0-0-1_EN.png' aspects='https://www.avalanche.ca/assets/images/Compass/compass-1-1-1-0-0-0-0-1_EN.png' likelihood='https://www.avalanche.ca/assets/images/Likelihood/Likelihood-3_EN.png' expectedSize='https://www.avalanche.ca/assets/images/size/Size-15-25_EN.png'/> */}
           {problemsList}
         </TableBody>

@@ -4,7 +4,7 @@ export default function Logo(props){
 
   return(
       <div class="container">
-         <img class="logo" src="../../../images/stormy.png" /> 
+         <img class="logo" style={{width: props.width + "px"}} src="../../../images/stormy.png" /> 
          <div class="text">
            <h1 class="h1">Stormy BC</h1>
          </div>

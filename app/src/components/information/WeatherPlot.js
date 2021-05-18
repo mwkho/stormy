@@ -1,6 +1,7 @@
 import React from 'react';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 
 const Plotly = require('plotly.js-basic-dist');
 const Plot = createPlotlyComponent(Plotly);
@@ -110,12 +111,12 @@ export default function WeatherPlot(props) {
   }
 
   return (
-    <div className="weather-graph">
-      <Plot data={[temp]} layout={{...layout,title: {text: 'Temperature'}, yaxis:{title: {text: 'Temperature (\u00B0C)'}}}} config={{displayModeBar: false}}/>
-      <Plot data={[windSpeed]} layout={{...layout,title: {text: 'Wind Speed and Direction'}, yaxis:{title: {text: 'Wind speed (m/s)'}}}} config={{displayModeBar: false}}/>
-      <Plot data={[rain, totalRain]} layout={{...layout,title: {text: 'Rain'}, yaxis:{title: {text: 'Rain (mm)'}}}} config={{displayModeBar: false}}/>
-      <Plot data={[snow, totalSnow]} layout={{...layout,title: {text: 'Snow'}, yaxis:{title: {text: 'Snow (mm)'}}}}  config={{displayModeBar: false}}/>
+    <Paper>
+      <Plot data={[temp]} layout={{...layout,title: {text: '<b> Temperature </b>'}, yaxis:{title: {text: 'Temperature (\u00B0C)'}}}} config={{displayModeBar: false}}/>
+      <Plot data={[windSpeed]} layout={{...layout,title: {text: '<b>Wind Speed and Direction</b>'}, yaxis:{title: {text: 'Wind speed (m/s)'}}}} config={{displayModeBar: false}}/>
+      <Plot data={[rain, totalRain]} layout={{...layout,title: {text: '<b>Rain</b>'}, yaxis:{title: {text: 'Rain (mm)'}}}} config={{displayModeBar: false}}/>
+      <Plot data={[snow, totalSnow]} layout={{...layout,title: {text: '<b>Snow</b>'}, yaxis:{title: {text: 'Snow (mm)'}}}}  config={{displayModeBar: false}}/>
       {/* <Plot data={data} layout={layout}/> */}
-    </div>
+    </Paper>
   )
 }

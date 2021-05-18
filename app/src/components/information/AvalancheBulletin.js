@@ -29,7 +29,7 @@ export default function AvalancheBulletin(props){
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
     const date = convertDate(new Date(rating.date))
-    return <AvalancheDangerItem date={date} alp={alp} tln={tln} btl={btl}/> 
+    return <AvalancheDangerItem date={date} alp={'1'} tln={'3'} btl={'4'}/> 
   });
 
   return(
@@ -58,7 +58,7 @@ export default function AvalancheBulletin(props){
           <TableCell variant='head'>HighLights</TableCell>
           <TableCell> <div dangerouslySetInnerHTML={htmlSummary(highlights)}/></TableCell>
         </TableRow>
-        {dangersList}
+          {dangersList}
         <TableRow>
           <TableCell variant='head'>Avalanche Summary</TableCell>
           <TableCell> <div dangerouslySetInnerHTML={htmlSummary(avalancheSummary)}/>  </TableCell>

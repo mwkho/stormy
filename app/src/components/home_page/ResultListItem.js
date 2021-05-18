@@ -18,7 +18,7 @@ const ResultListItem  = (props) => {
   
 
   const selected = (poi) => {
-    props.display('LOADING')
+    props.display('CONDITIONS')
     Axios.post('/information', {poi: poi})
     .then((information) => {      
       props.setPOI({...poi, type: type})
