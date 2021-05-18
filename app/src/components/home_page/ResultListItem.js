@@ -2,11 +2,18 @@ import Axios from 'axios'
 import React, { useState } from 'react'
 import MapItem from '../information/MapItem'
 import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Tooltip from '@material-ui/core/Tooltip'
+import Container from '@material-ui/core/Container'
+import MapIcon from '@material-ui/icons/Map';
+import Grid from '@material-ui/core/Grid'
+import CloseIcon from '@material-ui/icons/Close'
 
 const ResultListItem  = (props) => {
   const {poi, type, setPlaceId} = props;
   const [hover, setHover] = useState(false)
+  const [freeze, setFreeze] = useState(false)
+  
 
   const selected = (poi) => {
     props.display('LOADING')
@@ -27,19 +34,58 @@ const ResultListItem  = (props) => {
     }, 1000)
     )
   }
+
+  const close =(
+    <Tooltip title="Close" arrow placement="right">
+    <Button 
+      style={{backgroundColor: 'white',}}
+      onClick={() => { setFreeze(false); setHover(false)}}
+      >
+        <CloseIcon />
+      </Button>
+    </Tooltip>
+   )
+
+  const mapButton = (<Tooltip title="Freeze the map" arrow placement="right">
+  <Button
+  style={{backgroundColor: 'white',}}
+  onMouseEnter={() => setHover(true)}
+  onMouseLeave={() => !freeze && setHover(false)}
+  onClick={(() => setFreeze(true))}
+  >
+    <MapIcon></MapIcon>
+  </Button>
+  </Tooltip>)
+
+  const map = ( 
+  <Container
+    style={{width: '500px', height: '400px'}}
+  >
+    <MapItem lat={poi.lat} lon={poi.lon}/>
+  </Container>
+      
+  
+  )
+  
   
   return (
     <>
+    <ButtonGroup>
+    
     <Button
     onClick={()=> selected(poi)}
     style={{backgroundColor: 'white', width: '800px'}}
     onMouseEnter={() => setHover(true)}
-    onMouseLeave={() => setHover(false)}
+    onMouseLeave={() => !freeze && setHover(false) }
+    
+    //onMouseLeave={() => setHover(false)}
     >
        {poi.name} <br></br>   Region: {poi.region}
     </Button>
+    {freeze ? close : mapButton }
     
-    {hover && <MapItem lat={poi.lat} lon={poi.lon}/>}
+    </ButtonGroup>
+    {hover && map}
     </>
     
   )
