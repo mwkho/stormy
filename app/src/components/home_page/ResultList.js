@@ -4,9 +4,9 @@ import ResultListItem from './ResultListItem';
 
 
 const  ResultsList = (props) => {
-
+  const {setPlaceId, type, setPOI} = props
   const resultList = props.results.map((result, index) => {
-    return <ResultListItem  key={index} poi={result} setInformation={props.setInformation} display={props.display} setPOI={props.setPOI} type={props.type}/>
+    return <ResultListItem setPlaceId={setPlaceId}  key={index} poi={result} setInformation={props.setInformation} display={props.display} setPOI={setPOI} type={type}/>
   });
   
   return (

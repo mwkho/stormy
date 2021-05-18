@@ -67,7 +67,7 @@ export default function Favourites(props){
 
   // render the favourites page again on load
   return(
-    <Container>
+    <Container     maxWidth='md'>
       <Typography variant='h3'>
       Check out your favourite spots!
       </Typography>

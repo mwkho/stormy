@@ -15,32 +15,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CommentList(props){
-  const [comments, setComments] = useState([])
+  const {placeId} = props
+  const [comments, setComments] = useState()
   const [newComment, setNewComment] = useState("")
   const classes = useStyles();
+  console.log('commentlist props       ', props)
 
-  const  getComments = () => {
-    return Axios.get('get/comments')
+  const getComments = (placeId) => {
+    console.log('arrived at comment')
+    return Axios.get(`get/comments/${placeId}`)
     .then((results) => {
       setComments([...results.data.rows])
     })
   };
 
   const submitComment = function() {
-    Axios.post(`/add/comment`, { placeId:props.place[0].id, comment:newComment})
-    .then(resp => {
-      getComments()
-      // setComments(prev => [...prev,newComment])
-    })
+    Axios.post(`/add/comment`, { placeId: placeId, comment:newComment})
+    .then(getComments(placeId)) // setComments(prev => [...prev,newComment])  })
     .catch(err=>{
       console.log(err)
     })
   }; 
   
-  // renders list of comments on initial render
+  //renders list of comments on initial render
   useEffect(() => {
-    getComments()
-  },[])
+    getComments(placeId)
+  }, [])
   
   // run this effect for every change on comments
   useEffect(()=>{
@@ -49,15 +49,15 @@ export default function CommentList(props){
   
 
   const commentList = !comments ? undefined : comments.map(comment => {
-    if(props.place){
-      if(comment.place_id === props.place[0].id){
+    // if(place){
+      if(comment.place_id === placeId){
         return (
           <CommentListItem convertDate={props.convertDate} timestamp={comment.comment_date}>
             {comment.content}
           </CommentListItem>
         )
       }
-    }
+    // }
     return null
   });
   

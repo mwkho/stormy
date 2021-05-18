@@ -13,7 +13,7 @@ export default function HomePage(props){
   const [userInput, setUserInput] = useState("")
   const [results, setResults] = useState([])
   const [mode, setMode] = useState('trail')
-
+  
   useEffect(() => {
     (mode === 'mountain' ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
     .then((res) => {
@@ -34,7 +34,7 @@ export default function HomePage(props){
     <Logo/>
     <Filter mode={mode} setMode={setMode} reset={reset}/>
     <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode}/>
+    <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>
   </main>
   )
 
