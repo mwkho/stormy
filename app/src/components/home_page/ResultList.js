@@ -1,6 +1,7 @@
 import React from 'react'
 import ResultListItem from './ResultListItem';
-
+import List from '@material-ui/core/List';
+import { Box, Container } from '@material-ui/core';
 
 
 const  ResultsList = (props) => {
@@ -11,11 +12,16 @@ const  ResultsList = (props) => {
   
   return (
     <>
-    <ul>
+    <Container>
+    {/* <Box
+      display='flex'
+      flexDirection='column'
+      alignItems='center'
+    > */}
       {resultList}
-    </ul>
+    </Container>
+    {/* </Box> */}
     <p style={{marginBottom: 500 + 'px'}}>
-
     </p>
     </>
   ) 

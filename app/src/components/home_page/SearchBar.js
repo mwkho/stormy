@@ -19,21 +19,21 @@ export default function SearchBar(props){
 
   return(
   <>
-  <Box
+  {/* <Box
         //className={classes.root}
         display="flex"
         flexDirection='column'
         justifyContent="center"
         alignItems="center"
-      >
+      > */}
         <TextField  
-          style={{ width: '80%', marginRight: '100px', paddingLeft: '200px' }}
-          multiline
+          // style={{ width: '80%', marginRight: '100px', paddingLeft: '200px' }}
+          fullWidth
           variant='filled'
           onChange={(event) => setValue(event.target.value)}
           value={value}           
         />  
-      </Box>
+      {/* </Box> */}
   </>
   )
 };

@@ -5,6 +5,8 @@ import Filter from './Filter'
 import ResultsList from './ResultList';
 
 import '../styles/homePage.css';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 
 
 const {getMountainCoordinates, getTrailCoordinates} = require("../../lib/getCoordinates")
@@ -30,12 +32,23 @@ export default function HomePage(props){
     setUserInput("")
   }
   return(
-  <main class="homepage">
-    <Logo/>
-    <Filter mode={mode} setMode={setMode} reset={reset}/>
-    <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>
-  </main>
+    <>
+
+<Box
+    width='100%'
+    display="flex"
+    flexDirection='column'
+    alignItems='center'
+  justifyContent='center' 
+    >
+      <Logo/>
+      <Filter mode={mode} setMode={setMode} reset={reset}/>
+    </Box>
+    <Container maxWidth='md'>
+      <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
+    </Container>
+      <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>
+  </>
   )
 
 };

@@ -6,8 +6,10 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Tooltip from '@material-ui/core/Tooltip'
 import Container from '@material-ui/core/Container'
 import MapIcon from '@material-ui/icons/Map';
-import Grid from '@material-ui/core/Grid'
 import CloseIcon from '@material-ui/icons/Close'
+import { Box } from '@material-ui/core'
+
+
 
 const ResultListItem  = (props) => {
   const {poi, type, setPlaceId} = props;
@@ -38,7 +40,7 @@ const ResultListItem  = (props) => {
   const close =(
     <Tooltip title="Close" arrow placement="right">
     <Button 
-      style={{backgroundColor: 'white',}}
+      style={{backgroundColor: 'white', width:'80%'}}
       onClick={() => { setFreeze(false); setHover(false)}}
       >
         <CloseIcon />
@@ -69,12 +71,14 @@ const ResultListItem  = (props) => {
   
   
   return (
-    <>
+    <Box
+    
+    >
     <ButtonGroup>
     
     <Button
     onClick={()=> selected(poi)}
-    style={{backgroundColor: 'white', width: '800px'}}
+    style={{backgroundColor: 'white' }}
     onMouseEnter={() => setHover(true)}
     onMouseLeave={() => !freeze && setHover(false) }
     
@@ -86,7 +90,8 @@ const ResultListItem  = (props) => {
     
     </ButtonGroup>
     {hover && map}
-    </>
+
+    </Box>
     
   )
 }
