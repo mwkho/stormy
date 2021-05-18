@@ -39,25 +39,6 @@ export default function HomePage(props){
 
  
   return(
-<<<<<<< HEAD
-    <>
-
-<Box
-    width='100%'
-    display="flex"
-    flexDirection='column'
-    alignItems='center'
-  justifyContent='center' 
-    >
-      <Logo/>
-      <Filter mode={mode} setMode={setMode} reset={reset}/>
-    </Box>
-    <Container maxWidth='md'>
-      <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
-    </Container>
-      <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>
-  </>
-=======
   <main class="homepage">
     <Logo width={200}/>
     <Filter mode={mode} setMode={setMode}/>
@@ -67,7 +48,6 @@ export default function HomePage(props){
     {loadStatus === SEARCHING && <Loading> Searching </Loading> }
 
   </main>
->>>>>>> 3712faf5b748003144c629c932c7f9e6955c568c
   )
 
 };
