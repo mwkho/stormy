@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CommentListItem(props){
   const classes = useStyles();
   const {timestamp, convertDate, children} = props 
-  console.log(timestamp)
   const date = new Date(timestamp)
+  
   return(
     <Card className={classes.root}>
       <CardHeader 

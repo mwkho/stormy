@@ -51,13 +51,14 @@ const convertDate = (date, time=false) => {
 }
 
 export default function Information(props){
+  const {placeId} = props
   const {name, region, lat, lon, type} = props.poi
   const {weather, bulletin} = props.information
   const consolidate = consolidateWeather(weather)
   
   const [weatherTab, setWeatherTab] = useState(0)
   const [avalancheTab, setAvalancheTab] = useState(0)
-  const [place, setPlace] = useState()
+  const [place, setPlace] = useState([])
   const [fav, setFav] = useState(false)
   const [tab, setTab] = useState(0)
   const [open, setOpen] = useState(false)
@@ -74,33 +75,9 @@ export default function Information(props){
     setAvalancheTab(tabValue)  
   }
 
-  // comment and favourite backend calls
-  useEffect(()=>{axios.post(`/add/place`, {lat, lon, type, name, region})
-  .then(console.log("place was added"))
-  .catch(err=>{
-    console.log(err.message)
-  })
-  }, [])
-
-  // this effect disables favourite button if it is favourited when loading
-  useEffect(() => {
-    axios.get(`get/place/${lat}/${lon}`)
-    .then(resp => {
-      setPlace([...resp.data.rows])
-      return resp.data.rows[0].id
-    })
-    .then((id) => axios.get(`get/favourite/${id}`))
-    .then((resp) => {
-      if(resp.data.rows[0]) {
-        setFav(true)
-        console.log("you like this")
-      }
-    })
-  }, [])
-  
-  // disables favourite button after it is clicked
-  const addToFavourites = function(){
-    axios.post(`add/favourites`, {placeId: place[0].id})
+  // function that disables favourite button after it is clicked
+  const addToFavourites = () => {
+    axios.post(`add/favourites`, {placeId: placeId})
     .then(() => {
       setFav(true)
       setOpen(true)
@@ -109,6 +86,29 @@ export default function Information(props){
       console.log(err)
     })
   }
+
+  // disable favourites after rendering
+  useEffect(() => {
+    axios.get(`get/favourites`)
+    .then((resp) => {
+    if(resp.data.rows[0]) {
+      setFav(true)
+      console.log("you like this")
+    }
+  })
+  .catch(err=>{
+    console.log(err.message)
+  })
+}, [])
+ 
+  // this effect disables favourite button if it is favourited when loading
+  // useEffect(() => {
+  //   axios.get(`get/place/${lat}/${lon}`)
+  //   .then(resp => {
+  //     setPlace([...resp.data.rows])
+  //   })
+  // }, [])
+  
   
   return(
     <Container 
@@ -165,7 +165,7 @@ export default function Information(props){
         </TabPanel>
       </TabPanel>
       <MapItem lat={lat} lon={lon} map="../../../images/trail.png"/>
-      <CommentList convertDate={convertDate} place={place}/>
+      <CommentList placeId={placeId} convertDate={convertDate} place={place}/>
     </Container> 
   )
 };

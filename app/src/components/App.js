@@ -13,10 +13,10 @@ const LOADING = 'LOADING'
 
 export default function App(props) {
   const [ page, setPage] = useState(HOME)
-  const [ poi, setPOI] = useState({});
+  const [poi, setPOI] = useState({});
   const [favourites, setFavourites] = useState([])
   const [information, setInformation] = useState({})
-
+  const [placeId, setPlaceId] = useState(0)
 
   return (
     
@@ -30,9 +30,9 @@ export default function App(props) {
 />
       {page !== LOADING && <Sidebar setPage={setPage} setFavourites={setFavourites}/>}
       {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
-      {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation}/>}
-      {page === INFORMATION && <Information  information={information} poi={poi}/>}
-      {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} />}
+      {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation} setPlaceId={setPlaceId}/>}
+      {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
+      {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} setPlaceId={setPlaceId}/>}
       {page === LOADING && <CircularProgress/>}
     </div>
     )

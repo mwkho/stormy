@@ -18,10 +18,10 @@ import SuccessAlert from '../SuccessAlert'
 
 export default function Favourites(props){
   const [open, setOpen] = useState(false)
-  const { favourites, setFavourites, display, setInformation, setPOI} = props
-  const britishColumbia = [55.001251,-125.002441]
 
+  const { favourites, setFavourites, display, setInformation, setPOI, setPlaceId} = props
   
+  const britishColumbia = [55.001251,-125.002441]
   const headerNames = ["Name", 'Region', 'Actions']
   const header = headerNames.map((name) => {
     return <TableCell variant='head' colSpan={name=='Actions'? 2 : 1 }> {name} </TableCell>
@@ -50,7 +50,7 @@ export default function Favourites(props){
       const name = favourite.name
       const region = favourite.region 
       return (
-        <FavouriteItem poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteItem>
+        <FavouriteItem setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteItem>
       )
     })
 
@@ -61,13 +61,13 @@ export default function Favourites(props){
       const name = favourite.name
       const region = favourite.region 
       return (
-        <FavouriteListItem poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteListItem>
+        <FavouriteListItem setPlaceId={setPlaceId} poi={{lat, lon, name, region}} display={display} setPOI={setPOI} setInformation={setInformation} deleteFavourite={deleteFavourite}></FavouriteListItem>
       )
     })
 
   // render the favourites page again on load
   return(
-    <Container>
+    <Container     maxWidth='md'>
       <Typography variant='h3'>
       Check out your favourite spots!
       </Typography>

@@ -3,15 +3,13 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-  router.get("/comments", (req, res) => {
-    // Code for non hard coded user ID const userID = req.session['user_id'];
-    const userId = 1
+  router.get("/comments/:id", (req, res) => {
     db.query(`
     SELECT * FROM comments
     JOIN places ON places.id = place_id
-    WHERE user_id = $1
+    WHERE place_id = $1
     ORDER BY comment_date DESC;
-    `, [userId]
+    `, [req.params.id]
     )
       .then(data => {
         res.status(200).send(data);

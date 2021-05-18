@@ -9,7 +9,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 export default function Favourites(props){
-  const {poi, display, setPOI, setInformation } = props
+  const {poi, display, setPOI, setInformation, setPlaceId } = props
 
   return(
   <Marker position={[poi.lat, poi.lon]}>
@@ -25,7 +25,7 @@ export default function Favourites(props){
         display='flex'
         flexDirection="row"
       >
-        <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display)}>
+        <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display, setPlaceId)}>
           Information
         </Button>
         <Button variant='contained' color='secondary' onClick={() =>{props.deleteFavourite(poi)}} endIcon={<RemoveIcon/>}> 

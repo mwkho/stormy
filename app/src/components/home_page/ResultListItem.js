@@ -5,20 +5,27 @@ import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const ResultListItem  = (props) => {
-  const {poi, type} = props;
-
+  const {poi, type, setPlaceId} = props;
   const [hover, setHover] = useState(false)
 
   const selected = (poi) => {
     props.display('LOADING')
     Axios.post('/information', {poi: poi})
     .then((information) => {      
-      setTimeout(() => {
-        props.setPOI({...poi, type: type})
-        props.setInformation(information.data)
-        props.display('INFORMATION')
-      }, 1000)
+      props.setPOI({...poi, type: type})
+      props.setInformation(information.data)
+      return Axios.post(`/add/place`, { lat: poi.lat, lon: poi.lon, type, name: poi.name, region: poi.region})
     })
+    // set placeId when the result is selected
+    .then( () => Axios.get(`get/place/${poi.lat}/${poi.lon}`))
+    .then(res => {
+      setPlaceId(res.data.rows[0].id)
+    })
+    .then(
+    setTimeout(() => {
+      props.display('INFORMATION')
+    }, 1000)
+    )
   }
   
   return (

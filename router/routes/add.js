@@ -68,9 +68,9 @@ module.exports = (db) => {
       SELECT 1 FROM places 
       WHERE lat = $1
       AND lon = $2
-    );`, [lat, lon, type, name, region])
-    .then(res.status(200))
-    .then(res.end())
+    )
+    ;`, [lat, lon, type, name, region])
+    .then(data => res.send(data))
     .catch(err => {
         console.log("________", err.message);
         res
