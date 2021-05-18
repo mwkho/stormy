@@ -24,7 +24,7 @@ export default function Favourites(props){
   const britishColumbia = [55.001251,-125.002441]
   const headerNames = ["Name", 'Region', 'Actions']
   const header = headerNames.map((name) => {
-    return <TableCell variant='head' colSpan={name=='Actions'? 2 : 1 }> {name} </TableCell>
+    return <TableCell variant='head' colSpan={name === 'Actions'? 2 : 1 }> {name} </TableCell>
   })  
 
   // deleting favourites and showing popup on success
