@@ -152,11 +152,18 @@ const NavBar = (
 )
 
 const menuButton = (
-<Grid container>
-  <Grid item>
+<Grid 
+  container
+  style={{position:'sticky', top:'0'}}
+  >
+  <Grid 
+    item
+    style={{position:'sticky', top:'0'}}
+
+  >
     <Button 
+      style={{position:'sticky', top:'0'}}
       size="large"
-      color="black"
       onClick={openNav}
       variant='outline'
     >

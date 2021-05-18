@@ -30,7 +30,7 @@ export default function SearchBar(props){
           style={{ width: '80%', marginRight: '100px', paddingLeft: '200px' }}
           variant='filled'
           onChange={(event) => setValue(event.target.value)}
-          value={value}           
+          value={value}     
         />  
       {/* </Box> */}
   </>

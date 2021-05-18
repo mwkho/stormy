@@ -8,6 +8,7 @@ import Loading from '../Loading';
 import '../styles/homePage.css';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import { Typography } from '@material-ui/core';
 
 
 const {getMountainCoordinates, getTrailCoordinates} = require("../../lib/getCoordinates")
@@ -41,6 +42,12 @@ export default function HomePage(props){
   return(
   <main class="homepage">
     <Logo width={200}/>
+    <Typography  display="block" gutterBottom>
+      {`Look up weather forecasts and avalanche bulletins all in one place!`}
+    </Typography>
+    <Typography>
+      {`Select either \'Trail\' or 'Mountain' and start typing to begin.`}
+    </Typography>
     <Filter mode={mode} setMode={setMode}/>
     <SearchBar setStatus={setLoadStatus} searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
     

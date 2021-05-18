@@ -25,7 +25,7 @@ export default function FavouritesMarker(props){
         flexDirection="row"
       >
         <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display, setPlaceId)}>
-          Information
+          Conditions
         </Button>
         <Button variant='contained' color='secondary' onClick={() =>{props.deleteFavourite(poi)}} endIcon={<RemoveIcon/>}> 
           Remove 

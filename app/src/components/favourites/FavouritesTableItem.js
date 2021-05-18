@@ -29,7 +29,7 @@ export default function FavouritesTableItem(props){
       </TableCell>
       <TableCell className=''>
       <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display, setPlaceId)}>
-          Information
+          Conditions
         </Button>
       </TableCell>
       <TableCell className=''>
