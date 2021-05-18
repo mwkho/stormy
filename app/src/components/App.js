@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
+import Box from '@material-ui/core/Box';
+
 import HomePage from './home_page/HomePage'
 import Favourites from "./favourites/Favourites"
 import Sidebar from './sidebar/Sidebar'
 import Information from "./information/Information"
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Loading from './Loading';
+
 
 const HOME = 'HOME'
 const INFORMATION = 'INFORMATION'
 const FAVOURITES = 'FAVOURITES'
+const CONDITIONS = 'CONDITIONS'
 const LOADING = 'LOADING'
 
 export default function App(props) {
@@ -28,12 +32,23 @@ export default function App(props) {
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossOrigin=""
 />
-      {page !== LOADING && <Sidebar setPage={setPage} setFavourites={setFavourites}/>}
+      {(page !== LOADING && page !== CONDITIONS) && <Sidebar setPage={setPage} setFavourites={setFavourites}/>}
       {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation} setPlaceId={setPlaceId}/>}
       {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
       {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} setPlaceId={setPlaceId}/>}
-      {page === LOADING && <CircularProgress/>}
+    
+      <Box
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent="center"
+            height='90vh'
+      >
+
+      {page === LOADING && <Loading> Mapping your favourites </Loading>}
+      {page === CONDITIONS && <Loading> Looking outside... </Loading>}
+      </Box>
     </div>
     )
 }

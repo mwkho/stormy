@@ -63,6 +63,7 @@ export default function CommentList(props){
   
   return(
     <>
+    <Box height='2rem'/>
       <Typography variant='h6'>
         Have some conditions to report? Let us know by leaving a comment!
       </Typography>

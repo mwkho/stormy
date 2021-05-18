@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const selected = (poi, setPOI, setInformation, display, setPlaceId) => {
-  display('LOADING')
+  display('CONDITIONS')
   axios.post('/information', {poi: poi})
   .then((information) => {
     setInformation(information.data)
