@@ -25,7 +25,7 @@ export default function CommentListItem(props){
         />
       <CardContent>
         <Typography align='left' color='textSecondary'>
-         User Name
+         {props.username}
         </Typography>
       <Typography align='left' variant="body1"  style={{whiteSpace: 'pre-line'}} color='textPrimary'  >
           {children }
