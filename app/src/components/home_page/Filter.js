@@ -1,29 +1,31 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from'@material-ui/core/FormControlLabel'
+import {Box, Radio } from '@material-ui/core';
  
 export default function Filter(props){
 
   return (
     // hackish way to allow radio buttons to change the states
     <>
+    <Box>
     <FormControlLabel 
-      control={<Checkbox 
+      control={<Radio 
         checked={props.mode === 'trail'}
-        onChange={event => props.setMode(props.mode === 'trail' ? 'mountain' : 'trail')}
-       >
-      </Checkbox>}
+        onChange={event => {props.setMode(props.mode === 'trail' ? 'mountain' : 'trail'); props.reset()}}
+        >
+      </Radio>}
       label="Trail"
-    />
+      />
     <FormControlLabel 
-      control={<Checkbox 
+      control={<Radio
         checked={props.mode === 'mountain'}
         onChange={event => props.setMode(props.mode === 'trail' ? 'mountain' : 'trail')}
-       >
-      </Checkbox>}
+        >
+      </Radio>}
       label="Mountain"
-    />
-     
+      />
+      </Box>
     </>
   )};
 
