@@ -14,7 +14,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import selected from "../../lib/selected"
 
 export default function FavouriteListItem(props){
-  const {poi, display, setPOI, setInformation } = props
+  const {poi, display, setPOI, setInformation, setPlaceId } = props
 
 
 
@@ -33,7 +33,7 @@ export default function FavouriteListItem(props){
       </Typography>
       </TableCell>
       <TableCell className=''>
-      <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display)}>
+      <Button variant='contained' color='primary' endIcon={<ChevronRightIcon/>} onClick={() => selected(poi ,setPOI, setInformation, display, setPlaceId)}>
           Information
         </Button>
       </TableCell>

@@ -19,7 +19,6 @@ export default function CommentList(props){
   const [comments, setComments] = useState()
   const [newComment, setNewComment] = useState("")
   const classes = useStyles();
-  console.log('commentlist props       ', props)
 
   const getComments = (placeId) => {
     console.log('arrived at comment')
