@@ -20,6 +20,9 @@ export default function HomePage(props){
   const [loadStatus, setLoadStatus] = useState('SHOW')
 
   useEffect(() => {
+    if (userInput.trim()){
+      setLoadStatus('SEARCHING')
+    }
     (mode === 'mountain' ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
     .then((res) => {
       setResults([...res])

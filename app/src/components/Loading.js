@@ -7,10 +7,10 @@ export default function Loading(props) {
 
   return ( 
     <Box> 
-    <CircularProgress/>
-    <Typography>
-      {props.children}
-    </Typography>
+      <CircularProgress/>
+        <Typography>
+          {props.children}
+      </Typography>
     </Box>
       
   

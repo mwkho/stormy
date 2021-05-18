@@ -14,9 +14,6 @@ export default function SearchBar(props){
   const onSearch = useCallback(props.onSearch, [userInput]);
 
   useEffect(() => {
-    if (userInput.trim()){
-      props.setStatus('SEARCHING')
-    }
     onSearch(userInput);
   }, [userInput, onSearch])
 
