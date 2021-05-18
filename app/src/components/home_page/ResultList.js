@@ -10,9 +10,14 @@ const  ResultsList = (props) => {
   });
   
   return (
+    <>
     <ul>
       {resultList}
     </ul>
+    <p style={{marginBottom: 500 + 'px'}}>
+
+    </p>
+    </>
   ) 
 }
 

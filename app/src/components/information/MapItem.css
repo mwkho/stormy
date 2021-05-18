@@ -3,3 +3,10 @@
   height: 50vh;
   margin: 4em 0px
 }
+.map{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  
+}
