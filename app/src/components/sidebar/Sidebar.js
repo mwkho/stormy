@@ -11,6 +11,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import Grid from '@material-ui/core/Grid'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Logo from '../home_page/Logo'
 
 
 
@@ -69,8 +70,12 @@ function closeNav() {
 const closeIcon = <CloseIcon />
 const openIcon = <MenuOpenIcon />
 const showNavBar = (<div id="mySidenav" className="sidenav">
+  
 <Grid container>
-  <Grid item>
+<Grid item
+  direction="row"
+  justify="flex-end"
+  >
   <Button 
     
     style={{backgroundColor: '#111', color: 'white'}}
@@ -82,6 +87,8 @@ const showNavBar = (<div id="mySidenav" className="sidenav">
       {closeIcon}
     </Button>
   </Grid>
+
+  
 </Grid>
 
 
@@ -119,6 +126,20 @@ const showNavBar = (<div id="mySidenav" className="sidenav">
   <FavoriteIcon />
 </Button>
 </Grid>
+<Grid
+  item
+  container
+  direction="column"
+  justify="flex-end"
+  alignItems="baseline"
+>
+<Logo
+width={160}
+>
+
+</Logo>
+</Grid>
+
 </Grid>
 
 

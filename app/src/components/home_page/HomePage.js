@@ -31,7 +31,7 @@ export default function HomePage(props){
   }
   return(
   <main class="homepage">
-    <Logo/>
+    <Logo width={200}/>
     <Filter mode={mode} setMode={setMode} reset={reset}/>
     <SearchBar searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
     <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>
