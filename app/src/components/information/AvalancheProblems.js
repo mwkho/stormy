@@ -16,7 +16,7 @@ const AvalancheProblems = (props) => {
 
 return(
   !props.problems.length ? (
-    <Card>
+    <Card style={{height:"5rem"}}>
       <CardContent>
         <Typography>{message}</Typography> 
       </CardContent>

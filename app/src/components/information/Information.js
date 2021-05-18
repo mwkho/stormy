@@ -9,6 +9,7 @@ import AppBar from '@material-ui/core/AppBar';
 import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import MapIcon from '@material-ui/icons/Map';
 import { makeStyles } from '@material-ui/core/styles';
 
 import axios from "axios"
@@ -93,7 +94,6 @@ export default function Information(props){
     .then((resp) => {
     if(resp.data.rows[0]) {
       setFav(true)
-      console.log("you like this")
     }
   })
   .catch(err=>{
@@ -101,15 +101,6 @@ export default function Information(props){
   })
 }, [])
  
-  // this effect disables favourite button if it is favourited when loading
-  // useEffect(() => {
-  //   axios.get(`get/place/${lat}/${lon}`)
-  //   .then(resp => {
-  //     setPlace([...resp.data.rows])
-  //   })
-  // }, [])
-  
-  
   return(
     <Container 
     maxWidth='md'
@@ -138,13 +129,16 @@ export default function Information(props){
       <Tabs  value={tab} indicatorColor="primary" textColor="primary" onChange={changeTab}>
         <Tab wrapped={true} icon={<CloudIcon/>} label={"Hourly Weather (48h)"}/>
         <Tab icon={<TerrainIcon/>} label='Avalanche Bulletin'/>
+        <Tab icon={<MapIcon/>} label='Map'/>
       </Tabs>
       </AppBar>
       <TabPanel tab={tab} index={0}>
-        <Tabs value={weatherTab} onChange={changeWeatherTab}>
+      <AppBar position="static" color='default'>
+        <Tabs  indicatorColor='primary' value={weatherTab} onChange={changeWeatherTab}>
           <Tab label='Graph'/>
           <Tab label='Table'/>
         </Tabs>
+      </AppBar>
         <TabPanel tab={weatherTab} index={0}>
           <WeatherPlot weather={consolidate} />
         </TabPanel>
@@ -153,18 +147,24 @@ export default function Information(props){
         </TabPanel>
       </TabPanel>
       <TabPanel tab={tab} index={1}>
-      <Tabs value={avalancheTab}  onChange={changeAvalancheTab}>
+      <AppBar position="static" color='default'>
+        <Tabs indicatorColor='primary' value={avalancheTab}  onChange={changeAvalancheTab}>
           <Tab label='Danger Ratings'/>
           <Tab label='Problems'/>
         </Tabs>
+      </AppBar>
         <TabPanel tab={avalancheTab} index={0}>
-        <AvalancheBulletin  convertDate={convertDate} bulletin={bulletin}/>
+          <AvalancheBulletin  convertDate={convertDate} bulletin={bulletin}/>
         </TabPanel>
         <TabPanel tab={avalancheTab} index={1}>
           <AvalancheProblems convertDate={convertDate} problems={bulletin.problems}/>
         </TabPanel>
       </TabPanel>
-      <MapItem lat={lat} lon={lon} map="../../../images/trail.png"/>
+      <TabPanel tab={tab} index={2}>
+      <AppBar position="static" color='default'>
+      </AppBar>
+        <MapItem lat={lat} lon={lon} map="../../../images/trail.png"/>
+      </TabPanel>
       <CommentList placeId={placeId} convertDate={convertDate} place={place}/>
     </Container> 
   )
