@@ -5,13 +5,16 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen'
+import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import Grid from '@material-ui/core/Grid'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Logo from '../home_page/Logo'
+import Slide from '@material-ui/core/Slide';
 
 
 
@@ -57,47 +60,49 @@ const getFavourites = function(){
 }
 
 function openNav() {
-  document.getElementById("mySidenav").style.width = "160px";
-  setNavbar(false)
+  // document.getElementById("mySidenav").style.width = "160px";
+  setNavbar(true)
   
 }
 
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  setNavbar(true)
+  // document.getElementById("mySidenav").style.width = "0";
+  setNavbar(false)
 }
 
-const closeIcon = <CloseIcon />
-const openIcon = <MenuOpenIcon />
-const showNavBar = (<div id="mySidenav" className="sidenav">
-  
-<Grid container>
-<Grid item
-  direction="row"
-  justify="flex-end"
+const NavBar = (
+<Box id="mySidenav" className="sidenav">
+<Grid container
+  display='flex'
+  flexDirection="row"
+  justify="flex-start"
   >
-  <Button 
-    
-    style={{backgroundColor: '#111', color: 'white'}}
-    size="small"
-    color="black"
-    variant="contained"
-    onClick={closeNav}
+  <Grid item>
+    <IconButton     
+      style={{ color: 'white'}}
+      size="medium"
+      edge='start'
+      onClick={closeNav}
     >
-      {closeIcon}
-    </Button>
-  </Grid>
-
-  
+      <CloseIcon />
+    </IconButton>
+  </Grid>  
 </Grid>
 
 
-<Grid container spacing={4}>
+<Grid 
+  container 
+  spacing={4}
+  display='flex'
+  flexDirection='column'
+  justify='center'
+
+  >
 <Grid item>
 <Button
   size='large'
   onClick={() => setPage('HOME')}
-  style={{backgroundColor: 'white', width: '160px'}}
+  style={{backgroundColor: 'white', width: '140px'}}
   color='white'
 >
   Egg Eggerson
@@ -108,7 +113,7 @@ const showNavBar = (<div id="mySidenav" className="sidenav">
 <Button
   size='large'
   onClick={() => setPage('HOME')}
-  style={{backgroundColor: 'white', width: '160px'}}
+  style={{backgroundColor: 'white', width: '140px'}}
   color='white'
 >
   Home
@@ -119,7 +124,7 @@ const showNavBar = (<div id="mySidenav" className="sidenav">
 <Button
   size='large'
   onClick={getFavourites}
-  style={{backgroundColor: 'white', width: '160px'}}
+  style={{backgroundColor: 'white', width: '140px'}}
   color='white'
 >
   Favourites
@@ -133,28 +138,29 @@ const showNavBar = (<div id="mySidenav" className="sidenav">
   justify="flex-end"
   alignItems="baseline"
 >
-<Logo
-width={160}
->
 
-</Logo>
-</Grid>
+
+<Logo width={160}/>
 
 </Grid>
 
+</Grid>
 
-</div>)
+
+{/* </div> */}
+</Box>
+)
 
 const menuButton = (
 <Grid container>
   <Grid item>
     <Button 
-    size="small"
-    color="black"
-    variant="contained"
-    onClick={openNav}
+      size="large"
+      color="black"
+      onClick={openNav}
+      variant='outline'
     >
-      {openIcon}
+      <MenuIcon />
     </Button>
   </Grid>
 </Grid>
@@ -162,9 +168,11 @@ const menuButton = (
 
   return(
     <>
-    {showNavBar}
+    <Slide direction="right" in={navbar} mountOnEnter unmountOnExit>
+      {NavBar}
+    </Slide>
 
-    {navbar ? menuButton : null}
+    {!navbar && menuButton}
      
     
     </>

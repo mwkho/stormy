@@ -1,5 +1,4 @@
 import React from 'react';
-import "../styles/DropDown.css"
 import selected from "../../lib/selected"
 import Button from '@material-ui/core/Button';
 import {Marker, Popup } from 'react-leaflet'
