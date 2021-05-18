@@ -6,13 +6,21 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 export default function Loading(props) {
 
   return ( 
-    <Box> 
+    <> 
+          <Box
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent="center"
+            height='100vh'
+      >
+
       <CircularProgress/>
         <Typography>
           {props.children}
       </Typography>
-    </Box>
-      
+      </Box>
+      </>
   
   )
 }

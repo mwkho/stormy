@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
+
 import HomePage from './home_page/HomePage'
 import Favourites from "./favourites/Favourites"
 import Sidebar from './sidebar/Sidebar'
 import Information from "./information/Information"
 import Loading from './Loading';
+
 
 const HOME = 'HOME'
 const INFORMATION = 'INFORMATION'
@@ -34,8 +36,10 @@ export default function App(props) {
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation} setPlaceId={setPlaceId}/>}
       {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
       {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} setPlaceId={setPlaceId}/>}
-      {page === LOADING && <Loading> "Mapping your favourites"</Loading>}
-      {page === CONDITIONS && <Loading> "Looking outside..."</Loading>}
+    
+      {page === LOADING && <Loading> Mapping your favourites </Loading>}
+      {page === CONDITIONS && <Loading> Looking outside... </Loading>}
+      {/* </Box> */}
     </div>
     )
 }

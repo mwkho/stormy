@@ -12,7 +12,7 @@ export default function Filter(props){
     <FormControlLabel 
       control={<Radio 
         checked={props.mode === 'trail'}
-        onChange={event => {props.setMode(props.mode === 'trail' ? 'mountain' : 'trail'); props.reset()}}
+        onChange={event => {props.setMode(props.mode === 'trail' ? 'mountain' : 'trail');}}
         >
       </Radio>}
       label="Trail"
