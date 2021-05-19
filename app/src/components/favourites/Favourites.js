@@ -81,7 +81,7 @@ export default function Favourites(props){
       </Typography>
     
       {/* <Profile/> */}
-      <MapContainer center={britishColumbia} zoomSnap={0.5} zoom={4.5} scrollWheelZoom={true}>
+      <MapContainer center={britishColumbia}  minZoom={4.5} zoomSnap={0.5} zoom={4.5} maxBounds={[[60, -140],[ 49.1, -114.2]]} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
