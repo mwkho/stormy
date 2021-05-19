@@ -10,10 +10,13 @@ import useDebounce from "../../hooks/useDebounce";
 export default function SearchBar(props){
   const [value, setValue] = useState("")
 
-  const userInput = useDebounce(value, 100);
+  const userInput = useDebounce(value, 200);
   const onSearch = useCallback(props.onSearch, [userInput]);
 
   useEffect(() => {
+    if (userInput.trim()){
+      props.setLoadStatus('SEARCHING')
+    }
     onSearch(userInput);
   }, [userInput, onSearch])
 

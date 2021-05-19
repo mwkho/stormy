@@ -23,13 +23,11 @@ export default function HomePage(props){
   const [loadStatus, setLoadStatus] = useState('SHOW')
 
   useEffect(() => {
-    if (userInput.trim()){
-      setLoadStatus('SEARCHING')
-    }
     (mode === 'mountain' ? getMountainCoordinates(userInput) : getTrailCoordinates(userInput))
     .then((res) => {
       setResults([...res])
-      setLoadStatus('SHOW')
+      // setLoadStatus('SHOW') 
+      setTimeout( () => setLoadStatus('SHOW') , 500)
     })
     .catch(err => {
       // reset user input on error
@@ -49,7 +47,7 @@ export default function HomePage(props){
       {`Select either \'Trail\' or 'Mountain' and start typing to begin.`}
     </Typography>
     <Filter mode={mode} setMode={setMode}/>
-    <SearchBar setStatus={setLoadStatus} searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
+    <SearchBar setLoadStatus={setLoadStatus} searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>
     
     {loadStatus === SHOW && <ResultsList results={results} display={props.display} setPOI={props.setPOI} setInformation={props.setInformation} type={mode} setPlaceId={props.setPlaceId}/>}
     {loadStatus === SEARCHING && <Loading> Searching </Loading> }
