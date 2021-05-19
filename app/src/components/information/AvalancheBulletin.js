@@ -8,18 +8,25 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 
 export default function AvalancheBulletin(props){
   
   const {bulletin, convertDate} = props
-  const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings, problems} = bulletin
+  const {region, dateIssued, validUntil, highlights, avalancheSummary, snowpackSummary, dangerRatings} = bulletin
+  const message = 'The trail/mountain does not belong to a region with an avalanche bulletin.'
   
   // render a message when region doesn't have avalanche bulletin
   if (!region) {
     return(
-      <Paper> 
-      <Typography variant="h2" className="unfound-bulletin"> {bulletin} </Typography>
-    </Paper>
+      <Card style={{height:"5rem"}}>
+      <CardContent>
+        <Typography>
+          {message}
+        </Typography> 
+      </CardContent>
+    </Card>
     )
   }
   

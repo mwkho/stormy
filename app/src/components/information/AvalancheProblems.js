@@ -9,13 +9,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 const AvalancheProblems = (props) => {
   const message = 'No problems have been reported.'
+  const problems = props.problems ? props.problems : []
 
-  const problemsList = props.problems.map((problem) => {
+  const problemsList = problems.map((problem) => {
     return <AvalancheProblemsItem type={problem.type} comment={problem.comment} elevation={problem.icons.elevation} aspects={problem.icons.aspects} likelihood={problem.icons.likelihood} expectedSize={problem.icons.expectedSize}/>
   })
 
 return(
-  props.problems.length ? (
+  !problems.length ? (
     <Card style={{height:"5rem"}}>
       <CardContent>
         <Typography>{message}</Typography> 
