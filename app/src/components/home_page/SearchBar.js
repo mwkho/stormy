@@ -20,15 +20,13 @@ export default function SearchBar(props){
     onSearch(userInput);
   }, [userInput, onSearch])
 
+
+  useEffect(() => {
+    setValue('')  
+  }, [props.searchMode])
   return(
   <>
-  {/* <Box
-        //className={classes.root}
-        display="flex"
-        flexDirection='column'
-        justifyContent="center"
-        alignItems="center"
-      > */}
+
         <TextField  
           // style={{ width: '70%' }}
           style={{ width: '80%', marginRight: '100px', paddingLeft: '200px' }}
@@ -36,7 +34,6 @@ export default function SearchBar(props){
           onChange={(event) => setValue(event.target.value)}
           value={value}     
         />  
-      {/* </Box> */}
   </>
   )
 };

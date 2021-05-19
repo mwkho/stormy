@@ -43,7 +43,7 @@ export default function HomePage(props){
       {`Look up weather forecasts and avalanche bulletins all in one place!`}
     </Typography>
     <Typography>
-      {`Select either \'Trail\' or 'Mountain' and start typing to begin.`}
+      {`Select either 'Trail' or 'Mountain' and start typing to begin.`}
     </Typography>
     <Filter mode={mode} setMode={setMode}/>
     <SearchBar setLoadStatus={setLoadStatus} searchMode={mode} onSearch={userInput => {setUserInput(userInput)}}/>

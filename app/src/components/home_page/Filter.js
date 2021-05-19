@@ -4,8 +4,7 @@ import FormControlLabel from'@material-ui/core/FormControlLabel'
 import Box from '@material-ui/core/Box';
  
 
-export default function Filter(props){
-
+export default function Filter(props){  
   return (
     // hackish way to allow radio buttons to change the states
     <>
