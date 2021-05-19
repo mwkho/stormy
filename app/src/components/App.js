@@ -25,13 +25,6 @@ export default function App(props) {
   return (
     
     <div className="App">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-      <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossOrigin=""
-/>
       {(page !== LOADING && page !== CONDITIONS) && <Sidebar setPage={setPage} setFavourites={setFavourites}/>}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation} setPlaceId={setPlaceId}/>}
       {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
