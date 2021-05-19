@@ -30,6 +30,7 @@ export default function SearchBar(props){
         alignItems="center"
       > */}
         <TextField  
+          // style={{ width: '70%' }}
           style={{ width: '80%', marginRight: '100px', paddingLeft: '200px' }}
           variant='filled'
           onChange={(event) => setValue(event.target.value)}

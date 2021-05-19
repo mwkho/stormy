@@ -33,22 +33,35 @@ export default function App(props) {
   crossOrigin=""
 />
       {(page !== LOADING && page !== CONDITIONS) && <Sidebar setPage={setPage} setFavourites={setFavourites}/>}
-      {/* { !mode && <HomePage display={setPage} setPOI={setPOI} onClick={displayInformation} setInformation={setInformation}/>} */}
       {page === HOME && <HomePage display={setPage} setPOI={setPOI} setInformation={setInformation} setPlaceId={setPlaceId}/>}
       {page === INFORMATION && <Information  information={information} poi={poi} placeId={placeId}/>}
       {page === FAVOURITES && <Favourites display={setPage} setInformation={setInformation} setPOI={setPOI} favourites={favourites} setFavourites={setFavourites} setPlaceId={setPlaceId}/>}
-    
-      <Box
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            justifyContent="center"
-            height='90vh'
-      >
 
-      {page === LOADING && <Loading> Mapping your favourites </Loading>}
-      {page === CONDITIONS && <Loading> Looking outside... </Loading>}
-      </Box>
+      {page === LOADING && 
+        <Box
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent="center"
+        height='100vh'
+        >
+          <Loading> 
+            Mapping your favourites 
+          </Loading>
+        </Box>
+         }
+      {page === CONDITIONS && 
+        <Box
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent="center"
+        height='100vh'
+        >
+        <Loading> 
+          Looking outside... 
+        </Loading>
+      </Box>}
     </div>
     )
 }

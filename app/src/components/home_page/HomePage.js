@@ -6,8 +6,6 @@ import ResultsList from './ResultList';
 import Loading from '../Loading';
 
 import '../styles/homePage.css';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 
 
@@ -38,7 +36,8 @@ export default function HomePage(props){
 
  
   return(
-  <main class="homepage">
+  <main>
+  {/* <> */}
     <Logo width={200}/>
     <Typography  display="block" gutterBottom>
       {`Look up weather forecasts and avalanche bulletins all in one place!`}
@@ -53,6 +52,7 @@ export default function HomePage(props){
     {loadStatus === SEARCHING && <Loading> Searching </Loading> }
 
   </main>
+  // </>
   )
 
 };

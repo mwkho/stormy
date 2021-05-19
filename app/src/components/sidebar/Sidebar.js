@@ -60,18 +60,15 @@ const getFavourites = function(){
 }
 
 function openNav() {
-  // document.getElementById("mySidenav").style.width = "160px";
   setNavbar(true)
-  
 }
 
 function closeNav() {
-  // document.getElementById("mySidenav").style.width = "0";
   setNavbar(false)
 }
 
 const NavBar = (
-<Box id="mySidenav" className="sidenav">
+<Box className="sidenav">
 <Grid container
   display='flex'
   flexDirection="row"
