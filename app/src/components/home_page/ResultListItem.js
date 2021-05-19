@@ -75,8 +75,8 @@ const ResultListItem  = (props) => {
     <Button
     onClick={()=> selected(poi)}
     style={{backgroundColor: 'white', width: '800px'}}
-    onMouseEnter={() => setHover(true)}
-    onMouseLeave={() => !freeze && setHover(false) }
+    //onMouseEnter={() => setHover(true)}
+    //onMouseLeave={() => !freeze && setHover(false) }
     
     //onMouseLeave={() => setHover(false)}
     >
