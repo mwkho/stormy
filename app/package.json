@@ -32,5 +32,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:8000/"
+  "proxy": "http://localhost:8000/",
+  "homepage": "https://stormybc.netlify.app/"
 }
