@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 
 import useDebounce from "../../hooks/useDebounce";
 

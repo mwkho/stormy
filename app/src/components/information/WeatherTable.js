@@ -1,5 +1,4 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';

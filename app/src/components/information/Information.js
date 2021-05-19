@@ -3,14 +3,12 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import CloudIcon from '@material-ui/icons/Cloud';
 import AppBar from '@material-ui/core/AppBar';
 import TerrainIcon from '@material-ui/icons/Terrain';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MapIcon from '@material-ui/icons/Map';
-import { makeStyles } from '@material-ui/core/styles';
 
 import axios from "axios"
 
@@ -59,7 +57,6 @@ export default function Information(props){
   
   const [weatherTab, setWeatherTab] = useState(0)
   const [avalancheTab, setAvalancheTab] = useState(0)
-  const [place, setPlace] = useState([])
   const [fav, setFav] = useState(false)
   const [tab, setTab] = useState(0)
   const [open, setOpen] = useState(false)
@@ -169,7 +166,7 @@ export default function Information(props){
       </AppBar>
         <MapItem lat={lat} lon={lon} map="../../../images/trail.png"/>
       </TabPanel>
-      <CommentList placeId={placeId} convertDate={convertDate} place={place}/>
+      <CommentList placeId={placeId} convertDate={convertDate}/>
     </Container> 
   )
 };

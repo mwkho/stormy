@@ -1,6 +1,5 @@
 import React from 'react';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
 const Plotly = require('plotly.js-basic-dist');

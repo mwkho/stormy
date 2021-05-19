@@ -6,7 +6,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Tooltip from '@material-ui/core/Tooltip'
 import Container from '@material-ui/core/Container'
 import MapIcon from '@material-ui/icons/Map';
-import Grid from '@material-ui/core/Grid'
 import CloseIcon from '@material-ui/icons/Close'
 
 const ResultListItem  = (props) => {
