@@ -51,7 +51,7 @@ export default function CommentList(props){
     // if(place){
       if(comment.place_id === placeId){
         return (
-          <CommentListItem convertDate={props.convertDate} timestamp={comment.comment_date} username="username">
+          <CommentListItem convertDate={props.convertDate} timestamp={comment.comment_date} username="Egg Eggerson">
             {comment.content} 
           </CommentListItem>
         )
