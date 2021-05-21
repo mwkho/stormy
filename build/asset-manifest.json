@@ -1,0 +1,13 @@
+{
+  "main.css": "/stormy/static/css/main.6eefedff.chunk.css",
+  "main.js": "/stormy/static/js/main.c9474332.chunk.js",
+  "main.js.map": "/stormy/static/js/main.c9474332.chunk.js.map",
+  "runtime~main.js": "/stormy/static/js/runtime~main.84ed0a15.js",
+  "runtime~main.js.map": "/stormy/static/js/runtime~main.84ed0a15.js.map",
+  "static/js/2.20bff864.chunk.js": "/stormy/static/js/2.20bff864.chunk.js",
+  "static/js/2.20bff864.chunk.js.map": "/stormy/static/js/2.20bff864.chunk.js.map",
+  "index.html": "/stormy/index.html",
+  "precache-manifest.27ebd9845a3ffe115737fb71716e0f12.js": "/stormy/precache-manifest.27ebd9845a3ffe115737fb71716e0f12.js",
+  "service-worker.js": "/stormy/service-worker.js",
+  "static/css/main.6eefedff.chunk.css.map": "/stormy/static/css/main.6eefedff.chunk.css.map"
+}

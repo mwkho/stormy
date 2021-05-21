@@ -1,20 +1,47 @@
 {
-  "name": "stormy",
-  "version": "1.0.0",
-  "description": "Stormy (BC) is an tool backcountry users can use to trip plan by giving weather forecasts as well as avalanche conditions (if it exists). It is built with React for the front end, stylized with Material UI and the back end is served by Express.",
-  "main": "index.js",
+  "name": "stormy-bc",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "acorn": "^7.4.1",
+    "axios": "^0.18.1",
+    "dotenv": "^6.0.0",
+    "gh-pages": "^3.1.0",
+    "leaflet": "^1.7.1",
+    "normalize.css": "^8.0.1",
+    "plotly.js-basic-dist": "^1.58.4",
+    "point-in-polygon": "^1.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.14.0",
+    "react-leaflet": "3.1.0",
+    "react-plotly.js": "^2.5.1",
+    "react-scripts": "2.1.8"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " cd router && npm start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd app/ &&  npm install --force && npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mwkho/stormy.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mwkho/stormy/issues"
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:8000/",
+  "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "homepage": "https://mwkho.github.io/stormy"
 }
