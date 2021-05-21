@@ -14,7 +14,7 @@
     "point-in-polygon": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-leaflet": "^3.1.0",
+    "react-leaflet": "3.1.0",
     "react-plotly.js": "^2.5.1",
     "react-scripts": "2.1.8"
   },
