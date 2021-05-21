@@ -4,7 +4,7 @@ const getHourlyWeather = require("./helper/getHourlyWeather")
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
-const PORT = 8000;
+const PORT = process.env.PORT||8000;
 const morgan = require('morgan')
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
