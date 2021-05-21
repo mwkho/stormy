@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": " cd route && npm start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd app/ &&  npm install npm && run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd app/ &&  npm install && npm run build"
   },
   "repository": {
     "type": "git",
