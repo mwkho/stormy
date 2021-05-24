@@ -2,7 +2,7 @@
 
 A trip planning tool built on ReactJS and Express for outdoor enthusiasts going into the backcountry. Users are able to look up hourly weather forecast that is available for the next 48hours and avalanche bulletin for their destination, be it a trail or a mountain peak. 
 
-The inspiriation of the web-app came from SpotWx.
+The inspiration of the web-app came from SpotWx.
 
 Currently support is for British Columbia, Canada. Future rollouts will expand to other areas.
 
