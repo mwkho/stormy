@@ -19,5 +19,10 @@ Currently support is for British Columbia, Canada. Future rollouts will expand t
 ## Screenshots
 
 
+![Home page with search results](https://github.com/mwkho/stormy/blob/master/app/public/docs/MapHover.png)
+![Information Page](https://github.com/mwkho/stormy/blob/master/app/public/docs/informationPage.png)
+![Favourite page](https://github.com/mwkho/stormy/blob/master/app/public/docs/favourites.png)
+
+
 
 ## Dependencies
