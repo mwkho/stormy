@@ -36,7 +36,7 @@ export default function AvalancheBulletin(props){
   const dangersList = dangerRatings.map((rating) => {
     const {alp, tln, btl} = rating.dangerRating
     const date = convertDate(new Date(rating.date))
-    return <AvalancheDangerItem date={date} alp tln btl/> 
+    return <AvalancheDangerItem date={date} alp={alp} tln={tln} btl={btl}/> 
   });
 
   return(
